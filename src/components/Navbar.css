@@ -1,0 +1,307 @@
+/* Festival Dropdown Styles (overlays on existing .festival-nav from Hero.css) */
+
+/* Festival dropdown (desktop) */
+.festival-dropdown-container {
+  position: relative;
+}
+
+.festival-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: #f6ebdc;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: all 0.25s ease;
+}
+
+.festival-toggle.active,
+.festival-toggle:hover {
+  color: var(--festival-gold);
+  border-color: rgba(255, 185, 54, 0.3);
+  background: rgba(255, 185, 54, 0.08);
+  opacity: 1;
+}
+
+.chevron-icon {
+  transition: transform 0.25s ease;
+}
+
+.chevron-icon.open {
+  transform: rotate(180deg);
+}
+
+.festival-dropdown {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  min-width: 240px;
+  background: rgba(12, 10, 8, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 185, 54, 0.18);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  padding: 0.6rem 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  z-index: 1001;
+  list-style: none;
+}
+
+/* Invisible bridge so mouse hover never drops between toggle and menu */
+.festival-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: transparent;
+}
+
+.festival-dropdown.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.festival-item {
+  list-style: none;
+  padding: 0;
+}
+
+.festival-item + .festival-item.coming-soon:first-of-type {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 0.3rem;
+  padding-top: 0.3rem;
+}
+
+/* Separator after active item */
+.festival-item.active + .festival-item.coming-soon {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 0.3rem;
+  padding-top: 0.3rem;
+}
+
+.festival-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.9rem;
+  color: var(--festival-muted, #b8aa99);
+  text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.festival-link:hover {
+  background: rgba(255, 185, 54, 0.06);
+}
+
+.festival-link.active-link {
+  color: var(--festival-gold, #ffb936);
+  font-weight: 600;
+}
+
+.festival-link.active-link .check-icon {
+  color: var(--festival-gold, #ffb936);
+}
+
+.dropdown-section-header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 0.5rem 1.1rem 0.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 0.3rem;
+  list-style: none;
+}
+
+.live-pill-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #ffb936;
+  color: #000;
+  margin-left: auto;
+}
+
+.past-date-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 153, 51, 0.15);
+  color: #FF9933;
+  border: 1px solid rgba(255, 153, 51, 0.3);
+  margin-left: auto;
+}
+
+.festival-link.past-link {
+  color: #e2d7c7;
+}
+
+.festival-link.past-link:hover {
+  background: rgba(255, 153, 51, 0.1);
+  color: #FF9933;
+}
+
+.coming-soon-badge {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 500;
+  margin-left: auto;
+}
+
+/* Mobile toggle */
+.mobile-toggle-btn {
+  display: none;
+  color: var(--festival-text, #fff6e7);
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+/* Mobile dropdown */
+.mobile-dropdown {
+  display: none;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: rgba(8, 6, 4, 0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.2rem 2rem 1.5rem;
+  z-index: 999;
+}
+
+.mobile-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--festival-text, #fff6e7);
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: 0.65rem 0.5rem;
+  border-radius: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+  background: rgba(255, 185, 54, 0.08);
+  color: var(--festival-gold, #ffb936);
+}
+
+/* Mobile festival section */
+.mobile-festival {
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mobile-festival-title {
+  font-weight: 600;
+  color: var(--festival-muted, #b8aa99);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.5rem;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.mobile-festival-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-festival-item .mobile-festival-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--festival-muted, #b8aa99);
+  text-decoration: none;
+  padding: 0.45rem 0.5rem;
+  border-radius: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.mobile-festival-item .mobile-festival-link:hover {
+  background: rgba(255, 185, 54, 0.06);
+}
+
+.mobile-festival-item .mobile-festival-link.active-link {
+  color: var(--festival-gold, #ffb936);
+  font-weight: 600;
+}
+
+.mobile-festival-item .mobile-festival-link.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  .nav-tools {
+    display: none;
+  }
+  .mobile-toggle-btn {
+    display: block;
+  }
+  .mobile-dropdown {
+    display: block;
+  }
+}

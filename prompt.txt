@@ -1,0 +1,51 @@
+The homepage is much better.
+
+Now improve the UX.
+
+1. Replace the countdown section with a premium glass countdown card.
+
+2. Add a new section below the hero called "Explore Raksha Bandhan".
+
+Create six premium cards:
+
+History
+
+Wishes
+
+Greeting Cards
+
+Images
+
+Gift Ideas
+
+FAQs
+
+Cards should have:
+
+Large icon
+
+Short description
+
+Hover animation
+
+Soft gold glow
+
+Rounded corners
+
+Glass effect
+
+3. Increase the hero illustration size by around 20%.
+
+4. Use Cormorant Garamond for all headings.
+
+5. Keep Inter for body text.
+
+6. Add subtle floating golden particles in the hero background.
+
+7. Add a very soft radial glow behind the hero image.
+
+8. Make the navbar transparent initially and glassmorphic after scrolling.
+
+Do not redesign the page.
+
+Only improve the existing homepage.

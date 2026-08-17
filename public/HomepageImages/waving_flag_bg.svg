@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%" preserveAspectRatio="none">
+  <defs>
+    <!-- Vibrant Saffron Gradient -->
+    <linearGradient id="saffronGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9933" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#FF6600" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Bright Pure White Middle Band Gradient -->
+    <linearGradient id="whiteGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.75"/>
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.75"/>
+    </linearGradient>
+
+    <!-- Rich Emerald Green Gradient -->
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#138808" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0B5604" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <filter id="chakraGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Saffron Top Dynamic Wave Band -->
+  <path fill="url(#saffronGrad)" d="M0,0 L1440,0 L1440,320 C1200,380 960,260 720,330 C480,400 240,280 0,340 Z">
+    <animate attributeName="d" 
+      dur="7s" 
+      repeatCount="indefinite" 
+      values="
+        M0,0 L1440,0 L1440,320 C1200,380 960,260 720,330 C480,400 240,280 0,340 Z;
+        M0,0 L1440,0 L1440,350 C1200,280 960,370 720,300 C480,350 240,290 0,360 Z;
+        M0,0 L1440,0 L1440,320 C1200,380 960,260 720,330 C480,400 240,280 0,340 Z
+      " 
+    />
+  </path>
+
+  <!-- White Middle Wave Band - Bright & Pure White -->
+  <path fill="url(#whiteGrad)" d="M0,300 C240,250 480,360 720,290 C960,350 1200,270 1440,330 L1440,600 C1200,540 960,630 720,560 C480,620 240,530 0,590 Z">
+    <animate attributeName="d" 
+      dur="7s" 
+      repeatCount="indefinite" 
+      values="
+        M0,300 C240,250 480,360 720,290 C960,350 1200,270 1440,330 L1440,600 C1200,540 960,630 720,560 C480,620 240,530 0,590 Z;
+        M0,330 C240,280 480,320 720,310 C960,280 1200,340 1440,310 L1440,580 C1200,560 960,590 720,580 C480,550 240,600 0,560 Z;
+        M0,300 C240,250 480,360 720,290 C960,350 1200,270 1440,330 L1440,600 C1200,540 960,630 720,560 C480,620 240,530 0,590 Z
+      " 
+    />
+  </path>
+
+  <!-- Green Bottom Dynamic Wave Band -->
+  <path fill="url(#greenGrad)" d="M0,560 C240,620 480,530 720,590 C960,530 1200,610 1440,550 L1440,900 L0,900 Z">
+    <animate attributeName="d" 
+      dur="7s" 
+      repeatCount="indefinite" 
+      values="
+        M0,560 C240,620 480,530 720,590 C960,530 1200,610 1440,550 L1440,900 L0,900 Z;
+        M0,580 C240,540 480,580 720,550 C960,590 1200,540 1440,580 L1440,900 L0,900 Z;
+        M0,560 C240,620 480,530 720,590 C960,530 1200,610 1440,550 L1440,900 L0,900 Z
+      " 
+    />
+  </path>
+
+  <!-- Center Positioned Ashok Chakra Motif -->
+  <g transform="translate(720, 440)" opacity="0.85" filter="url(#chakraGlow)">
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#000080" stroke-width="8"/>
+    <circle cx="0" cy="0" r="18" fill="#000080"/>
+    
+    <!-- 24 Spokes of Ashok Chakra -->
+    <g stroke="#000080" stroke-width="4">
+      <line x1="0" y1="-110" x2="0" y2="110"/>
+      <line x1="-110" y1="0" x2="110" y2="0"/>
+      <line x1="-77.8" y1="-77.8" x2="77.8" y2="77.8"/>
+      <line x1="-77.8" y1="77.8" x2="77.8" y2="-77.8"/>
+      
+      <line x1="-106.2" y1="-28.5" x2="106.2" y2="28.5"/>
+      <line x1="-106.2" y1="28.5" x2="106.2" y2="-28.5"/>
+      <line x1="-28.5" y1="-106.2" x2="28.5" y2="106.2"/>
+      <line x1="28.5" y1="-106.2" x2="-28.5" y2="106.2"/>
+      
+      <line x1="-95.3" y1="-55" x2="95.3" y2="55"/>
+      <line x1="-95.3" y1="55" x2="95.3" y2="-55"/>
+      <line x1="-55" y1="-95.3" x2="55" y2="95.3"/>
+      <line x1="55" y1="-95.3" x2="-55" y2="95.3"/>
+    </g>
+  </g>
+</svg>
