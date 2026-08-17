@@ -16,7 +16,6 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
   const [copiedToast, setCopiedToast] = useState(false);
   const [customPhoto, setCustomPhoto] = useState(null);
   const [photoZoom, setPhotoZoom] = useState(1.0);
-  const [photoOffsetX, setPhotoOffsetX] = useState(0);
   const [photoOffsetY, setPhotoOffsetY] = useState(0);
 
   const [isAdVisible, setIsAdVisible] = useState(false);

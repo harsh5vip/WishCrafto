@@ -84,25 +84,6 @@ export default function StudioPage({
         </p>
       </div>
 
-      {/* 1. Hero Section (Fast Canvas Creator) – Preserved Exactly */}
-      <div className="studio-hero-banner">
-        <div className="studio-hero-copy">
-          <span className="gold-text">
-            <Sparkles size={16} /> Fast Canvas Creator
-          </span>
-          <h2>Create a Personalized Rakhi Card in Seconds</h2>
-          <p>
-            Upload your own photo or logo, add your sibling's name, choose a heartfelt wish, select a background, and download an HD card instantly.
-          </p>
-          <button className="gold-button" onClick={() => onOpenCardModal()}>
-            <Wand2 size={18} /> Launch Greeting Card Studio
-          </button>
-        </div>
-        <div className="studio-hero-preview">
-          <img src="/HomepageImages/rakhi_hero.png" alt="Greeting Card Preview" />
-        </div>
-      </div>
-
       {/* 2. Premium Segmented Tabs Section */}
       <section className="segmented-hub-section" aria-label="Content Selection">
         <div className="hub-header text-center">
