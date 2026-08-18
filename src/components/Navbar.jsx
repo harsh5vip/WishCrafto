@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Menu, X, Sparkles, ChevronDown, Check, Heart, Image as ImageIcon, BookOpen, Wand2 } from 'lucide-react';
+import { Menu, X, Sparkles, ChevronDown, Check, Heart, Image as ImageIcon, BookOpen } from 'lucide-react';
 import IndianFlagIcon from './IndianFlagIcon';
 import './Navbar.css';
 
@@ -174,11 +174,6 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
             <li>
               <button className="mobile-nav-link" onClick={() => handleNav('/raksha-bandhan-stories')}>
                 <BookOpen size={16} /> Rakhi Stories
-              </button>
-            </li>
-            <li>
-              <button className="mobile-nav-link gold-text" onClick={() => { onOpenCardModal && onOpenCardModal(); setMobileMenuOpen(false); }}>
-                <Wand2 size={16} /> Create Card
               </button>
             </li>
           </ul>

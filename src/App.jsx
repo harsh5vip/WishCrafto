@@ -7,6 +7,7 @@ import HistoryPage from './pages/HistoryPage';
 import IndependencePage from './pages/IndependencePage';
 import IndianFlagIcon from './components/IndianFlagIcon';
 import CardGeneratorModal from './components/CardGeneratorModal';
+import FestiveAudioToggle from './components/FestiveAudioToggle';
 import './Hero.css';
 import Navbar from './components/Navbar';
 
@@ -29,10 +30,13 @@ export default function App() {
 
   // Update SEO Document Title dynamically based on current route
   useEffect(() => {
-    let title = 'WishCrafto | Raksha Bandhan Wishes, Greeting Cards & 4K Wallpapers 2026';
-    let desc = 'Download free Raksha Bandhan wishes with your photo & name. 100+ Hindi & English Rakhi quotes, Bhai Behan shayari, 4K wallpapers & shubh muhurat timings 2026.';
+    let title = 'WishCrafto | Download Free Customizable Festival Wishes & Cards with photo & name, Daily Festival status , 4K wallpaper and Festival stories';
+    let desc = 'Download free customizable festival wishes & greeting cards with your photo & name. Daily festival status, 1000+ Hindi & English quotes, festival stories & 4K wallpapers for all Indian & global festivals.';
 
-    if (currentPath === '/independence-day' || currentPath === '/15-august') {
+    if (currentPath === '/raksha-bandhan') {
+      title = 'WishCrafto | Raksha Bandhan Wishes, Greeting Cards & 4K Wallpapers 2026';
+      desc = 'Download free Raksha Bandhan wishes with your photo & name. 100+ Hindi & English Rakhi quotes, Bhai Behan shayari, 4K wallpapers & shubh muhurat timings 2026.';
+    } else if (currentPath === '/independence-day' || currentPath === '/15-august') {
       title = '15 August Independence Day Wishes, Quotes & Photo Cards 2026 | WishCrafto';
       desc = 'Download 500+ patriotic 15 August wishes, Tiranga Shayari, and create custom Swatantrata Diwas greeting cards with photo and name for free.';
     } else if (currentPath === '/wishes' || currentPath === '/raksha-bandhan-wishes' || currentPath === '/raksha-bandhan/wishes') {
@@ -66,7 +70,10 @@ export default function App() {
     if (ogUrl) ogUrl.setAttribute('content', `https://wishcrafto.com${currentPath}`);
 
     const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute('href', `https://wishcrafto.com${currentPath}`);
+    if (canonical) {
+      const canonicalPath = (currentPath === '/raksha-bandhan' || currentPath === '') ? '/' : currentPath;
+      canonical.setAttribute('href', `https://wishcrafto.com${canonicalPath}`);
+    }
   }, [currentPath]);
 
   // Fast SPA Navigation helper
@@ -135,11 +142,11 @@ export default function App() {
         )}
       </main>
 
-      {/* Mobile Bottom Navigation Pill Bar */}
+      {/* Mobile Bottom Navigation Pill Bar (Clean 4-Tab Core) */}
       <nav className="mobile-bottom-bar" aria-label="Mobile Navigation">
         <button
           className={`mobile-tab ${isRakhiRoute ? 'active' : ''}`}
-          onClick={() => navigateTo('/')}
+          onClick={() => navigateTo('/raksha-bandhan')}
         >
           <Sparkles size={18} />
           <span>Rakhi</span>
@@ -168,15 +175,10 @@ export default function App() {
           <BookOpen size={18} />
           <span>Stories</span>
         </button>
-
-        <button
-          className={`mobile-tab ${isIndepRoute ? 'active' : ''}`}
-          onClick={() => navigateTo('/15-august')}
-        >
-          <IndianFlagIcon size={16} />
-          <span>15 Aug</span>
-        </button>
       </nav>
+
+      {/* Ambient Divine Flute BGM Controller */}
+      <FestiveAudioToggle />
 
       {/* Interactive Card Generator Modal (Raksha Bandhan) */}
       <CardGeneratorModal

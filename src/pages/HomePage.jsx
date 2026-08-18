@@ -462,7 +462,7 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
           <span className="eyebrow">
             <Calendar size={14} /> Coming Soon to WishCrafto
           </span>
-          <p className="upcoming-subtitle">More Indian festivals will be added soon.</p>
+          <p className="upcoming-subtitle">More festivals will be added soon.</p>
         </div>
 
         <div className="upcoming-festivals-grid">
