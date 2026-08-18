@@ -125,8 +125,30 @@ const faqs = [
   },
 ];
 
-export default function HomePage({ onNavigate, onOpenCardModal }) {
+function HeroCountdownCard() {
   const timeLeft = useCountdown(RAKHI_COUNTDOWN.date);
+  return (
+    <div className="countdown-card">
+      <img src="/HomepageImages/rakhi_hero.png" alt="Rakhi Festival" loading="eager" />
+      <div className="countdown-content">
+        <div className="countdown-header">
+          <strong>{RAKHI_COUNTDOWN.title}</strong>
+          <small className="muhurat-badge">{RAKHI_COUNTDOWN.muhurat}</small>
+        </div>
+        <div className="time-grid">
+          {Object.entries(timeLeft).map(([label, value]) => (
+            <div className="time-box" key={label}>
+              <span>{String(value).padStart(2, '0')}</span>
+              <small>{label}</small>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function HomePage({ onNavigate, onOpenCardModal }) {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [copiedId, setCopiedId] = useState(null);
 
@@ -188,23 +210,7 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
             </div>
 
             {/* Countdown & Muhurat Card */}
-            <div className="countdown-card">
-              <img src="/HomepageImages/rakhi_hero.png" alt="Rakhi Festival" />
-              <div className="countdown-content">
-                <div className="countdown-header">
-                  <strong>{RAKHI_COUNTDOWN.title}</strong>
-                  <small className="muhurat-badge">{RAKHI_COUNTDOWN.muhurat}</small>
-                </div>
-                <div className="time-grid">
-                  {Object.entries(timeLeft).map(([label, value]) => (
-                    <div className="time-box" key={label}>
-                      <span>{String(value).padStart(2, '0')}</span>
-                      <small>{label}</small>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <HeroCountdownCard />
           </div>
 
           {/* Right Column: Live Featured Interactive Wish Showcase Card */}

@@ -57,19 +57,19 @@ button {
   padding: 0 1.5rem;
 }
 
-/* Glass & Card Styling */
+/* Glass & Card Styling (60 FPS Optimized) */
 .glass-panel {
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(16, 11, 8, 0.94);
   border: 1px solid var(--border-subtle);
   border-radius: 20px;
-  transition: var(--transition-smooth);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  contain: content;
+  transform: translateZ(0);
 }
 
 .glass-panel:hover {
   border-color: var(--border-active);
-  box-shadow: 0 10px 30px -10px var(--accent-gold-glow);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 /* Buttons */
@@ -135,7 +135,6 @@ button {
   font-size: 1.05rem;
 }
 
-
 /* WhatsApp Button Styles */
 .whatsapp-btn {
   background-color: #25D366 !important;
@@ -144,68 +143,72 @@ button {
 }
 
 .whatsapp-btn:hover {
-  background-color: #128C7E !important;
-  border-color: #128C7E !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  background-color: #20BA5A !important;
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+}
+
+.action-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+
+.action-btn:hover {
+  background: rgba(229, 193, 88, 0.1);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
 }
 
 .whatsapp-icon-btn {
+  background: rgba(37, 211, 102, 0.1) !important;
+  border-color: rgba(37, 211, 102, 0.3) !important;
   color: #25D366 !important;
-  background-color: rgba(37, 211, 102, 0.1) !important;
-  border-color: rgba(37, 211, 102, 0.2) !important;
 }
 
 .whatsapp-icon-btn:hover {
-  background-color: #25D366 !important;
+  background: #25D366 !important;
   color: #fff !important;
-  transform: scale(1.05);
 }
 
-/* Ad Overlay Simulator */
-.ad-overlay-wall { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 999; display: flex; align-items: center; justify-content: center; border-radius: 0 0 16px 16px; text-align: center; }
-.ad-box { background: rgba(20,15,10,0.9); border: 2px solid #ffb936; border-radius: 12px; padding: 2rem; max-width: 90%; width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-.ad-badge { background: #ffb936; color: #000; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1rem; }
-.ad-video-mock { height: 160px; background: #000; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 1.5rem; border: 1px dashed rgba(255,255,255,0.2); }
-.ad-box h3 { color: #fff; font-size: 1.2rem; margin-bottom: 0.5rem; }
-.ad-box p { color: #aaa; font-size: 0.9rem; }
-.spinner { width: 30px; height: 30px; border: 3px solid rgba(255,185,54,0.3); border-top-color: #ffb936; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 10px; }
-@keyframes spin { to { transform: rotate(360deg); } }
+.card-btn {
+  background: linear-gradient(135deg, rgba(229, 193, 88, 0.2), rgba(184, 142, 40, 0.2)) !important;
+  border-color: var(--accent-gold) !important;
+  color: var(--accent-gold) !important;
+}
 
+.card-btn:hover {
+  background: linear-gradient(135deg, #e5c158, #b88e28) !important;
+  color: #0a0a0c !important;
+}
 
-/* Animated Floating Waving Indian Flag Effect */
-@keyframes waveFlag {
-  0% { transform: translateY(0px) rotate(0deg) scale(1); }
-  25% { transform: translateY(-10px) rotate(2deg) scale(1.03); }
-  50% { transform: translateY(-4px) rotate(-1deg) scale(1.01); }
-  75% { transform: translateY(-12px) rotate(1.5deg) scale(1.04); }
-  100% { transform: translateY(0px) rotate(0deg) scale(1); }
+.gold-button {
+  background: linear-gradient(135deg, #FF9933, #138808);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gold-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 153, 51, 0.5);
 }
 
 .floating-tiranga-icon {
   display: inline-block;
-  animation: waveFlag 4s ease-in-out infinite;
-  filter: drop-shadow(0 8px 20px rgba(255, 153, 51, 0.5));
-}
-
-/* Full Page Waving Flag Background Animation */
-@keyframes wavePageFlag {
-  0% {
-    transform: scale(1) translateY(0px) rotate(0deg);
-    opacity: 0.45;
-  }
-  33% {
-    transform: scale(1.03) translateY(-10px) rotate(0.8deg);
-    opacity: 0.55;
-  }
-  66% {
-    transform: scale(1.01) translateY(5px) rotate(-0.8deg);
-    opacity: 0.48;
-  }
-  100% {
-    transform: scale(1) translateY(0px) rotate(0deg);
-    opacity: 0.45;
-  }
 }
 
 .full-page-waving-flag {
@@ -217,25 +220,6 @@ button {
   pointer-events: none;
   z-index: 0;
   background: url("/HomepageImages/waving_flag_bg.svg") center/cover no-repeat;
-  animation: wavePageFlag 7s ease-in-out infinite;
-}
-
-/* Independence Card Modal Tricolor Styling */
-.independence-card-modal {
-  border: 2px solid rgba(255, 153, 51, 0.5) !important;
-  box-shadow: 0 0 35px rgba(255, 153, 51, 0.35), inset 0 0 20px rgba(19, 136, 8, 0.2) !important;
-  background: linear-gradient(180deg, rgba(20, 15, 10, 0.96) 0%, rgba(10, 15, 10, 0.96) 100%) !important;
-}
-
-.independence-modal-header {
-  background: linear-gradient(90deg, #FF9933 0%, #138808 100%) !important;
-  color: #ffffff !important;
-  padding: 1rem 1.5rem !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-.independence-modal-header h3 {
-  color: #ffffff !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.5px !important;
+  opacity: 0.35;
+  transform: translateZ(0);
 }

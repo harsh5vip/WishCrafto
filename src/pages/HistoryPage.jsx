@@ -152,26 +152,26 @@ export default function HistoryPage({ onNavigate, onOpenCardModal }) {
   const currentIndex = RAKHI_LEGENDS.findIndex((l) => l.id === activeStoryId);
   const currentLegend = RAKHI_LEGENDS[currentIndex >= 0 ? currentIndex : 0] || RAKHI_LEGENDS[0];
 
-  // Track which story is currently in viewport on natural scrolling
+  // High-Performance IntersectionObserver for 60 FPS viewport tracking
   useEffect(() => {
-    const handleScroll = () => {
-      if (isProgrammaticScroll.current) return;
-      const scrollPos = window.scrollY + 220;
-      for (const legend of RAKHI_LEGENDS) {
-        const el = document.getElementById(legend.id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveStoryId(legend.id);
-            break;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isProgrammaticScroll.current) return;
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveStoryId(entry.target.id);
           }
-        }
-      }
-    };
+        });
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: 0.1 }
+    );
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    RAKHI_LEGENDS.forEach((legend) => {
+      const el = document.getElementById(legend.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const scrollToStory = (id) => {

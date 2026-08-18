@@ -16,6 +16,7 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
   const [copiedToast, setCopiedToast] = useState(false);
   const [customPhoto, setCustomPhoto] = useState(null);
   const [photoZoom, setPhotoZoom] = useState(1.0);
+  const [photoOffsetX, setPhotoOffsetX] = useState(0);
   const [photoOffsetY, setPhotoOffsetY] = useState(0);
 
   const [isAdVisible, setIsAdVisible] = useState(false);
@@ -910,7 +911,7 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
                     onClick={() => setSelectedImage(bg.url)}
                     title={bg.title}
                   >
-                    <img src={bg.url} alt={bg.title} />
+                    <img src={bg.url} alt={bg.title} loading="lazy" decoding="async" />
                   </button>
                 ))}
               </div>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-export default function FloatingRakhiBackground() {
+function FloatingRakhiBackground() {
   return (
     <div className="floating-rakhi-bg" aria-hidden="true">
       {/* Silk Thread Waves */}
@@ -10,20 +10,15 @@ export default function FloatingRakhiBackground() {
       {/* Floating Detailed SVG Rakhis */}
       <div className="floating-rakhi-item r1">
         <svg viewBox="0 0 160 160" width="120" height="120" fill="none">
-          {/* Thread Wings */}
           <path d="M 0 80 Q 40 65, 80 80 Q 120 95, 160 80" stroke="#ff385c" strokeWidth="4" strokeLinecap="round" />
           <path d="M 0 80 Q 40 95, 80 80 Q 120 65, 160 80" stroke="#ffb936" strokeWidth="2" strokeDasharray="4,4" />
-          {/* Golden Beaded Wings */}
           <circle cx="30" cy="77" r="4" fill="#ffd700" />
           <circle cx="50" cy="80" r="5" fill="#ff4d4d" />
           <circle cx="110" cy="80" r="5" fill="#ff4d4d" />
           <circle cx="130" cy="83" r="4" fill="#ffd700" />
-          {/* Outer Sun Rays */}
           <circle cx="80" cy="80" r="32" fill="rgba(255, 185, 54, 0.15)" />
           <circle cx="80" cy="80" r="28" stroke="#ffb936" strokeWidth="2" strokeDasharray="3,3" />
-          {/* Main Velvet Base */}
           <circle cx="80" cy="80" r="22" fill="#9e112d" stroke="#ffd700" strokeWidth="2.5" />
-          {/* Golden Mandala Flower */}
           <circle cx="80" cy="80" r="14" fill="#ffb936" />
           <circle cx="80" cy="80" r="8" fill="#ffd700" stroke="#7a0a1f" strokeWidth="1.5" />
           <circle cx="80" cy="80" r="3" fill="#ffffff" />
@@ -73,3 +68,5 @@ export default function FloatingRakhiBackground() {
     </div>
   );
 }
+
+export default memo(FloatingRakhiBackground);

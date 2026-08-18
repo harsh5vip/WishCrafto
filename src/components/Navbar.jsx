@@ -104,24 +104,24 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
           </ul>
         </div>
 
-        {/* Core Nav Buttons */}
+        {/* Core Nav Buttons (Festival-Specific & SEO Flat Keywords) */}
         <button
-          className={currentPath === '/wishes' ? 'active' : ''}
-          onClick={() => handleNav('/wishes')}
+          className={['/wishes', '/raksha-bandhan/wishes', '/raksha-bandhan-wishes', '/rakhi/wishes', '/rakhi-wishes'].includes(currentPath) ? 'active' : ''}
+          onClick={() => handleNav('/raksha-bandhan-wishes')}
         >
-          <Heart size={15} /> Wishes
+          <Heart size={15} /> Rakhi Wishes
         </button>
         <button
-          className={['/images', '/studio', '/wish-cards', '/greeting-cards', '/wallpapers'].includes(currentPath) ? 'active' : ''}
-          onClick={() => handleNav('/images')}
+          className={['/images', '/studio', '/wish-cards', '/greeting-cards', '/wallpapers', '/raksha-bandhan/cards', '/raksha-bandhan-cards', '/raksha-bandhan/wallpapers', '/raksha-bandhan-wallpapers', '/raksha-bandhan/studio'].includes(currentPath) ? 'active' : ''}
+          onClick={() => handleNav('/raksha-bandhan-cards')}
         >
-          <ImageIcon size={15} /> Studio
+          <ImageIcon size={15} /> Card Studio
         </button>
         <button
-          className={currentPath === '/history' ? 'active' : ''}
-          onClick={() => handleNav('/history')}
+          className={['/history', '/raksha-bandhan/history', '/raksha-bandhan-stories', '/rakhi/history', '/rakhi-stories'].includes(currentPath) ? 'active' : ''}
+          onClick={() => handleNav('/raksha-bandhan-stories')}
         >
-          <BookOpen size={15} /> History
+          <BookOpen size={15} /> Rakhi Stories
         </button>
       </nav>
 
@@ -162,18 +162,18 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
               </ul>
             </li>
             <li>
-              <button className="mobile-nav-link" onClick={() => handleNav('/wishes')}>
-                <Heart size={16} /> Wishes
+              <button className="mobile-nav-link" onClick={() => handleNav('/raksha-bandhan-wishes')}>
+                <Heart size={16} /> Rakhi Wishes
               </button>
             </li>
             <li>
-              <button className="mobile-nav-link" onClick={() => handleNav('/images')}>
-                <ImageIcon size={16} /> Studio
+              <button className="mobile-nav-link" onClick={() => handleNav('/raksha-bandhan-cards')}>
+                <ImageIcon size={16} /> Card Studio
               </button>
             </li>
             <li>
-              <button className="mobile-nav-link" onClick={() => handleNav('/history')}>
-                <BookOpen size={16} /> History
+              <button className="mobile-nav-link" onClick={() => handleNav('/raksha-bandhan-stories')}>
+                <BookOpen size={16} /> Rakhi Stories
               </button>
             </li>
             <li>

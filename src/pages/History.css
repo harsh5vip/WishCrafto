@@ -1,3 +1,7 @@
+.story-chapter-card, .legend-hero-banner, .scene-viewer-wrapper {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
+}
 .history-page {
   background:
     radial-gradient(circle at 18% 0%, rgba(255, 185, 54, 0.13), transparent 28rem),

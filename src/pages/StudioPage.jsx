@@ -131,43 +131,37 @@ export default function StudioPage({
 
       {/* 3 & 4. Enclosed Content Panel Connected to Active Tab */}
       <div className={`studio-content-panel active-${activeTab}`}>
-        {/* Wish Cards Tab Pane (Kept in DOM for instant 60fps switching with zero lag) */}
-        <div
-          className={`tab-pane-view ${activeTab === 'cards' ? 'tab-pane-active' : 'tab-pane-hidden'}`}
-          style={{ display: activeTab === 'cards' ? 'block' : 'none' }}
-        >
-          <div className="gallery-section-title">
-            <div className="title-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
-              <h3>Ready-to-Share Wish Cards</h3>
-              {renderLanguageToggle()}
+        {activeTab === 'cards' ? (
+          <div className="tab-pane-view tab-pane-active">
+            <div className="gallery-section-title">
+              <div className="title-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
+                <h3>Ready-to-Share Wish Cards</h3>
+                {renderLanguageToggle()}
+              </div>
             </div>
+            <WishCardsGrid
+              cards={RAKHI_WISH_CARDS}
+              onOpenCardModal={onOpenCardModal}
+              festivalName={festivalName}
+              lang={lang}
+            />
           </div>
-          <WishCardsGrid
-            cards={RAKHI_WISH_CARDS}
-            onOpenCardModal={onOpenCardModal}
-            festivalName={festivalName}
-            lang={lang}
-          />
-        </div>
-
-        {/* HD Wallpapers Tab Pane (Kept in DOM for instant 60fps switching with zero lag) */}
-        <div
-          className={`tab-pane-view ${activeTab === 'wallpapers' ? 'tab-pane-active' : 'tab-pane-hidden'}`}
-          style={{ display: activeTab === 'wallpapers' ? 'block' : 'none' }}
-        >
-          <div className="gallery-section-title">
-            <div className="title-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
-              <h3>HD Wallpaper &amp; Sacred Art Collection</h3>
-              {renderLanguageToggle()}
+        ) : (
+          <div className="tab-pane-view tab-pane-active">
+            <div className="gallery-section-title">
+              <div className="title-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
+                <h3>HD Wallpaper &amp; Sacred Art Collection</h3>
+                {renderLanguageToggle()}
+              </div>
             </div>
+            <WallpaperGrid
+              wallpapers={RAKHI_WALLPAPERS}
+              onOpenCardModal={onOpenCardModal}
+              festivalName={festivalName}
+              lang={lang}
+            />
           </div>
-          <WallpaperGrid
-            wallpapers={RAKHI_WALLPAPERS}
-            onOpenCardModal={onOpenCardModal}
-            festivalName={festivalName}
-            lang={lang}
-          />
-        </div>
+        )}
       </div>
 
       {/* 5. SEO Popular Search Keywords */}

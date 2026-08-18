@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, memo } from 'react';
 import { Download, Share2, Wand2, Sparkles, Check, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import WhatsAppIcon from '../WhatsAppIcon';
 import { generateGreetingCardDataUrl } from '../../utils/cardRenderer';
 
-export default function WishCardsGrid({ cards = [], onOpenCardModal, festivalName = 'Raksha Bandhan', lang = 'hi' }) {
+function WishCardsGrid({ cards = [], onOpenCardModal, festivalName = 'Raksha Bandhan', lang = 'hi' }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [toastMessage, setToastMessage] = useState('');
   const [downloadingId, setDownloadingId] = useState(null);
@@ -157,7 +157,7 @@ export default function WishCardsGrid({ cards = [], onOpenCardModal, festivalNam
             <article className="crafto-card" key={card.id}>
               {/* Card Visual with Tag */}
               <div className="crafto-card-media">
-                <img src={card.image} alt={titleText} loading="lazy" decoding="async" />
+                <img src={card.image} loading="lazy" decoding="async" alt={titleText} loading="lazy" decoding="async" />
                 <div className="crafto-card-gradient" />
                 
                 <span className="crafto-badge" style={{ borderColor: card.accentColor }}>
@@ -310,3 +310,5 @@ export default function WishCardsGrid({ cards = [], onOpenCardModal, festivalNam
     </div>
   );
 }
+
+export default memo(WishCardsGrid);

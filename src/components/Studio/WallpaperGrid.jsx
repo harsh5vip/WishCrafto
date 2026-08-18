@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, memo } from 'react';
 import { Download, Wand2, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const CATEGORIES = [
@@ -15,7 +15,7 @@ const CATEGORIES = [
   'Celestial Deities',
 ];
 
-export default function WallpaperGrid({ wallpapers = [], onOpenCardModal, festivalName = 'Raksha Bandhan', lang = 'hi' }) {
+function WallpaperGrid({ wallpapers = [], onOpenCardModal, festivalName = 'Raksha Bandhan', lang = 'hi' }) {
   const [selectedCategory, setSelectedCategory] = useState('All Wallpapers');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -78,7 +78,7 @@ export default function WallpaperGrid({ wallpapers = [], onOpenCardModal, festiv
           return (
             <div className="wallpaper-card" key={wp.id}>
               <div className="wallpaper-media">
-                <img src={wp.url} alt={titleText} loading="lazy" decoding="async" />
+                <img src={wp.url} loading="lazy" decoding="async" alt={titleText} />
                 <span className="watermark-badge">WishCrafto.com</span>
                 <div className="wallpaper-overlay">
                   <div className="wallpaper-actions">
@@ -184,3 +184,5 @@ export default function WallpaperGrid({ wallpapers = [], onOpenCardModal, festiv
     </div>
   );
 }
+
+export default memo(WallpaperGrid);

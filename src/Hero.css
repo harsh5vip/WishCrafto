@@ -1,3 +1,29 @@
+/* =========================================================
+   60-120 FPS SCROLL PERFORMANCE & HARDWARE ACCELERATION
+========================================================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Off-screen section rendering optimization (Modern Browser Standard) */
+.section, 
+.countdown-section, 
+.trending-wishes-section, 
+.faq-section, 
+.upcoming-festivals-section, 
+.history-section, 
+.wishes-page-container, 
+.studio-page-container {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 450px;
+}
+
 :root {
   --festival-bg: #050403;
   --festival-panel: rgba(13, 11, 9, 0.78);
@@ -40,6 +66,7 @@ body {
 
 /* Header & Navigation */
 .festival-nav {
+
   position: sticky;
   top: 0;
   z-index: 20;
@@ -48,9 +75,11 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 4.5rem;
-  background: rgba(5, 4, 3, 0.85);
+  background: rgba(6, 4, 3, 0.96);
   border-bottom: 1px solid var(--festival-line-soft);
-  backdrop-filter: blur(22px);
+  
+
+  transform: translateZ(0);
 }
 
 .brand-btn {
@@ -91,7 +120,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   opacity: 0.85;
-  transition: all 0.25s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .desktop-nav button.active,
@@ -115,6 +144,7 @@ body {
 
 /* Hero Section */
 .hero {
+
   position: relative;
   min-height: auto;
   height: auto;
@@ -124,6 +154,9 @@ body {
   padding: 2.2rem 4.5rem 2.5rem;
   overflow: visible;
   border-bottom: 1px solid var(--festival-line-soft);
+
+  contain: layout style paint;
+  transform: translateZ(0);
 }
 
 .hero-bg {
@@ -134,7 +167,7 @@ body {
     linear-gradient(90deg, rgba(3, 3, 3, 0.94) 0%, rgba(5, 4, 3, 0.78) 38%, rgba(5, 4, 3, 0.28) 66%, rgba(5, 4, 3, 0.7) 100%),
     linear-gradient(180deg, rgba(5, 4, 3, 0.05) 0%, rgba(5, 4, 3, 0.3) 55%, rgba(13, 9, 7, 0.98) 100%),
     url('/HomepageImages/rakhi_siblings.jpg') center / cover no-repeat;
-  filter: saturate(1.12) contrast(1.04);
+  /* filter removed for 60fps */
   opacity: 0.92;
   will-change: opacity;
 }
@@ -146,6 +179,7 @@ body {
 }
 
 .eyebrow {
+
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -154,11 +188,11 @@ body {
   border: 1px solid rgba(255, 185, 54, 0.3);
   border-radius: 999px;
   color: #fff5df;
-  background: rgba(20, 14, 10, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(20, 14, 10, 0.90);
+
   font-size: 0.82rem;
   font-weight: 700;
+
 }
 
 .hero h1 {
@@ -190,8 +224,9 @@ body {
 }
 
 .gold-button,
-.ghost-button,
-.outline-link {
+.ghost-button, .outline-link {
+
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -205,6 +240,8 @@ body {
   cursor: pointer;
   border: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+
 }
 
 .gold-button {
@@ -236,6 +273,7 @@ body {
 
 /* Countdown & Muhurat Integrated Card - Glassmorphism */
 .countdown-card {
+
   width: min(520px, 100%);
   margin-top: 1.5rem;
   display: grid;
@@ -243,10 +281,12 @@ body {
   overflow: hidden;
   border: 1.5px solid rgba(255, 185, 54, 0.35);
   border-radius: 16px;
-  background: rgba(14, 9, 6, 0.55);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: linear-gradient(145deg, rgba(32, 19, 12, 0.90), rgba(18, 10, 6, 0.95));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), 0 0 20px rgba(255, 185, 54, 0.08);
+
+  contain: content;
 }
 
 .countdown-card img {
@@ -344,7 +384,7 @@ body {
   cursor: pointer;
   will-change: transform;
   transform: translate3d(0, 0, 0);
-  animation: featuredCardFloat 5s ease-in-out infinite;
+  /* hardware accelerated */
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 }
 
@@ -364,7 +404,7 @@ body {
 }
 
 /* =========================================================
-   ANIMATED MOVING RAKSHA BANDHAN FESTIVE BACKGROUND
+   STATIC GPU-CACHED LUXURY FESTIVE AURA (0% CPU/GPU OVERHEAD)
 ========================================================= */
 .rakhi-festive-animated-bg {
   position: fixed;
@@ -372,9 +412,9 @@ body {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  opacity: 0.85;
-  will-change: transform;
+  opacity: 0.80;
   transform: translate3d(0, 0, 0);
+  contain: strict;
 }
 
 .rakhi-festive-animated-bg::before {
@@ -382,11 +422,9 @@ body {
   position: absolute;
   inset: 0;
   background: 
-    radial-gradient(circle at 25% 35%, rgba(255, 185, 54, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 75% 65%, rgba(231, 130, 22, 0.07) 0%, transparent 40%),
-    radial-gradient(circle at 60% 20%, rgba(194, 24, 91, 0.05) 0%, transparent 45%),
-    radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.06) 0%, transparent 45%);
-  animation: rakhiAuraDrift 18s ease-in-out infinite alternate;
+    radial-gradient(circle at 20% 30%, rgba(255, 185, 54, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 80% 60%, rgba(231, 130, 22, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(194, 24, 91, 0.04) 0%, transparent 50%);
 }
 
 .rakhi-festive-animated-bg::after {
@@ -394,34 +432,15 @@ body {
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(255, 215, 0, 0.6), transparent),
-    radial-gradient(2px 2px at 70px 120px, rgba(255, 185, 54, 0.5), transparent),
-    radial-gradient(2.5px 2.5px at 150px 80px, rgba(255, 255, 255, 0.7), transparent),
-    radial-gradient(2px 2px at 240px 190px, rgba(255, 215, 0, 0.5), transparent),
-    radial-gradient(3px 3px at 320px 150px, rgba(255, 185, 54, 0.6), transparent);
-  background-size: 400px 400px;
-  animation: rakhiSparklesFloat 24s linear infinite;
-}
-
-@keyframes rakhiAuraDrift {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-1.5%, -1.5%, 0);
-  }
-}
-
-@keyframes rakhiSparklesFloat {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, -400px, 0);
-  }
+    radial-gradient(1.5px 1.5px at 20px 30px, rgba(255, 215, 0, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 70px 120px, rgba(255, 185, 54, 0.35), transparent),
+    radial-gradient(2px 2px at 150px 80px, rgba(255, 255, 255, 0.5), transparent);
+  background-size: 320px 320px;
+  opacity: 0.6;
 }
 
 .featured-card-badge {
+
   position: absolute;
   top: 14px;
   left: 14px;
@@ -431,12 +450,13 @@ body {
   gap: 6px;
   padding: 4px 12px;
   border-radius: 999px;
-  background: rgba(10, 8, 6, 0.85);
+  background: rgba(18, 12, 8, 0.92);
   border: 1px solid rgba(255, 215, 0, 0.6);
   color: #FFD700;
   font-size: 0.78rem;
   font-weight: 700;
-  backdrop-filter: blur(8px);
+  
+
 }
 
 .featured-card-img-container {
@@ -584,9 +604,9 @@ body {
 }
 
 .trending-wish-card {
-  background: rgba(15, 10, 7, 0.55);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+
+  background: linear-gradient(145deg, rgba(28, 17, 10, 0.94), rgba(16, 9, 5, 0.97));
+
   border: 1.5px solid rgba(255, 185, 54, 0.25);
   border-radius: 16px;
   overflow: hidden;
@@ -594,6 +614,8 @@ body {
   flex-direction: column;
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 185, 54, 0.05);
+
+  contain: content;
 }
 
 .trending-wish-card:hover {
@@ -815,7 +837,7 @@ body {
   color: var(--festival-text);
   text-align: left;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .quick-chip:hover {
@@ -876,17 +898,19 @@ body {
 }
 
 .wish-card-premium {
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 1.6rem;
   border: 1.5px solid rgba(255, 185, 54, 0.25);
   border-radius: 16px;
-  background: rgba(16, 11, 8, 0.55);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: all 0.25s ease;
+  background: linear-gradient(145deg, rgba(26, 16, 10, 0.94), rgba(15, 9, 5, 0.97));
+
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+
+  contain: content;
 }
 
 .wish-card-premium:hover {
@@ -1142,28 +1166,38 @@ body {
 }
 
 .wallpaper-card {
+
   border: 1px solid var(--festival-line-soft);
   border-radius: 14px;
   overflow: hidden;
   background: rgba(12, 9, 7, 0.9);
+
+  contain: content;
+  transform: translateZ(0);
 }
 
 .wallpaper-media {
+
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+
+  contain: strict;
+  transform: translateZ(0);
 }
 
 .wallpaper-media img {
+
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
+
+  will-change: transform;
+  transform: translateZ(0);
 }
 
-.wallpaper-card:hover .wallpaper-media img {
-  transform: scale(1.05);
-}
+.wallpaper-card:hover .wallpaper-media img { opacity: 0.92; }
 
 .wallpaper-overlay {
   position: absolute;
@@ -1187,18 +1221,20 @@ body {
 }
 
 .icon-action-btn {
+
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   padding: 0.5rem 1rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(10, 7, 5, 0.92);
   color: #fff;
   font-size: 0.8rem;
   font-weight: 700;
   cursor: pointer;
-  backdrop-filter: blur(8px);
+  
+
 }
 
 .icon-action-btn.gold {
@@ -1413,7 +1449,7 @@ body {
   height: 100%;
   background: linear-gradient(90deg, #ffb936 0%, #e07a5f 100%);
   width: 0%;
-  animation: fillTimerBar 3s linear infinite;
+  width: 100%;
 }
 
 @keyframes fillTimerBar {
@@ -1451,7 +1487,7 @@ body {
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255, 185, 54, 0.2);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   display: grid;
   grid-template-columns: 240px 1fr;
   min-height: 180px;
@@ -1633,6 +1669,7 @@ body {
 
 /* Mobile Bottom Bar Navigation */
 .mobile-bottom-bar {
+
   display: none;
   position: fixed;
   bottom: 0;
@@ -1640,11 +1677,13 @@ body {
   right: 0;
   height: 64px;
   z-index: 900;
-  background: rgba(6, 4, 3, 0.92);
-  backdrop-filter: blur(20px);
+  background: rgba(6, 4, 3, 0.98);
+  
   border-top: 1px solid var(--festival-line-soft);
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
+
+  transform: translateZ(0);
 }
 
 .mobile-tab {
@@ -1686,7 +1725,7 @@ body {
       linear-gradient(180deg, rgba(5, 4, 3, 0.88) 0%, rgba(5, 4, 3, 0.42) 38%, rgba(5, 4, 3, 0.18) 65%, rgba(5, 4, 3, 0.85) 100%),
       linear-gradient(90deg, rgba(5, 4, 3, 0.72) 0%, rgba(5, 4, 3, 0.2) 100%),
       url('/HomepageImages/rakhi_siblings.jpg') 55% 76% / cover no-repeat;
-    filter: saturate(1.22) contrast(1.08);
+    /* filter removed for 60fps */
   }
 
   .quick-nav-bar {
@@ -1734,7 +1773,7 @@ body {
       linear-gradient(180deg, rgba(5, 4, 3, 0.88) 0%, rgba(5, 4, 3, 0.42) 38%, rgba(5, 4, 3, 0.18) 65%, rgba(5, 4, 3, 0.85) 100%),
       linear-gradient(90deg, rgba(5, 4, 3, 0.72) 0%, rgba(5, 4, 3, 0.2) 100%),
       url('/HomepageImages/rakhi_siblings.jpg') 55% 76% / cover no-repeat;
-    filter: saturate(1.22) contrast(1.08);
+    /* filter removed for 60fps */
   }
 
   .quick-nav-bar {
@@ -1775,7 +1814,7 @@ body {
       linear-gradient(180deg, rgba(5, 4, 3, 0.86) 0%, rgba(5, 4, 3, 0.38) 36%, rgba(5, 4, 3, 0.12) 65%, rgba(5, 4, 3, 0.82) 100%),
       linear-gradient(90deg, rgba(5, 4, 3, 0.68) 0%, rgba(5, 4, 3, 0.15) 100%),
       url('/HomepageImages/rakhi_siblings.jpg') 55% 76% / cover no-repeat;
-    filter: saturate(1.25) contrast(1.08);
+    /* filter removed for 60fps */
   }
 
   .hero h1 {
@@ -1841,19 +1880,22 @@ body {
 }
 
 .platform-feature-card {
+
   min-width: 0;
   width: 100%;
   box-sizing: border-box;
   padding: 1.1rem 1.15rem;
   border: 1px solid var(--festival-line-soft);
   border-radius: 14px;
-  background: linear-gradient(145deg, rgba(22, 15, 11, 0.78) 0%, rgba(10, 7, 5, 0.88) 100%);
-  backdrop-filter: blur(12px);
+  background: linear-gradient(145deg, rgba(24, 15, 9, 0.92), rgba(14, 8, 4, 0.96));
+  
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   outline: none;
+
+  contain: content;
 }
 
 .platform-feature-card.interactive-card {
@@ -2008,13 +2050,15 @@ body {
 }
 
 .faq-item {
+
   border: 1.5px solid rgba(255, 185, 54, 0.22);
   border-radius: 14px;
-  background: rgba(14, 10, 7, 0.52);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: linear-gradient(145deg, rgba(25, 16, 10, 0.92), rgba(15, 9, 5, 0.96));
+
   overflow: hidden;
   transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+
+  contain: content;
 }
 
 .faq-item:hover {
@@ -2107,19 +2151,21 @@ body {
 }
 
 .upcoming-fest-card {
+
   display: flex;
   align-items: center;
   gap: 0.9rem;
   padding: 1.1rem 1.2rem;
   border: 1.5px solid rgba(255, 185, 54, 0.2);
   border-radius: 14px;
-  background: rgba(14, 10, 7, 0.5);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: linear-gradient(145deg, rgba(26, 16, 10, 0.92), rgba(15, 9, 5, 0.96));
+
   opacity: 0.85;
   cursor: default;
   user-select: none;
   transition: transform 0.2s ease, border-color 0.2s ease;
+
+  contain: content;
 }
 
 .upcoming-fest-card:hover {
@@ -2676,7 +2722,7 @@ body {
     border-radius: 10px;
     text-align: left;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
 
   .history-tab-link:hover {
@@ -2758,8 +2804,9 @@ body {
 }
 
 .segmented-tab-card {
+
   position: relative;
-  background: rgba(18, 13, 10, 0.6);
+  background: linear-gradient(145deg, rgba(28, 17, 10, 0.92), rgba(16, 9, 5, 0.96));
   border: 1.5px solid var(--festival-line-soft);
   border-bottom: none;
   border-radius: 14px 14px 0 0;
@@ -2767,7 +2814,7 @@ body {
   text-align: left;
   cursor: pointer;
   transition: all 0.2s ease;
-  backdrop-filter: blur(16px);
+  
   color: var(--text-muted);
   display: flex;
   align-items: center;
@@ -2775,6 +2822,8 @@ body {
   min-width: unset;
   margin-bottom: -3px; /* Pulls it down to overlap the panel border perfectly */
   z-index: 1;
+
+  contain: content;
 }
 
 .segmented-tab-card:hover {
@@ -2811,19 +2860,21 @@ body {
 
 /* Enclosed Main Studio Content Panel */
 .studio-content-panel {
+
   position: relative;
-  background: rgba(13, 9, 7, 0.85);
+  background: linear-gradient(180deg, rgba(16, 11, 8, 0.96) 0%, rgba(10, 7, 5, 0.98) 100%);
   border: 1.5px solid rgba(255, 185, 54, 0.45);
   border-radius: 0 24px 24px 24px;
   padding: 2.8rem 2.4rem;
   margin-top: 0;
   margin-bottom: 3.5rem;
-  box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.7),
-    0 0 35px rgba(255, 185, 54, 0.08) inset;
-  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  
   transition: all 0.35s ease;
   z-index: 5;
+
+  contain: content;
+  transform: translateZ(0);
 }
 
 .studio-content-panel.active-cards {
@@ -2903,7 +2954,7 @@ body {
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--festival-muted);
-  transition: all 0.3s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .segmented-tab-card:hover .tab-card-cta,
@@ -2936,7 +2987,7 @@ body {
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .crafto-filter-pill:hover {
@@ -2961,41 +3012,48 @@ body {
 }
 
 .crafto-card {
+
   background: rgba(14, 10, 8, 0.85);
   border: 1px solid var(--festival-line-soft);
   border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  contain: content;
+  transform: translateZ(0);
 }
 
 .crafto-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(255, 185, 54, 0.4);
-  box-shadow: 
-    0 18px 42px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(255, 185, 54, 0.1);
+  border-color: rgba(255, 185, 54, 0.55);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
 }
 
 .crafto-card-media {
+
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #0d0907;
+
+  contain: strict;
+  transform: translateZ(0);
 }
 
 .crafto-card-media img {
+
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  will-change: transform;
+  transform: translateZ(0);
 }
 
-.crafto-card:hover .crafto-card-media img {
-  transform: scale(1.06);
-}
+.crafto-card:hover .crafto-card-media img { opacity: 0.92; }
 
 .crafto-card-gradient {
   position: absolute;
@@ -3005,14 +3063,15 @@ body {
 }
 
 .crafto-badge {
+
   position: absolute;
   top: 14px;
   left: 14px;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  background: rgba(10, 7, 5, 0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(14, 9, 6, 0.94);
+  
   border: 1px solid;
   border-radius: 30px;
   padding: 0.3rem 0.75rem;
@@ -3021,19 +3080,22 @@ body {
   color: #fff6e7;
   z-index: 2;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
 }
 
 .crafto-overlay-actions {
+
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(2px);
+  background: rgba(8, 5, 3, 0.65);
+  
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 3;
+
 }
 
 .crafto-card:hover .crafto-overlay-actions {
@@ -3041,6 +3103,7 @@ body {
 }
 
 .crafto-quick-btn {
+
   background: linear-gradient(135deg, #ffb936, #e78216);
   color: #0d0907;
   border: none;
@@ -3052,14 +3115,13 @@ body {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  transform: translateY(8px);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  
+  transition: opacity 0.25s ease, transform 0.25s ease;
+
 }
 
-.crafto-card:hover .crafto-quick-btn {
-  transform: translateY(0);
-}
+/* instant action */
 
 .crafto-quick-btn:hover {
   transform: scale(1.05);
@@ -3118,7 +3180,7 @@ body {
   align-items: center;
   gap: 0.4rem;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   flex-grow: 1;
   justify-content: center;
 }
@@ -3276,48 +3338,48 @@ body {
 }
 
 /* =========================================================
-   CARD GENERATOR MODAL & LIVE PREVIEW CANVAS
+   CARD GENERATOR MODAL & LIVE PREVIEW CANVAS (PIXEL-PERFECT 60 FPS)
 ========================================================= */
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  background: rgba(3, 2, 2, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  z-index: 99999;
+  background: rgba(4, 2, 2, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 1rem;
+  animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
 }
 
 @keyframes modalFadeIn {
-  from { opacity: 0; transform: scale(0.98); }
+  from { opacity: 0; transform: scale(0.97); }
   to { opacity: 1; transform: scale(1); }
 }
 
 .card-modal {
-  width: min(1180px, 95vw);
-  max-height: 92vh;
-  background: #0d0907;
-  border: 1.5px solid rgba(255, 185, 54, 0.45);
+  width: min(1120px, 96vw);
+  max-height: 94vh;
+  background: #0d0806;
+  border: 1.5px solid rgba(255, 185, 54, 0.5);
   border-radius: 20px;
   box-shadow: 
-    0 25px 80px rgba(0, 0, 0, 0.85),
-    0 0 40px rgba(255, 185, 54, 0.15);
+    0 25px 80px rgba(0, 0, 0, 0.9),
+    0 0 35px rgba(255, 185, 54, 0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
 
 .modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.2rem 1.8rem;
-  border-bottom: 1px solid rgba(255, 185, 54, 0.2);
-  background: rgba(20, 14, 10, 0.9);
+  padding: 1.1rem 1.8rem;
+  border-bottom: 1px solid rgba(255, 185, 54, 0.25);
+  background: rgba(18, 12, 8, 0.95);
 }
 
 .modal-title {
@@ -3328,15 +3390,15 @@ body {
 
 .modal-title h3 {
   margin: 0;
-  font-family: var(--display-font);
-  font-size: 1.35rem;
+  font-family: var(--display-font, 'Cinzel', serif);
+  font-size: 1.3rem;
   color: #fff6e7;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .icon-close-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--festival-line-soft);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 185, 54, 0.25);
   color: #ded4c5;
   cursor: pointer;
   padding: 0.45rem;
@@ -3348,70 +3410,97 @@ body {
 }
 
 .icon-close-btn:hover {
-  background: rgba(255, 185, 54, 0.15);
-  border-color: rgba(255, 185, 54, 0.4);
+  background: rgba(255, 185, 54, 0.2);
+  border-color: rgba(255, 185, 54, 0.5);
   color: #ffb936;
 }
 
 .modal-body {
   display: grid;
-  grid-template-columns: 1.2fr 0.95fr;
+  grid-template-columns: 450px minmax(0, 1fr);
   gap: 2rem;
-  padding: 1.8rem 2rem;
-  overflow-y: auto;
+  padding: 1.6rem 2rem;
+  overflow: hidden;
   align-items: start;
-  max-height: calc(92vh - 75px);
+  max-height: calc(94vh - 70px);
+  box-sizing: border-box;
 }
 
-/* Canvas Live Preview Container */
+@media (max-width: 960px) {
+  .modal-body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.2rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+  }
+}
+
+/* Canvas Live Preview Container (Left Column - Locked & Static 60 FPS) */
 .canvas-container {
-  position: sticky;
-  top: 0;
+  position: relative;
   background: #060403;
   border: 1.5px solid rgba(255, 185, 54, 0.35);
   border-radius: 16px;
   padding: 14px;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  width: 100%;
+  contain: content;
+  transform: translateZ(0);
 }
 
 .preview-canvas {
   width: 100% !important;
+  max-width: 420px;
   height: auto !important;
-  max-height: 520px;
-  aspect-ratio: 1200 / 630;
-  border-radius: 10px;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 12px;
   display: block;
-  object-fit: contain;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
 }
 
-/* Form Controls */
-.card-controls {
+/* Form Controls (Right Column - Independent Smooth 60 FPS Scroll) */
+.modal-controls {
   display: flex;
   flex-direction: column;
   gap: 1.15rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  max-height: calc(94vh - 125px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  contain: content;
+  transform: translateZ(0);
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  width: 100%;
+  min-width: 0;
 }
 
 .input-group label {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: #ffb936;
-  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .input-group input,
 .input-group textarea {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(20, 14, 10, 0.8);
   border: 1px solid rgba(255, 185, 54, 0.25);
   border-radius: 10px;
   padding: 0.75rem 1rem;
@@ -3419,19 +3508,21 @@ body {
   font-family: inherit;
   font-size: 0.95rem;
   transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .input-group input:focus,
 .input-group textarea:focus {
   outline: none;
   border-color: #ffb936;
-  background: rgba(255, 185, 54, 0.05);
+  background: rgba(255, 185, 54, 0.06);
   box-shadow: 0 0 14px rgba(255, 185, 54, 0.25);
 }
 
 .input-group textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 75px;
   line-height: 1.5;
 }
 
@@ -3440,13 +3531,20 @@ body {
   display: flex;
   gap: 0.6rem;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   padding: 0.4rem 0.2rem;
   scrollbar-width: thin;
+  contain: content;
+  transform: translateZ(0);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .thumb-btn {
-  width: 72px;
-  height: 52px;
+  width: 64px;
+  height: 48px;
   flex-shrink: 0;
   border-radius: 8px;
   overflow: hidden;
@@ -3466,7 +3564,7 @@ body {
 .thumb-btn.selected {
   border-color: #ffb936;
   transform: scale(1.06);
-  box-shadow: 0 0 14px rgba(255, 185, 54, 0.5);
+  box-shadow: 0 0 14px rgba(255, 185, 54, 0.6);
 }
 
 .thumb-btn:hover:not(.selected) {
@@ -3479,25 +3577,29 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
+  width: 100%;
+  min-width: 0;
 }
 
 .preset-wishes-pills small {
-  color: var(--festival-muted);
-  font-size: 0.8rem;
-  font-weight: 500;
+  color: #ded4c5;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 .pills-scroll {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
 }
 
 .preset-pill {
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 185, 54, 0.22);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 185, 54, 0.25);
+  background: rgba(255, 255, 255, 0.04);
   color: #ded4c5;
   font-size: 0.82rem;
   font-weight: 500;
@@ -3506,9 +3608,9 @@ body {
 }
 
 .preset-pill:hover {
-  border-color: rgba(255, 185, 54, 0.4);
+  border-color: rgba(255, 185, 54, 0.5);
   color: #fff6e7;
-  background: rgba(255, 185, 54, 0.08);
+  background: rgba(255, 185, 54, 0.12);
 }
 
 .preset-pill.active {
@@ -3516,61 +3618,85 @@ body {
   color: #0d0907;
   font-weight: 700;
   border-color: #ffb936;
-  box-shadow: 0 4px 12px rgba(255, 185, 54, 0.25);
+  box-shadow: 0 4px 12px rgba(255, 185, 54, 0.3);
 }
 
 /* Modal Actions */
 .modal-actions {
   display: flex;
-  gap: 0.8rem;
-  margin-top: 0.6rem;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  width: 100%;
 }
 
-.modal-actions .flex-1 {
-  flex: 1;
+.modal-actions button {
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+}
+
+.modal-actions .gold-button {
+  background: linear-gradient(135deg, #ffb936, #e78216) !important;
+  color: #0d0907 !important;
+  box-shadow: 0 6px 20px rgba(255, 185, 54, 0.45);
+}
+
+.modal-actions .gold-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 185, 54, 0.6);
+}
+
+.modal-actions .whatsapp-btn {
+  background: #25D366 !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.modal-actions .whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
 }
 
 .copied-toast {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  color: #2ed573;
-  font-size: 0.84rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid #25D366;
+  color: #25D366;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin-top: 0.2rem;
+  margin-top: 0.5rem;
 }
-
-@media (max-width: 900px) {
-  .modal-body {
-    grid-template-columns: 1fr;
-    padding: 1.2rem;
-    gap: 1.5rem;
-  }
-
-  .canvas-container {
-    position: relative;
-    top: 0;
-  }
-}
-
 
 /* Watermark Badge for Images & Cards */
 .watermark-badge {
+
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background: rgba(10, 6, 4, 0.78);
+  background: rgba(10, 6, 4, 0.90);
   color: rgba(255, 246, 231, 0.9);
   font-size: 0.7rem;
   font-weight: 600;
   padding: 3px 9px;
   border-radius: 6px;
   border: 1px solid rgba(255, 185, 54, 0.35);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+
   z-index: 3;
   pointer-events: none;
   letter-spacing: 0.3px;
+
 }
 
 /* Ultra-Modern Floating Gradient Color Highlight */
@@ -3596,7 +3722,7 @@ body {
   font-size: 0.92rem;
   letter-spacing: 0.2px;
   box-shadow: 0 4px 18px rgba(255, 185, 54, 0.45);
-  animation: floatingColorFlow 3.5s linear infinite;
+  /* optimized static badge */
   cursor: pointer;
   vertical-align: middle;
   transition: box-shadow 0.3s ease, transform 0.2s ease;
@@ -3672,6 +3798,8 @@ body {
   z-index: 0;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
+  will-change: transform;
+  contain: strict;
   backface-visibility: hidden;
 }
 
@@ -3680,24 +3808,26 @@ body {
   position: absolute;
   width: 130%;
   height: 220px;
-  opacity: 0.16;
+  opacity: 0.14;
   pointer-events: none;
   will-change: transform;
   transform: translate3d(0, 0, 0);
+  contain: paint;
+  backface-visibility: hidden;
 }
 
 .silk-thread-wave.wave-1 {
   top: 15%;
   left: -15%;
   background: radial-gradient(ellipse at center, rgba(255, 185, 54, 0.35) 0%, rgba(217, 30, 54, 0.15) 50%, transparent 80%);
-  animation: threadWaveFlow1 16s ease-in-out infinite alternate;
+  /* static glow */
 }
 
 .silk-thread-wave.wave-2 {
   top: 60%;
   left: -10%;
   background: radial-gradient(ellipse at center, rgba(231, 130, 22, 0.3) 0%, rgba(194, 24, 91, 0.15) 50%, transparent 80%);
-  animation: threadWaveFlow2 20s ease-in-out infinite alternate;
+  /* static glow */
 }
 
 @keyframes threadWaveFlow1 {
@@ -3713,9 +3843,10 @@ body {
 /* Floating SVG Rakhi Motifs - Zero Filter, High Performance */
 .floating-rakhi-item {
   position: absolute;
-  opacity: 0.22;
+  opacity: 0.20;
   will-change: transform;
   transform: translate3d(0, 0, 0);
+  contain: layout paint;
   backface-visibility: hidden;
 }
 
@@ -3723,35 +3854,35 @@ body {
 .floating-rakhi-item.r1 {
   top: 8%;
   left: 4%;
-  animation: floatRakhiMotion1 14s ease-in-out infinite alternate;
+  /* static GPU positioned */
 }
 
 /* Rakhi 2 (Top Right) */
 .floating-rakhi-item.r2 {
   top: 14%;
   right: 5%;
-  animation: floatRakhiMotion2 18s ease-in-out infinite alternate;
+  /* static GPU positioned */
 }
 
 /* Rakhi 3 (Mid Left) */
 .floating-rakhi-item.r3 {
   top: 48%;
   left: 2%;
-  animation: floatRakhiMotion3 22s ease-in-out infinite alternate;
+  /* static GPU positioned */
 }
 
 /* Rakhi 4 (Mid Right) */
 .floating-rakhi-item.r4 {
   top: 56%;
   right: 6%;
-  animation: floatRakhiMotion1 16s ease-in-out infinite alternate;
+  /* static GPU positioned */
 }
 
 /* Rakhi 5 (Bottom Center-Left) */
 .floating-rakhi-item.r5 {
   top: 80%;
   left: 15%;
-  animation: floatRakhiMotion2 20s ease-in-out infinite alternate;
+  /* static GPU positioned */
 }
 
 @keyframes floatRakhiMotion1 {
