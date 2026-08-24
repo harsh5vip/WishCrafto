@@ -9,7 +9,7 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
   const dropdownTimerRef = useRef(null);
 
   // Festival categories for dropdown
-  const activeFestival = { name: 'Raksha Bandhan 2026', path: '/raksha-bandhan', active: true };
+  const activeFestival = { name: 'Raksha Bandhan 2026', path: '/', active: true };
   const pastFestivals = [
     { name: '15 August (Independence Day)', path: '/15-august', date: '15 Aug 2026', isIndep: true }
   ];
@@ -60,8 +60,8 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
           onMouseLeave={handleMouseLeaveDropdown}
         >
           <button
-            className={`festival-toggle ${(currentPath === '/' || currentPath === '/raksha-bandhan' || currentPath === '/rakhi') ? 'active' : ''}`}
-            onClick={() => handleNav('/raksha-bandhan')}
+            className={`festival-toggle ${currentPath === '/' ? 'active' : ''}`}
+            onClick={() => handleNav('/')}
             aria-haspopup="true"
             aria-expanded={festivalDropdownOpen}
           >
@@ -70,7 +70,7 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
           <ul className={`festival-dropdown ${festivalDropdownOpen ? 'visible' : ''}`}>
             {/* Live Active Festival */}
             <li className="festival-item active">
-              <button className="festival-link active-link" onClick={() => handleNav('/raksha-bandhan')}>
+              <button className="festival-link active-link" onClick={() => handleNav('/')}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                   <Check size={14} className="check-icon" /> Raksha Bandhan 2026
                 </span>
@@ -106,22 +106,22 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
 
         {/* Core Nav Buttons (Festival-Specific & SEO Flat Keywords) */}
         <button
-          className={['/wishes', '/raksha-bandhan/wishes', '/raksha-bandhan-wishes', '/rakhi/wishes', '/rakhi-wishes'].includes(currentPath) ? 'active' : ''}
+          className={currentPath === '/raksha-bandhan-wishes' ? 'active' : ''}
           onClick={() => handleNav('/raksha-bandhan-wishes')}
         >
           <Heart size={15} /> Rakhi Wishes
         </button>
         <button
-          className={['/images', '/studio', '/wish-cards', '/greeting-cards', '/wallpapers', '/raksha-bandhan/cards', '/raksha-bandhan-cards', '/raksha-bandhan/wallpapers', '/raksha-bandhan-wallpapers', '/raksha-bandhan/studio'].includes(currentPath) ? 'active' : ''}
+          className={currentPath === '/raksha-bandhan-cards' ? 'active' : ''}
           onClick={() => handleNav('/raksha-bandhan-cards')}
         >
           <ImageIcon size={15} /> Card Studio
         </button>
         <button
-          className={['/history', '/raksha-bandhan/history', '/raksha-bandhan-stories', '/rakhi/history', '/rakhi-stories'].includes(currentPath) ? 'active' : ''}
+          className={currentPath === '/raksha-bandhan-stories' ? 'active' : ''}
           onClick={() => handleNav('/raksha-bandhan-stories')}
         >
-          <BookOpen size={15} /> Rakhi Stories
+          <BookOpen size={15} /> Rakhi History
         </button>
       </nav>
 
@@ -142,7 +142,7 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
               <span className="mobile-festival-title">Festival</span>
               <ul className="mobile-festival-list">
                 <li className="mobile-festival-item">
-                  <button className="mobile-festival-link active-link" onClick={() => handleNav('/raksha-bandhan')}>
+                  <button className="mobile-festival-link active-link" onClick={() => handleNav('/')}>
                     <Check size={12} className="check-icon" /> Raksha Bandhan 2026
                   </button>
                 </li>
@@ -173,7 +173,7 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
             </li>
             <li>
               <button className="mobile-nav-link" onClick={() => handleNav('/raksha-bandhan-stories')}>
-                <BookOpen size={16} /> Rakhi Stories
+                <BookOpen size={16} /> Rakhi History
               </button>
             </li>
           </ul>

@@ -6,7 +6,7 @@ import { RAKHI_WISHES, WISHES_CATEGORIES } from '../data/rakhiData';
 const WISHES_PER_PAGE = 6;
 
 export default function WishesPage({ onOpenCardModal }) {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('hindi');
   const [currentPage, setCurrentPage] = useState(1);
   const [copiedId, setCopiedId] = useState(null);
 
@@ -51,9 +51,8 @@ export default function WishesPage({ onOpenCardModal }) {
     <div className="wishes-page-container section">
       {/* Header */}
       <div className="section-heading text-center">
-        <span className="eyebrow"><Heart size={14} /> Heartfelt Messages</span>
-        <h2>Raksha Bandhan <span>Wishes & Greetings</span></h2>
-        <p>Express your love with hand-picked quotes, Hindi shayari, and traditional Sanskrit blessings.</p>
+        <h1>Happy Raksha Bandhan <span>Wishes &amp; Quotes 2026</span></h1>
+        <p>Best Raksha Bandhan wishes, Hindi shayari, brother-sister emotional quotes &amp; Sanskrit blessings for WhatsApp.</p>
       </div>
 
       {/* Category Pills */}

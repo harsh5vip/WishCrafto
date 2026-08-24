@@ -776,12 +776,16 @@ body {
   padding: 3.5rem 0;
 }
 
+.section-heading h1,
 .section-heading h2 {
   margin: 0.4rem 0 0.2rem;
   font-family: var(--display-font);
   font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--festival-text);
 }
 
+.section-heading h1 span,
 .section-heading h2 span {
   color: var(--festival-gold);
   font-style: italic;
@@ -789,9 +793,10 @@ body {
 
 .section-heading p {
   color: var(--festival-muted);
-  max-width: 580px;
+  max-width: 620px;
   margin: 0.4rem auto 0;
   font-size: 0.98rem;
+  line-height: 1.6;
 }
 
 .text-center {

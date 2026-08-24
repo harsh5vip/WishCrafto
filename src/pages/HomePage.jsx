@@ -204,7 +204,7 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
               <button className="ghost-button" onClick={() => onOpenCardModal()}>
                 <Wand2 size={18} /> Create Wish Card Free
               </button>
-              <button className="ghost-button" onClick={() => onNavigate('/wishes')}>
+              <button className="ghost-button" onClick={() => onNavigate('/raksha-bandhan-wishes')}>
                 Explore 100+ Wishes <ArrowRight size={16} />
               </button>
             </div>
@@ -270,7 +270,7 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
               Choose any wish template below to personalize with your photo and names, or copy text in 1 tap.
             </p>
           </div>
-          <button className="ghost-button view-all-btn" onClick={() => onNavigate('/wishes')}>
+          <button className="ghost-button view-all-btn" onClick={() => onNavigate('/raksha-bandhan-wishes')}>
             View All 85+ Wishes <ArrowRight size={15} />
           </button>
         </div>
@@ -359,7 +359,7 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
           {/* 2. Ready-to-Share Greetings -> Navigates to Studio/Greetings */}
           <div 
             className="platform-feature-card interactive-card"
-            onClick={() => onNavigate('/images')}
+            onClick={() => onNavigate('/raksha-bandhan-cards')}
             role="button"
             tabIndex={0}
           >
@@ -379,7 +379,7 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
           {/* 3. Wishes & Messages -> Navigates to Wishes Page */}
           <div 
             className="platform-feature-card interactive-card"
-            onClick={() => onNavigate('/wishes')}
+            onClick={() => onNavigate('/raksha-bandhan-wishes')}
             role="button"
             tabIndex={0}
           >
@@ -396,10 +396,10 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
             </div>
           </div>
 
-          {/* 4. Stories & Traditions -> Navigates to History Page */}
+          {/* 4. History & Traditions -> Navigates to History Page */}
           <div 
             className="platform-feature-card interactive-card"
-            onClick={() => onNavigate('/history')}
+            onClick={() => onNavigate('/raksha-bandhan-stories')}
             role="button"
             tabIndex={0}
           >
@@ -407,11 +407,11 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
               <span className="p-card-icon">
                 <span className="p-card-emoji">📖</span>
               </span>
-              <h3>Stories &amp; Traditions 🪔</h3>
+              <h3>Sacred History &amp; Origins 🪔</h3>
             </div>
-            <p>Explore authentic sacred legends and cultural significance of festivals.</p>
+            <p>Explore authentic Vedic origins, Krishna-Draupadi &amp; Rani Karnavati history.</p>
             <div className="p-card-action">
-              <span>Read Stories</span>
+              <span>Read History</span>
               <ArrowRight size={13} />
             </div>
           </div>

@@ -28,30 +28,21 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Update SEO Document Title dynamically based on current route
+  // Update SEO Document Title & Canonical meta dynamically based on exact route
   useEffect(() => {
     let title = 'WishCrafto | Download Free Customizable Festival Wishes & Cards with photo & name, Daily Festival status , 4K wallpaper and Festival stories';
     let desc = 'Download free customizable festival wishes & greeting cards with your photo & name. Daily festival status, 1000+ Hindi & English quotes, festival stories & 4K wallpapers for all Indian & global festivals.';
 
-    if (currentPath === '/raksha-bandhan') {
-      title = 'WishCrafto | Raksha Bandhan Wishes, Greeting Cards & 4K Wallpapers 2026';
-      desc = 'Download free Raksha Bandhan wishes with your photo & name. 100+ Hindi & English Rakhi quotes, Bhai Behan shayari, 4K wallpapers & shubh muhurat timings 2026.';
-    } else if (currentPath === '/independence-day' || currentPath === '/15-august') {
+    if (currentPath === '/15-august') {
       title = '15 August Independence Day Wishes, Quotes & Photo Cards 2026 | WishCrafto';
       desc = 'Download 500+ patriotic 15 August wishes, Tiranga Shayari, and create custom Swatantrata Diwas greeting cards with photo and name for free.';
-    } else if (currentPath === '/wishes' || currentPath === '/raksha-bandhan-wishes' || currentPath === '/raksha-bandhan/wishes') {
+    } else if (currentPath === '/raksha-bandhan-wishes') {
       title = 'Raksha Bandhan Wishes 2026 | 650+ Best Quotes & Shayari for Brother & Sister';
       desc = 'Browse 650+ beautiful Raksha Bandhan wishes, Hindi shayari, brother-sister quotes, and Sanskrit shlokas 2026. Copy in 1 tap or share on WhatsApp.';
-    } else if (currentPath === '/wish-cards' || currentPath === '/greeting-cards') {
-      title = 'Raksha Bandhan Wish Cards & Personalized Photo Greetings 2026 | WishCrafto';
-      desc = 'Download free ready-made Raksha Bandhan wish cards, emotional shayari photos, and customizable greeting cards with your photo & name.';
-    } else if (currentPath === '/wallpapers' || currentPath === '/raksha-bandhan-wallpapers' || currentPath === '/raksha-bandhan/wallpapers') {
-      title = 'Raksha Bandhan HD Wallpapers & 4K Backgrounds 2026 | WishCrafto';
-      desc = 'Download 85+ ultra HD 4K Raksha Bandhan wallpapers for mobile and desktop screens or customize them as greeting cards.';
-    } else if (currentPath === '/images' || currentPath === '/studio' || currentPath === '/raksha-bandhan-cards' || currentPath === '/raksha-bandhan/cards') {
+    } else if (currentPath === '/raksha-bandhan-cards') {
       title = 'Raksha Bandhan Card Studio: Custom Photo Cards & 4K Wallpapers | WishCrafto';
       desc = 'Create personalized Raksha Bandhan greeting cards with your photo & name in seconds, download ready-made wish cards, and browse 4K festive wallpapers.';
-    } else if (currentPath === '/history' || currentPath === '/raksha-bandhan-stories' || currentPath === '/raksha-bandhan/history') {
+    } else if (currentPath === '/raksha-bandhan-stories') {
       title = 'History of Raksha Bandhan | Divine Stories & Sacred Legends | WishCrafto';
       desc = 'Discover the authentic sacred legends of Raksha Bandhan: Lord Krishna & Draupadi, Goddess Lakshmi & King Bali, Rani Karnavati & Humayun, Yamraj & Yamuna.';
     }
@@ -67,12 +58,11 @@ export default function App() {
     if (ogDesc) ogDesc.setAttribute('content', desc);
 
     const ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl) ogUrl.setAttribute('content', `https://wishcrafto.com${currentPath}`);
+    if (ogUrl) ogUrl.setAttribute('content', `https://wishcrafto.com${currentPath === '/' ? '' : currentPath}`);
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      const canonicalPath = (currentPath === '/raksha-bandhan' || currentPath === '') ? '/' : currentPath;
-      canonical.setAttribute('href', `https://wishcrafto.com${canonicalPath}`);
+      canonical.setAttribute('href', `https://wishcrafto.com${currentPath === '/' ? '/' : currentPath}`);
     }
   }, [currentPath]);
 
@@ -91,12 +81,11 @@ export default function App() {
     setIsModalOpen(true);
   };
 
-  const isStudioRoute = ['/images', '/studio', '/wish-cards', '/greeting-cards', '/wallpapers', '/raksha-bandhan/cards', '/raksha-bandhan-cards', '/raksha-bandhan/wallpapers', '/raksha-bandhan/studio'].includes(currentPath);
-  const isWishesRoute = ['/wishes', '/raksha-bandhan/wishes', '/raksha-bandhan-wishes', '/rakhi/wishes', '/rakhi-wishes'].includes(currentPath);
-  const isHistoryRoute = ['/history', '/raksha-bandhan/history', '/raksha-bandhan-stories', '/rakhi/history', '/rakhi-stories'].includes(currentPath);
-  const isWallpapersRoute = ['/wallpapers', '/raksha-bandhan/wallpapers', '/raksha-bandhan-wallpapers'].includes(currentPath);
-  const isIndepRoute = currentPath === '/independence-day' || currentPath === '/15-august';
-  const isRakhiRoute = currentPath === '/' || currentPath === '/rakhi' || currentPath === '/raksha-bandhan';
+  const isWishesRoute = currentPath === '/raksha-bandhan-wishes';
+  const isStudioRoute = currentPath === '/raksha-bandhan-cards';
+  const isHistoryRoute = currentPath === '/raksha-bandhan-stories';
+  const isIndepRoute = currentPath === '/15-august';
+  const isHomeRoute = currentPath === '/' || (!isWishesRoute && !isStudioRoute && !isHistoryRoute && !isIndepRoute);
 
   return (
     <div className="festival-page">
@@ -108,16 +97,9 @@ export default function App() {
         {isWishesRoute && (
           <WishesPage onOpenCardModal={handleOpenCardModal} />
         )}
-        {isStudioRoute && !isWallpapersRoute && (
+        {isStudioRoute && (
           <StudioPage
             initialTab="cards"
-            onOpenCardModal={handleOpenCardModal}
-            onNavigate={navigateTo}
-          />
-        )}
-        {isWallpapersRoute && (
-          <StudioPage
-            initialTab="wallpapers"
             onOpenCardModal={handleOpenCardModal}
             onNavigate={navigateTo}
           />
@@ -128,7 +110,7 @@ export default function App() {
             onOpenCardModal={handleOpenCardModal}
           />
         )}
-        {isRakhiRoute && (
+        {isHomeRoute && (
           <HomePage
             onNavigate={navigateTo}
             onOpenCardModal={handleOpenCardModal}
@@ -145,8 +127,8 @@ export default function App() {
       {/* Mobile Bottom Navigation Pill Bar (Clean 4-Tab Core) */}
       <nav className="mobile-bottom-bar" aria-label="Mobile Navigation">
         <button
-          className={`mobile-tab ${isRakhiRoute ? 'active' : ''}`}
-          onClick={() => navigateTo('/raksha-bandhan')}
+          className={`mobile-tab ${isHomeRoute ? 'active' : ''}`}
+          onClick={() => navigateTo('/')}
         >
           <Sparkles size={18} />
           <span>Rakhi</span>
@@ -173,7 +155,7 @@ export default function App() {
           onClick={() => navigateTo('/raksha-bandhan-stories')}
         >
           <BookOpen size={18} />
-          <span>Stories</span>
+          <span>History</span>
         </button>
       </nav>
 
@@ -200,9 +182,9 @@ export default function App() {
 
         <div className="footer-col">
           <h3>Quick Links</h3>
-          <button onClick={() => navigateTo('/wishes')}>Wishes</button>
-          <button onClick={() => navigateTo('/images')}>Studio</button>
-          <button onClick={() => navigateTo('/history')}>History</button>
+          <button onClick={() => navigateTo('/raksha-bandhan-wishes')}>Rakhi Wishes</button>
+          <button onClick={() => navigateTo('/raksha-bandhan-cards')}>Card Studio</button>
+          <button onClick={() => navigateTo('/raksha-bandhan-stories')}>Rakhi History</button>
         </div>
 
         <div className="footer-col">

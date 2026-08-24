@@ -73,9 +73,6 @@ export default function StudioPage({
     <div className="studio-page-container section">
       {/* Page Header */}
       <div className="section-heading text-center">
-        <span className="eyebrow">
-          <Sparkles size={14} /> Creative Studio
-        </span>
         <h2>
           {festivalName} <span>Wishes, Cards &amp; Wallpapers</span>
         </h2>
@@ -202,8 +199,8 @@ export default function StudioPage({
           <h3>Curious about the ancient origins of {festivalName}?</h3>
           <p>Discover the sacred stories of Krishna &amp; Draupadi, Rani Karnavati, and Lakshmi &amp; Bali.</p>
         </div>
-        <button className="ghost-button" onClick={() => onNavigate('/history')}>
-          Read Sacred Stories <ArrowRight size={16} />
+        <button className="ghost-button" onClick={() => onNavigate('/raksha-bandhan-stories')}>
+          Read Sacred History <ArrowRight size={16} />
         </button>
       </div>
     </div>

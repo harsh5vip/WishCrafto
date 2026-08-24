@@ -646,3 +646,244 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   EDITORIAL PILLAR ARTICLE: HISTORY & ORIGIN OF RAKSHA BANDHAN
+   Clean Parchment Light Theme (High Contrast, Ultra-Readable)
+========================================================= */
+.history-editorial-pillar {
+  max-width: 1040px;
+  margin: 3.5rem auto 2.5rem;
+  padding: 3rem 2.5rem;
+  background: #ffffff !important;
+  border: 1px solid #e7e5e4;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.1);
+  color: #1c1917 !important;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+/* Utility Bar (Lang Toggle & Audio Speaker) */
+.article-utility-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.8rem 1.1rem;
+  background: #f5f5f4;
+  border-radius: 14px;
+  border: 1px solid #e7e5e4;
+  margin-bottom: 1.8rem;
+}
+
+.article-lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lang-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #57534e;
+}
+
+.lang-btn {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid #d6d3d1;
+  background: #ffffff;
+  color: #44403c;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+  background: #e7e5e4;
+}
+
+.lang-btn.active {
+  background: #7c2d12;
+  color: #ffffff;
+  border-color: #7c2d12;
+}
+
+.editorial-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #f5f5f4;
+}
+
+.editorial-header h2 {
+  font-family: var(--display-font);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  color: #7c2d12 !important;
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+
+.editorial-header h2 span {
+  color: #b45309 !important;
+  font-style: italic;
+}
+
+.editorial-read-time {
+  font-size: 0.92rem;
+  color: #57534e !important;
+  font-weight: 500;
+}
+
+/* Chapter Tab Bar (Light Theme) */
+.editorial-tabs-bar {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #e7e5e4;
+}
+
+.editorial-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #d6d3d1;
+  background: #f5f5f4;
+  color: #44403c;
+}
+
+.editorial-tab-btn:hover {
+  background: #e7e5e4;
+  color: #1c1917;
+}
+
+.editorial-tab-btn.active {
+  border: 1px solid #b45309;
+  background: linear-gradient(135deg, #b45309, #d97706);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(180, 83, 9, 0.3);
+}
+
+/* Paragraphs & Headings inside Editorial */
+.editorial-chapter p {
+  color: #292524 !important;
+  font-size: 1.06rem;
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+}
+
+.editorial-chapter h3 {
+  font-family: var(--display-font);
+  font-size: 1.45rem;
+  color: #7c2d12 !important;
+  margin: 1.8rem 0 0.9rem;
+  border-left: 4px solid #b45309;
+  padding-left: 0.75rem;
+}
+
+.editorial-chapter h4 {
+  font-size: 1.18rem;
+  color: #1c1917 !important;
+  margin: 1.4rem 0 0.6rem;
+  font-weight: 700;
+}
+
+.editorial-chapter strong {
+  color: #7c2d12 !important;
+}
+
+/* Shloka Card (Light Theme) */
+.shloka-card {
+  background: linear-gradient(135deg, #fff7ed, #ffedd5) !important;
+  border: 1.5px solid #fde68a !important;
+  border-radius: 14px;
+  padding: 1.5rem 1.8rem;
+  margin: 1.5rem 0;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.15) !important;
+}
+
+.shloka-text {
+  font-family: 'Hind', 'Noto Sans Devanagari', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #9a3412 !important;
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+}
+
+.shloka-meaning {
+  font-size: 0.96rem;
+  color: #451a03 !important;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+/* FAQs inside Light Editorial Article */
+.history-editorial-pillar .faq-section {
+  padding: 0 !important;
+  margin-top: 1rem;
+}
+
+.history-editorial-pillar .faq-header h2 {
+  color: #7c2d12 !important;
+}
+
+.history-editorial-pillar .faq-subtitle {
+  color: #57534e !important;
+}
+
+.history-editorial-pillar .faq-item {
+  background: #ffffff !important;
+  border: 1.5px solid #e7e5e4 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+.history-editorial-pillar .faq-item:hover {
+  border-color: #d6d3d1 !important;
+  background: #fafaf9 !important;
+}
+
+.history-editorial-pillar .faq-item.active {
+  border-color: #b45309 !important;
+  background: #fffdfa !important;
+  box-shadow: 0 4px 18px rgba(180, 83, 9, 0.12) !important;
+}
+
+.history-editorial-pillar .faq-question-btn {
+  color: #1c1917 !important;
+}
+
+.history-editorial-pillar .faq-item.active .faq-question-btn {
+  color: #7c2d12 !important;
+}
+
+.history-editorial-pillar .faq-chevron {
+  color: #78350f !important;
+}
+
+.history-editorial-pillar .faq-answer {
+  border-top: 1px solid #f5f5f4 !important;
+}
+
+.history-editorial-pillar .faq-answer p {
+  color: #292524 !important;
+}
+
+@media (max-width: 768px) {
+  .history-editorial-pillar {
+    padding: 1.6rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
