@@ -1,156 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Sparkles, ArrowRight, Wand2, Heart, BookOpen, 
-  Image as ImageIcon, Calendar, ChevronDown, Copy, Check, Star, Share2
+  Image as ImageIcon, Calendar, ChevronDown, Copy, Check, Star, Share2, Camera, Download, Edit3, User, ShieldCheck, Zap, HeartHandshake, Globe
 } from 'lucide-react';
-import { RAKHI_COUNTDOWN } from '../data/rakhiData';
-import FloatingRakhiBackground from '../components/FloatingRakhiBackground';
-
-function useCountdown(targetDateStr) {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    const calculate = () => {
-      const diff = Math.max(new Date(targetDateStr).getTime() - Date.now(), 0);
-      setTimeLeft({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff / 3600000) % 24),
-        minutes: Math.floor((diff / 60000) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
-      });
-    };
-
-    calculate();
-    const interval = setInterval(calculate, 1000);
-    return () => clearInterval(interval);
-  }, [targetDateStr]);
-
-  return timeLeft;
-}
-
-const upcomingFestivals = [
-  { name: 'Janmashtami', icon: '🦚', date: 'Coming Soon' },
-  { name: 'Ganesh Chaturthi', icon: '🪔', date: 'Coming Soon' },
-  { name: 'Navratri', icon: '🌸', date: 'Coming Soon' },
-  { name: 'Diwali', icon: '✨', date: 'Coming Soon' },
-];
-
-const TRENDING_WISH_TEMPLATES = [
-  {
-    id: 't-1',
-    category: '🌸 Sibling Love Special',
-    tag: 'Trending #1',
-    wish: 'फूलों का तारों का सबका कहना है, एक हज़ारों में मेरी बहना है! रक्षाबंधन की ढेरों शुभकामनाएं मेरी प्यारी बहना!',
-    image: '/HD Wallpapers/brother_sister_rakhi_1.jpg',
-    author: 'For Sister'
-  },
-  {
-    id: 't-2',
-    category: '🪔 Divine Vedic Blessing',
-    tag: 'Trending #2',
-    wish: 'May the holy thread of Rakhi protect you from all harm and bring boundless success, health, and joy in your life.',
-    image: '/HD Wallpapers/divine_blessings_raksha_bandhan.jpg',
-    author: 'Divine Wishes'
-  },
-  {
-    id: 't-3',
-    category: '👑 Royal Gold Shubh Rakhi',
-    tag: 'Trending #3',
-    wish: 'सूरज की किरणें, खुशियों की बहार, चांद की चांदनी, अपनों का प्यार। मुबारक हो आपको रक्षाबंधन का पावन त्योहार!',
-    image: '/HD Wallpapers/royal_thali_rakhi_celebration.jpg',
-    author: 'Hindi Wishes'
-  }
-];
+import { DAILY_STATUS_CATEGORIES, DAILY_STATUS_FEED } from '../data/dailyStatusData';
 
 const faqs = [
   {
-    question: 'When is Raksha Bandhan 2026? What is the exact Shubh Muhurat for tying Rakhi?',
+    question: 'Is WishCrafto for users in India only?',
     answer:
-      'Raksha Bandhan will be celebrated on Friday, August 28, 2026 (Shravana Purnima). The auspicious Rakhi tying muhurat begins from early sunrise at 05:57 AM and extends up to 09:48 AM IST. The Shubh Choghadiya provides an auspicious time window for brother-sister ceremonies. You can track the live countdown and auspicious muhurat right on this page.',
+      'No! WishCrafto is a global platform built for users worldwide (USA, UK, Canada, UAE, Australia, and India). We support all major Indian festivals (Janmashtami, Raksha Bandhan, Diwali, Navratri) as well as US & global festivals (Thanksgiving, Christmas, New Year, Halloween, Mother\'s Day, Father\'s Day) with localized photo card templates.',
   },
   {
-    question: 'What is Bhadra Kaal on Raksha Bandhan 2026, and why is Rakhi not tied during Bhadra?',
+    question: 'How can I create a custom Good Morning or Festival Card with my photo & name?',
     answer:
-      'According to Vedic astrology and Hindu scriptures, Bhadra is the daughter of Lord Surya and sister of Shani Dev. Performing auspicious rituals like tying Rakhi during Bhadra Kaal is strictly avoided as it is believed to bring discord. Fortunately, on Raksha Bandhan 2026 (August 28), Bhadra concludes before sunrise, leaving the morning completely auspicious and free from Bhadra shadow.',
+      'WishCrafto makes card creation instant and free without downloading any app: (1) Click "अपनी फोटो लगाएं / बदलें", (2) Select your photo with easy drag & zoom, (3) Enter your name and custom wish, and (4) Instantly share on WhatsApp or download in 4K HD.',
   },
   {
-    question: 'How can I create a personalized Raksha Bandhan photo greeting card online for free?',
+    question: 'Why does WishCrafto take 0% space on my phone compared to playstore apps?',
     answer:
-      'On WishCrafto, you can create a custom Raksha Bandhan greeting card with your own photo and names in seconds: (1) Click "Create Wish Card Free", (2) Choose your favorite festive wallpaper, (3) Upload brother/sister photo with easy drag & zoom, (4) Personalize with heartfelt Hindi/English wishes and names, and (5) Instantly download in high-definition HD or share directly on WhatsApp.',
+      'WishCrafto is built as a next-generation Web App (PWA). You get all app features—daily suvichar, HD wallpapers, custom photo status maker, 1-tap WhatsApp sharing—directly inside your mobile browser without installing 40MB apps or consuming phone memory.',
   },
   {
-    question: 'Where can I find the best Raksha Bandhan wishes and shayari in Hindi for brothers & sisters?',
+    question: 'Where can I find daily Good Morning, Suvichar, and Motivational Quotes for WhatsApp?',
     answer:
-      'WishCrafto offers a curated collection of 100+ heartfelt Raksha Bandhan wishes, emotional Hindi shayari, Sanskrit shlokas, and short sweet quotes. Categories include wishes for elder brother (Bhaiya), younger sister (Behna), cute sibling banter, divine blessings, and long-distance siblings with instant 1-tap copy.',
+      'WishCrafto updates fresh daily Good Morning greetings, inspirational Hindi suvichar, Geeta updesh, birthday wishes, and motivational status messages every single day with 1-tap WhatsApp sharing.',
   },
   {
-    question: 'What are the authentic mythological stories and legends behind Raksha Bandhan?',
+    question: 'Can shopkeepers and business owners add their shop logo and phone number?',
     answer:
-      'The sacred festival of Raksha Bandhan is rooted in timeless Vedic lore: (1) Draupadi tying a strip of her saree on Lord Krishna’s wounded finger, after which Krishna protected her eternally, (2) Goddess Lakshmi tying Rakhi to King Bali to free Lord Vishnu from Sutala, (3) Goddess Yamuna tying Rakhi to Yamraj (God of Death) granting the boon of immortality and protection to all brothers, and (4) Goddess Sachi tying a protective amulet around Lord Indra for divine victory.',
-  },
-  {
-    question: 'Can a sister tie Rakhi to a younger brother, elder brother, or another sister?',
-    answer:
-      'Yes! Raksha Bandhan is a celebration of universal love, care, and mutual protection. Sisters tie Rakhi to elder brothers, younger brothers, cousins, and even to each other (Sister-to-Sister Rakhi). In modern celebrations, Rakhi signifies lifelong emotional support and blessings across all family members.',
-  },
-  {
-    question: 'What items should be kept in a traditional Rakhi Pooja Thali?',
-    answer:
-      'A sacred Rakhi Pooja Thali traditionally contains: Roli (kumkum or vermilion) and Akshat (unbroken rice grains) for the auspicious Tilak, an earthen Diya for Aarti, sacred Rakhi threads, fresh sweets (Mithai) for offering, a glass of water, and a shagun gift envelope. The sister applies the Tilak, performs Aarti, ties the Rakhi on the right wrist, and feeds sweets.',
-  },
-  {
-    question: 'What is a Lumba Rakhi and why is it tied to the sister-in-law (Bhabhi)?',
-    answer:
-      'Lumba Rakhi originated in Marwari and Rajasthani traditions where sisters tie a hanging decorative Rakhi (Lumba) to their brother’s wife (Bhabhi). It symbolizes welcoming the sister-in-law as an integral pillar of the household, wishing her marital prosperity, and fostering deep affection between sisters-in-law.',
-  },
-  {
-    question: 'How can I send virtual Rakhi greeting cards to long-distance brothers living abroad?',
-    answer:
-      'If your brother lives in another city or country (such as USA, UK, Canada, Australia), you can design a high-resolution personalized photo card on WishCrafto within 10 seconds. You can write a personal message, add childhood photos, and send it instantly across WhatsApp, Facebook, Instagram, or Email with zero cost.',
-  },
-  {
-    question: 'What are the best Raksha Bandhan gift ideas for sisters in 2026?',
-    answer:
-      'Popular Rakhi gifts for sisters include customized photo cards, jewelry pieces, electronics, personalized keepsakes, gift vouchers, luxury sweet hampers, educational books, and traditional shagun envelopes accompanied by a sincere promise of lifelong support and love.',
-  },
-  {
-    question: 'How can shopkeepers and local businesses create Raksha Bandhan promotional cards?',
-    answer:
-      'Using WishCrafto’s built-in "Business PRO Mode", local business owners, sweet shops, jewelers, clothing stores, and startups can add their shop name, company logo, phone number, and festive promotional greetings to send professional festival wishes to their customers on WhatsApp.',
-  },
-  {
-    question: 'Can I download 4K HD Raksha Bandhan wallpapers and images for free?',
-    answer:
-      'Yes! WishCrafto provides free downloads of premium 4K Ultra HD Raksha Bandhan wallpapers featuring Lord Krishna, traditional Rakhi thalis, divine blessings, and aesthetic festive backgrounds perfect for mobile screens, desktop wallpapers, and WhatsApp status updates.',
-  },
+      'Yes! Local business owners, shopkeepers, jewelers, and professionals can add their company name, phone number, and shop logo to send customized festival and daily morning greetings to their clients.',
+  }
 ];
 
-function HeroCountdownCard() {
-  const timeLeft = useCountdown(RAKHI_COUNTDOWN.date);
-  return (
-    <div className="countdown-card">
-      <img src="/HomepageImages/rakhi_hero.png" alt="Rakhi Festival" loading="eager" />
-      <div className="countdown-content">
-        <div className="countdown-header">
-          <strong>{RAKHI_COUNTDOWN.title}</strong>
-          <small className="muhurat-badge">{RAKHI_COUNTDOWN.muhurat}</small>
-        </div>
-        <div className="time-grid">
-          {Object.entries(timeLeft).map(([label, value]) => (
-            <div className="time-box" key={label}>
-              <span>{String(value).padStart(2, '0')}</span>
-              <small>{label}</small>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function HomePage({ onNavigate, onOpenCardModal }) {
+  const [activeTab, setActiveTab] = useState('good-morning');
+  const [cardIndex, setCardIndex] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
-  const [copiedId, setCopiedId] = useState(null);
+
+  // Active status list & card item
+  const currentFeedList = DAILY_STATUS_FEED[activeTab] || DAILY_STATUS_FEED['good-morning'];
+  const currentCard = currentFeedList[cardIndex % currentFeedList.length];
 
   // 10-Second Auto Popup Trigger for First-Time Visitors
   useEffect(() => {
@@ -165,320 +55,336 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
     }
   }, [onOpenCardModal]);
 
+  const handleTabSwitch = (tabId) => {
+    if (tabId === 'janmashtami') {
+      onNavigate('/janmashtami');
+    } else {
+      setActiveTab(tabId);
+      setCardIndex(0);
+    }
+  };
+
   const toggleFaq = (index) => {
     setOpenFaqIndex((prev) => (prev === index ? null : index));
   };
 
-  const handleCopyWish = (id, text) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+  const handleWhatsAppShare = () => {
+    const shareText = `*${currentCard.title}*\n\n"${currentCard.quote}"\n\n✨ Create your photo status card free on WishCrafto:\nhttps://wishcrafto.com/`;
+    const encoded = encodeURIComponent(shareText);
+    window.open(`https://api.whatsapp.com/send?text=${encoded}`, '_blank');
   };
 
   return (
-    <div className="home-page" style={{ position: 'relative' }}>
-      {/* Full Page Animated Moving Raksha Bandhan Festive Aura & Floating Rakhis Background */}
-      <div className="rakhi-festive-animated-bg" aria-hidden="true" />
-      <FloatingRakhiBackground />
-
-      {/* ── 1. Hero Section with Live Featured Wish Card Preview (Like 123Greetings) ── */}
-      <section className="hero">
-        <div className="hero-bg" />
-        
-        <div className="hero-grid-container">
-          {/* Left Column: Headlines & Actions */}
-          <div className="hero-content">
-            <h1>
-              Celebrate the <span>Bond</span>
-              <br />
-              That Lasts
-              <br />
-              <span>Forever</span>
-            </h1>
-
-            <p>
-              Create personalized Raksha Bandhan greeting cards <span className="floating-color-highlight" title="Click to Upload Photo &amp; Create Card" onClick={() => onOpenCardModal()}>📸 with your own photo &amp; name</span>, browse ready-made Hindi/English greetings, discover heartfelt wishes, download 4K HD wallpapers, and explore authentic festival stories—all in one place.
-            </p>
-
-            <div className="hero-actions">
-              <button className="ghost-button" onClick={() => onOpenCardModal()}>
-                <Wand2 size={18} /> Create Wish Card Free
-              </button>
-              <button className="ghost-button" onClick={() => onNavigate('/raksha-bandhan-wishes')}>
-                Explore 100+ Wishes <ArrowRight size={16} />
-              </button>
-            </div>
-
-            {/* Countdown & Muhurat Card */}
-            <HeroCountdownCard />
-          </div>
-
-          {/* Right Column: Live Featured Interactive Wish Showcase Card */}
-          <div className="hero-featured-card-wrapper">
-            <div 
-              className="featured-live-card"
-              onClick={() => onOpenCardModal('तू सलामत रहे, तू मुस्कुराती रहे, हर साल यह रक्षाबंधन हमारे प्यार को ऐसे ही बढ़ाती रहे। हैप्पी राखी 2026!', '/HD Wallpapers/krishna_draupadi_sacred_thread.jpg')}
-              role="button"
-              tabIndex={0}
-              title="Click to customize this divine featured card with your photo & name!"
+    <div 
+      className="home-page" 
+      style={{ 
+        position: 'relative', 
+        background: 'linear-gradient(180deg, #ffffff 0%, #f5f3ff 50%, #ede9fe 100%)', 
+        color: '#1e1b4b', 
+        minHeight: '100vh',
+        marginBottom: 0,
+        paddingBottom: '2rem'
+      }}
+    >
+      {/* ── 1. Crafto-Style Main App Feed Stage ── */}
+      <section className="crafto-feed-container">
+        {/* Top Category Pill Bar */}
+        <nav className="crafto-category-bar" aria-label="Status Categories">
+          {DAILY_STATUS_CATEGORIES.map((cat) => (
+            <button
+              key={cat.id}
+              className={`crafto-pill-btn ${activeTab === cat.id ? 'active' : ''}`}
+              onClick={() => handleTabSwitch(cat.id)}
             >
-              <div className="featured-card-badge">
-                <Star size={13} fill="#FFD700" color="#FFD700" /> Featured Wish of the Day
-              </div>
-
-              <div className="featured-card-img-container">
-                <img 
-                  src="/HD Wallpapers/krishna_draupadi_sacred_thread.jpg" 
-                  alt="Featured Divine Krishna Subhadra Draupadi Raksha Bandhan Card" 
-                  className="featured-card-bg-img"
-                />
-                <div className="featured-card-gradient-overlay" />
-                
-                {/* Sample Photo Placeholder Badge */}
-                <div className="featured-card-photo-pill">
-                  <span>📸 Your Photo Here</span>
-                </div>
-
-                <div className="featured-card-content-overlay">
-                  <span className="featured-card-tag">🌸 For My Lovely Sister (सुभद्रा)</span>
-                  <p className="featured-card-quote">
-                    "तू सलामत रहे, तू मुस्कुराती रहे, हर साल यह रक्षाबंधन हमारे प्यार को ऐसे ही बढ़ाती रहे। हैप्पी राखी 2026!"
-                  </p>
-                  
-                  <div className="featured-card-footer">
-                    <span className="featured-card-names">From: श्री कृष्ण</span>
-                    <button className="featured-card-cta-btn">
-                      <Wand2 size={14} /> Personalize &amp; Send ✨
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 2. Trending Wishes & Ready Card Templates Showcase (Like 123Greetings) ── */}
-      <section className="section trending-wishes-section">
-        <div className="trending-header">
-          <div className="trending-header-left">
-            <span className="eyebrow">
-              <Sparkles size={14} /> TRENDING FESTIVE WISHES
-            </span>
-            <h2>Most Popular Raksha Bandhan Wishes &amp; Cards</h2>
-            <p className="trending-subtitle">
-              Choose any wish template below to personalize with your photo and names, or copy text in 1 tap.
-            </p>
-          </div>
-          <button className="ghost-button view-all-btn" onClick={() => onNavigate('/raksha-bandhan-wishes')}>
-            View All 85+ Wishes <ArrowRight size={15} />
-          </button>
-        </div>
-
-        <div className="trending-wishes-grid">
-          {TRENDING_WISH_TEMPLATES.map((item) => (
-            <div className="trending-wish-card" key={item.id}>
-              {/* Card Image Thumbnail */}
-              <div 
-                className="trending-card-thumb-wrapper"
-                onClick={() => onOpenCardModal(item.wish, item.image)}
-                role="button"
-                tabIndex={0}
-                title="Click to customize this wish card"
-              >
-                <img src={item.image} alt={item.category} className="trending-card-thumb" />
-                <div className="trending-card-overlay">
-                  <span className="trending-tag-pill">{item.tag}</span>
-                  <span className="trending-tap-hint">
-                    <Wand2 size={13} /> Tap to Create Card
-                  </span>
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div className="trending-card-body">
-                <span className="trending-card-category">{item.category}</span>
-                <p className="trending-card-text">"{item.wish}"</p>
-                
-                <div className="trending-card-actions">
-                  <button 
-                    className="btn-personalize-wish"
-                    onClick={() => onOpenCardModal(item.wish, item.image)}
-                  >
-                    <Wand2 size={14} /> Personalize &amp; Send
-                  </button>
-                  
-                  <button 
-                    className="btn-copy-wish"
-                    onClick={() => handleCopyWish(item.id, item.wish)}
-                    title="Copy wish text"
-                  >
-                    {copiedId === item.id ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
-                    <span>{copiedId === item.id ? 'Copied!' : 'Copy'}</span>
-                  </button>
-                </div>
-              </div>
-            </div>
+              <span>{cat.label}</span>
+            </button>
           ))}
+        </nav>
+
+        {/* Main Status Card Feed Stage (Crafto Interface) */}
+        <div className="crafto-card-stage">
+          <div 
+            className="crafto-card-canvas"
+            style={{
+              backgroundImage: `url('${currentCard.image}')`
+            }}
+          >
+            {/* Top Category Badge */}
+            <div style={{ position: 'relative', zIndex: 2 }}>
+              <span className="crafto-card-badge">{currentCard.category} • {currentCard.title}</span>
+            </div>
+
+            {/* Central Quote Text */}
+            <div className="crafto-card-content">
+              <p className="crafto-card-quote">"{currentCard.quote}"</p>
+            </div>
+
+            {/* User Personalized Badge Overlay (Bottom Left) */}
+            <div className="crafto-user-overlay" onClick={() => onOpenCardModal(currentCard.quote, currentCard.image)}>
+              <div className="crafto-user-avatar">
+                <User size={22} />
+              </div>
+              <span className="crafto-user-name">Your Photo & Name</span>
+            </div>
+          </div>
+
+          {/* Crafto Action Bar */}
+          <div className="crafto-action-bar">
+            <div className="crafto-action-buttons">
+              <button className="crafto-btn-whatsapp" onClick={handleWhatsAppShare}>
+                <Share2 size={18} />
+                <span>Share</span>
+              </button>
+
+              <button className="crafto-btn-download" onClick={() => onOpenCardModal(currentCard.quote, currentCard.image)}>
+                <Download size={16} />
+                <span>Download</span>
+              </button>
+
+              <button className="crafto-btn-edit" onClick={() => onOpenCardModal(currentCard.quote, currentCard.image)}>
+                <Edit3 size={16} />
+                <span>Edit</span>
+              </button>
+            </div>
+
+            {/* Primary Big CTA Button */}
+            <button 
+              className="crafto-btn-primary-photo"
+              onClick={() => onOpenCardModal(currentCard.quote, currentCard.image)}
+            >
+              <Camera size={20} />
+              <span>अपनी फोटो लगाएं / बदलें (Free Card Maker)</span>
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* ── 2. Why WishCrafto (Interactive Platform Features) ── */}
-      <section className="section about-platform-section">
-        <div className="about-platform-header">
-          <span className="eyebrow">
-            <Sparkles size={14} /> WHY WISHCRAFTO
+      {/* ── 2. Quick Feature Grid ── */}
+      <section className="section" style={{ paddingTop: '1.5rem', paddingBottom: '2rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <span 
+            style={{
+              display: 'inline-block',
+              padding: '0.4rem 1.2rem',
+              borderRadius: '50px',
+              background: 'linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%)',
+              color: '#ffffff',
+              fontWeight: '700',
+              fontSize: '0.85rem',
+              boxShadow: '0 4px 12px rgba(109, 40, 217, 0.25)'
+            }}
+          >
+            🌎 Global 365-Day Daily Status & Festival Hub
           </span>
-          <h2>Why Choose WishCrafto?</h2>
-          <p className="about-platform-desc">
-            WishCrafto is your all-in-one destination to create personalized festival wish cards, discover heartfelt wishes, download HD wallpapers, and explore authentic festival stories.
+          <h2 style={{ fontSize: '2.2rem', color: '#1e1b4b', fontWeight: '800', marginTop: '0.8rem', letterSpacing: '-0.5px' }}>
+            Daily Suvichar, Global Festivals & Photo Cards (No App Needed)
+          </h2>
+          <p style={{ color: '#475569', maxWidth: '680px', margin: '0.8rem auto 0 auto', fontSize: '1.05rem', lineHeight: '1.6' }}>
+            We take 0 space on your phone to share your daily inspiration, Suvichar, motivational quotes, Birthday, Good Morning and global festival messages with your photo & name.
           </p>
         </div>
 
-        <div className="platform-feature-cards-grid">
-          {/* 1. Personalized Greeting Cards -> Opens Create Card Modal */}
+        {/* Feature Cards Grid */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem',
+            maxWidth: '1000px',
+            margin: '0 auto',
+            padding: '0 1rem'
+          }}
+        >
           <div 
-            className="platform-feature-card featured-highlight interactive-card"
-            onClick={() => onOpenCardModal()}
-            role="button"
-            tabIndex={0}
+            onClick={() => handleTabSwitch('good-morning')}
+            style={{
+              background: '#ffffff',
+              border: '1px solid #ddd6fe',
+              borderRadius: '20px',
+              padding: '1.8rem',
+              boxShadow: '0 8px 25px rgba(109, 40, 217, 0.08)',
+              cursor: 'pointer',
+              transition: 'transform 0.25s ease, boxShadow 0.25s ease'
+            }}
           >
-            <div className="p-card-header">
-              <span className="p-card-icon">
-                <span className="p-card-emoji">🎨</span>
-              </span>
-              <h3>Personalized Cards ✨</h3>
-            </div>
-            <p>Design custom greeting cards with your names &amp; wishes in seconds.</p>
-            <div className="p-card-action">
-              <span>Create Card Now</span>
-              <ArrowRight size={13} />
-            </div>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🌅</div>
+            <h3 style={{ color: '#1e1b4b', fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.5rem' }}>Good Morning & Suvichar</h3>
+            <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.5' }}>1000+ inspirational thoughts, Hindi suvichar, and morning greetings with 1-tap WhatsApp sharing.</p>
           </div>
 
-          {/* 2. Ready-to-Share Greetings -> Navigates to Studio/Greetings */}
           <div 
-            className="platform-feature-card interactive-card"
+            onClick={() => onNavigate('/janmashtami')}
+            style={{
+              background: '#ffffff',
+              border: '1px solid #ddd6fe',
+              borderRadius: '20px',
+              padding: '1.8rem',
+              boxShadow: '0 8px 25px rgba(109, 40, 217, 0.08)',
+              cursor: 'pointer',
+              transition: 'transform 0.25s ease, boxShadow 0.25s ease'
+            }}
+          >
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🦚</div>
+            <h3 style={{ color: '#1e1b4b', fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.5rem' }}>Shri Krishna Janmashtami</h3>
+            <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.5' }}>Bal Gopal festival wishes, Geeta updesh, Nishita Kaal puja timing, and HD Krishna photo card templates.</p>
+          </div>
+
+          <div 
             onClick={() => onNavigate('/raksha-bandhan-cards')}
-            role="button"
-            tabIndex={0}
+            style={{
+              background: '#ffffff',
+              border: '1px solid #ddd6fe',
+              borderRadius: '20px',
+              padding: '1.8rem',
+              boxShadow: '0 8px 25px rgba(109, 40, 217, 0.08)',
+              cursor: 'pointer',
+              transition: 'transform 0.25s ease, boxShadow 0.25s ease'
+            }}
           >
-            <div className="p-card-header">
-              <span className="p-card-icon">
-                <span className="p-card-emoji">💌</span>
-              </span>
-              <h3>Ready Greetings 🖼️</h3>
-            </div>
-            <p>Pick curated ready-made greetings and share instantly with loved ones.</p>
-            <div className="p-card-action">
-              <span>Browse Greetings</span>
-              <ArrowRight size={13} />
-            </div>
-          </div>
-
-          {/* 3. Wishes & Messages -> Navigates to Wishes Page */}
-          <div 
-            className="platform-feature-card interactive-card"
-            onClick={() => onNavigate('/raksha-bandhan-wishes')}
-            role="button"
-            tabIndex={0}
-          >
-            <div className="p-card-header">
-              <span className="p-card-icon">
-                <span className="p-card-emoji">💖</span>
-              </span>
-              <h3>Wishes &amp; Messages 📜</h3>
-            </div>
-            <p>Explore heartfelt Hindi, English &amp; Sanskrit wishes with 1-tap copy.</p>
-            <div className="p-card-action">
-              <span>Explore Wishes</span>
-              <ArrowRight size={13} />
-            </div>
-          </div>
-
-          {/* 4. History & Traditions -> Navigates to History Page */}
-          <div 
-            className="platform-feature-card interactive-card"
-            onClick={() => onNavigate('/raksha-bandhan-stories')}
-            role="button"
-            tabIndex={0}
-          >
-            <div className="p-card-header">
-              <span className="p-card-icon">
-                <span className="p-card-emoji">📖</span>
-              </span>
-              <h3>Sacred History &amp; Origins 🪔</h3>
-            </div>
-            <p>Explore authentic Vedic origins, Krishna-Draupadi &amp; Rani Karnavati history.</p>
-            <div className="p-card-action">
-              <span>Read History</span>
-              <ArrowRight size={13} />
-            </div>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🖼️</div>
+            <h3 style={{ color: '#1e1b4b', fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.5rem' }}>Card Studio & 4K Wallpapers</h3>
+            <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.5' }}>Design high-resolution photo greeting cards, add your photo & name, and browse 4K festive status backgrounds.</p>
           </div>
         </div>
       </section>
 
-      {/* ── 3. Frequently Asked Questions (Accordion) ── */}
-      <section className="section faq-section">
-        <div className="faq-header">
-          <h2>Frequently Asked Questions</h2>
-          <p className="faq-subtitle">Everything you need to know about the celebration and our platform.</p>
-        </div>
+      {/* ── 3. High-Converting Global Homepage Master Article ── */}
+      <section style={{ maxWidth: '1000px', margin: '2rem auto 3rem auto', padding: '0 1rem' }}>
+        <div
+          style={{
+            background: '#ffffff',
+            border: '1px solid #c4b5fd',
+            borderRadius: '24px',
+            padding: '2.5rem 2rem',
+            boxShadow: '0 10px 35px rgba(109, 40, 217, 0.08)'
+          }}
+        >
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#6d28d9', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+              ABOUT WISHCRAFTO GLOBAL PLATFORM
+            </span>
+            <h2 style={{ fontSize: '2rem', color: '#1e1b4b', fontWeight: '800', marginTop: '0.4rem' }}>
+              WishCrafto: Global Daily Suvichar, Greetings & Festival Photo Card Hub
+            </h2>
+          </div>
 
-        <div className="faq-accordion">
-          {faqs.map((faq, index) => {
-            const isOpen = openFaqIndex === index;
-            return (
-              <div
-                className={`faq-item ${isOpen ? 'active' : ''}`}
-                key={faq.question}
-                onClick={() => toggleFaq(index)}
+          <div style={{ color: '#334155', fontSize: '1.05rem', lineHeight: '1.8', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <p>
+              Welcome to <strong>WishCrafto</strong>, a leading global 365-day festival and daily motivation platform designed for users worldwide across the <strong>USA, UK, Canada, UAE, Australia, and India</strong>. WishCrafto empowers you to create personalized status greeting cards with <strong>your photo and name</strong> in seconds—without downloading any heavy mobile app!
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.2rem', margin: '1rem 0' }}>
+              <div style={{ background: '#faf5ff', padding: '1.2rem', borderRadius: '16px', border: '1px solid #ddd6fe' }}>
+                <h4 style={{ color: '#1e1b4b', margin: '0 0 0.4rem 0', fontWeight: '700', fontSize: '1.1rem' }}>🌅 Daily Good Morning & Suvichar</h4>
+                <p style={{ margin: 0, fontSize: '0.92rem', color: '#475569' }}>
+                  Start every day with positive Hindi suvichar, motivational quotes, and morning blessings personalized with your photo for WhatsApp status.
+                </p>
+              </div>
+
+              <div style={{ background: '#faf5ff', padding: '1.2rem', borderRadius: '16px', border: '1px solid #ddd6fe' }}>
+                <h4 style={{ color: '#1e1b4b', margin: '0 0 0.4rem 0', fontWeight: '700', fontSize: '1.1rem' }}>🌙 Good Night & Geeta Updesh</h4>
+                <p style={{ margin: 0, fontSize: '0.92rem', color: '#475569' }}>
+                  Send peaceful Good Night messages, Srimad Bhagavad Gita wisdom, and evening greetings with your custom name badge.
+                </p>
+              </div>
+
+              <div style={{ background: '#faf5ff', padding: '1.2rem', borderRadius: '16px', border: '1px solid #ddd6fe' }}>
+                <h4 style={{ color: '#1e1b4b', margin: '0 0 0.4rem 0', fontWeight: '700', fontSize: '1.1rem' }}>🌎 Global & Indian Festivals</h4>
+                <p style={{ margin: 0, fontSize: '0.92rem', color: '#475569' }}>
+                  Celebrate Indian festivals (Janmashtami, Rakhi, Diwali, Navratri) plus Global & US events (Thanksgiving, Christmas, New Year, Halloween, Mother's Day, Father's Day).
+                </p>
+              </div>
+
+              <div style={{ background: '#faf5ff', padding: '1.2rem', borderRadius: '16px', border: '1px solid #ddd6fe' }}>
+                <h4 style={{ color: '#1e1b4b', margin: '0 0 0.4rem 0', fontWeight: '700', fontSize: '1.1rem' }}>📱 0% Phone Memory PWA</h4>
+                <p style={{ margin: 0, fontSize: '0.92rem', color: '#475569' }}>
+                  Enjoy all features of a mobile app directly in your browser. Takes 0 MB memory space on your phone!
+                </p>
+              </div>
+            </div>
+
+            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+              <button
+                onClick={() => onOpenCardModal("शुभ प्रभात! आपका दिन मंगलमय हो! 🌅✨", "/HD Wallpapers/krishna_flute_divine_wishes.jpg")}
+                style={{
+                  background: 'linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%)',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '50px',
+                  padding: '0.85rem 2rem',
+                  fontWeight: '800',
+                  fontSize: '1rem',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.6rem',
+                  boxShadow: '0 4px 18px rgba(109, 40, 217, 0.3)'
+                }}
               >
-                <button
-                  type="button"
-                  className="faq-question-btn"
-                  aria-expanded={isOpen}
-                >
-                  <span className="faq-question-text">{faq.question}</span>
-                  <ChevronDown
-                    size={18}
-                    className={`faq-chevron ${isOpen ? 'rotated' : ''}`}
-                  />
-                </button>
-                {isOpen && (
-                  <div className="faq-answer">
-                    <p>{faq.answer}</p>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                <Camera size={20} />
+                <span>अपनी फोटो लगाएं / बदलें (Free Card Maker)</span>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ── 4. Upcoming Festivals ── */}
-      <section className="section upcoming-festivals-section">
-        <div className="upcoming-festivals-header">
-          <span className="eyebrow">
-            <Calendar size={14} /> Coming Soon to WishCrafto
+      {/* ── 4. High-Contrast FAQ Section ── */}
+      <section style={{ maxWidth: '900px', margin: '0 auto 2rem auto', padding: '0 1rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <span 
+            style={{
+              display: 'inline-block',
+              padding: '0.4rem 1.2rem',
+              borderRadius: '50px',
+              background: 'rgba(109, 40, 217, 0.12)',
+              color: '#6d28d9',
+              fontWeight: '700',
+              fontSize: '0.85rem',
+              border: '1px solid rgba(109, 40, 217, 0.25)'
+            }}
+          >
+            💬 Frequently Asked Questions
           </span>
-          <p className="upcoming-subtitle">More festivals will be added soon.</p>
+          <h2 style={{ fontSize: '2.2rem', color: '#1e1b4b', fontWeight: '800', marginTop: '0.8rem' }}>Everything You Need to Know</h2>
         </div>
 
-        <div className="upcoming-festivals-grid">
-          {upcomingFestivals.map((fest) => (
-            <div className="upcoming-fest-card" key={fest.name}>
-              <span className="upcoming-fest-icon">{fest.icon}</span>
-              <div className="upcoming-fest-info">
-                <strong>{fest.name}</strong>
-                <small>{fest.date}</small>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              style={{
+                background: '#ffffff',
+                border: '1px solid #c4b5fd',
+                borderRadius: '16px',
+                padding: '1.25rem 1.5rem',
+                boxShadow: '0 4px 15px rgba(109, 40, 217, 0.05)',
+                cursor: 'pointer',
+                transition: 'all 0.25s ease'
+              }}
+              onClick={() => toggleFaq(index)}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+                <h3 style={{ color: '#1e1b4b', fontSize: '1.1rem', fontWeight: '700', margin: 0 }}>{faq.question}</h3>
+                <ChevronDown 
+                  size={22} 
+                  style={{ 
+                    color: '#6d28d9', 
+                    transform: openFaqIndex === index ? 'rotate(180deg)' : 'rotate(0)',
+                    transition: 'transform 0.25s ease',
+                    flexShrink: 0
+                  }} 
+                />
               </div>
-              <span className="upcoming-fest-badge">Coming Soon</span>
+              {openFaqIndex === index && (
+                <div style={{ marginTop: '0.8rem', paddingTop: '0.8rem', borderTop: '1px solid #f1f5f9' }}>
+                  <p style={{ color: '#334155', fontSize: '0.98rem', lineHeight: '1.6', margin: 0 }}>{faq.answer}</p>
+                </div>
+              )}
             </div>
           ))}
         </div>
       </section>
-
     </div>
   );
 }

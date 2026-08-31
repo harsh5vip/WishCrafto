@@ -5,7 +5,7 @@ import WishesPage from './pages/WishesPage';
 import StudioPage from './pages/StudioPage';
 import HistoryPage from './pages/HistoryPage';
 import IndependencePage from './pages/IndependencePage';
-import IndianFlagIcon from './components/IndianFlagIcon';
+import JanmashtamiPage from './pages/JanmashtamiPage';
 import CardGeneratorModal from './components/CardGeneratorModal';
 import FestiveAudioToggle from './components/FestiveAudioToggle';
 import './Hero.css';
@@ -30,10 +30,13 @@ export default function App() {
 
   // Update SEO Document Title & Canonical meta dynamically based on exact route
   useEffect(() => {
-    let title = 'WishCrafto | Download Free Customizable Festival Wishes & Cards with photo & name, Daily Festival status , 4K wallpaper and Festival stories';
-    let desc = 'Download free customizable festival wishes & greeting cards with your photo & name. Daily festival status, 1000+ Hindi & English quotes, festival stories & 4K wallpapers for all Indian & global festivals.';
+    let title = 'WishCrafto | Status & Quotes with Your Photo';
+    let desc = 'We take 0 space on your phone to share your daily inspiration, Suvichar, motivational quotes, Birthday, Good Morning and festival messages with your photo & name.';
 
-    if (currentPath === '/15-august') {
+    if (currentPath === '/janmashtami') {
+      title = 'Shri Krishna Janmashtami Wishes, History & Photo Cards 2026 | WishCrafto';
+      desc = 'Read Shri Krishna Janmashtami sacred birth stories, Geeta updesh, Dahi Handi significance, and create custom Bal Gopal photo cards free.';
+    } else if (currentPath === '/15-august') {
       title = '15 August Independence Day Wishes, Quotes & Photo Cards 2026 | WishCrafto';
       desc = 'Download 500+ patriotic 15 August wishes, Tiranga Shayari, and create custom Swatantrata Diwas greeting cards with photo and name for free.';
     } else if (currentPath === '/raksha-bandhan-wishes') {
@@ -58,26 +61,23 @@ export default function App() {
     if (ogDesc) ogDesc.setAttribute('content', desc);
 
     const ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl) ogUrl.setAttribute('content', `https://wishcrafto.com${currentPath === '/' ? '' : currentPath}`);
+    if (ogUrl) ogUrl.setAttribute('content', `https://wishcrafto.com${currentPath}`);
 
     const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', `https://wishcrafto.com${currentPath === '/' ? '/' : currentPath}`);
-    }
+    if (canonical) canonical.setAttribute('href', `https://wishcrafto.com${currentPath}`);
   }, [currentPath]);
 
-  // Fast SPA Navigation helper
   const navigateTo = (path) => {
-    if (window.location.pathname !== path) {
+    if (path !== currentPath) {
       window.history.pushState({}, '', path);
       setCurrentPath(path);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleOpenCardModal = (wishText = '', imageSrc = null) => {
+  const handleOpenCardModal = (wishText = '', imageUrl = null) => {
     setModalInitialWish(wishText);
-    setModalInitialImage(imageSrc);
+    setModalInitialImage(imageUrl);
     setIsModalOpen(true);
   };
 
@@ -85,17 +85,23 @@ export default function App() {
   const isStudioRoute = currentPath === '/raksha-bandhan-cards';
   const isHistoryRoute = currentPath === '/raksha-bandhan-stories';
   const isIndepRoute = currentPath === '/15-august';
-  const isHomeRoute = currentPath === '/' || (!isWishesRoute && !isStudioRoute && !isHistoryRoute && !isIndepRoute);
+  const isJanmashtamiRoute = currentPath === '/janmashtami';
+  const isHomeRoute = currentPath === '/';
 
   return (
     <div className="festival-page">
       <Navbar navigateTo={navigateTo} currentPath={currentPath} onOpenCardModal={handleOpenCardModal} />
-      
 
       {/* Main View Router */}
       <main>
+        {isJanmashtamiRoute && (
+          <JanmashtamiPage
+            onNavigate={navigateTo}
+            onOpenCardModal={handleOpenCardModal}
+          />
+        )}
         {isWishesRoute && (
-          <WishesPage onOpenCardModal={handleOpenCardModal} />
+          <WishesPage onOpenCardModal={handleOpenCardModal} onNavigate={navigateTo} />
         )}
         {isStudioRoute && (
           <StudioPage
@@ -124,45 +130,10 @@ export default function App() {
         )}
       </main>
 
-      {/* Mobile Bottom Navigation Pill Bar (Clean 4-Tab Core) */}
-      <nav className="mobile-bottom-bar" aria-label="Mobile Navigation">
-        <button
-          className={`mobile-tab ${isHomeRoute ? 'active' : ''}`}
-          onClick={() => navigateTo('/')}
-        >
-          <Sparkles size={18} />
-          <span>Rakhi</span>
-        </button>
-
-        <button
-          className={`mobile-tab ${isWishesRoute ? 'active' : ''}`}
-          onClick={() => navigateTo('/raksha-bandhan-wishes')}
-        >
-          <Heart size={18} />
-          <span>Wishes</span>
-        </button>
-
-        <button
-          className={`mobile-tab ${isStudioRoute ? 'active' : ''}`}
-          onClick={() => navigateTo('/raksha-bandhan-cards')}
-        >
-          <ImageIcon size={18} />
-          <span>Studio</span>
-        </button>
-
-        <button
-          className={`mobile-tab ${isHistoryRoute ? 'active' : ''}`}
-          onClick={() => navigateTo('/raksha-bandhan-stories')}
-        >
-          <BookOpen size={18} />
-          <span>History</span>
-        </button>
-      </nav>
-
       {/* Ambient Divine Flute BGM Controller */}
       <FestiveAudioToggle />
 
-      {/* Interactive Card Generator Modal (Raksha Bandhan) */}
+      {/* Interactive Card Generator Modal */}
       <CardGeneratorModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -177,26 +148,25 @@ export default function App() {
             <Sparkles size={20} className="gold-text" />
             <span>WishCrafto</span>
           </button>
-          <p>Celebrating India's festivals beautifully.</p>
+          <p>Celebrating India's festivals & daily suvichar with your photo & name.</p>
         </div>
 
         <div className="footer-col">
-          <h3>Quick Links</h3>
-          <button onClick={() => navigateTo('/raksha-bandhan-wishes')}>Rakhi Wishes</button>
-          <button onClick={() => navigateTo('/raksha-bandhan-cards')}>Card Studio</button>
-          <button onClick={() => navigateTo('/raksha-bandhan-stories')}>Rakhi History</button>
+          <h3>Festivals</h3>
+          <button onClick={() => navigateTo('/janmashtami')}>🦚 Janmashtami 2026</button>
+          <button onClick={() => navigateTo('/raksha-bandhan-wishes')}>🪔 Raksha Bandhan 2026</button>
+          <button onClick={() => navigateTo('/15-august')}>🇮🇳 Independence Day</button>
         </div>
 
         <div className="footer-col">
-          <h3>Upcoming</h3>
-          <span>Janmashtami</span>
-          <span>Ganesh Chaturthi</span>
-          <span>Navratri</span>
-          <span>Diwali</span>
+          <h3>Daily Status</h3>
+          <button onClick={() => navigateTo('/')}>🌅 Good Morning Wishes</button>
+          <button onClick={() => navigateTo('/')}>🌙 Good Night Status</button>
+          <button onClick={() => navigateTo('/')}>✨ Daily Hindi Suvichar</button>
         </div>
 
         <div className="footer-bottom">
-          © 2026 WishCrafto. Made with ❤️ in India.
+          <p>© {new Date().getFullYear()} WishCrafto. All rights reserved. Made with ❤️ for India.</p>
         </div>
       </footer>
     </div>

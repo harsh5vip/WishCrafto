@@ -259,6 +259,54 @@ export default function HistoryPage({ onNavigate, onOpenCardModal }) {
 
   return (
     <div className="history-page-container section">
+      {/* Past Festival Concluded Banner (Unlocking 2027) */}
+      <div 
+        style={{
+          margin: '0 auto 1.5rem auto',
+          maxWidth: '1240px',
+          padding: '0.9rem 1.2rem',
+          borderRadius: '16px',
+          background: 'linear-gradient(135deg, rgba(109, 40, 217, 0.95), rgba(76, 29, 149, 0.95))',
+          border: '1px solid rgba(196, 181, 253, 0.5)',
+          boxShadow: '0 8px 25px rgba(109, 40, 217, 0.35)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '12px',
+          color: '#ffffff'
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{ fontSize: '1.4rem' }}>🪔</span>
+          <div>
+            <p style={{ margin: 0, fontWeight: '700', color: '#f3d187', fontSize: '0.95rem' }}>
+              ✨ Raksha Bandhan 2026 Concluded! Next 2027 Festivities Unlocking Soon
+            </p>
+            <p style={{ margin: 0, color: 'rgba(255,255,255,0.9)', fontSize: '0.82rem' }}>
+              Abhi LIVE Festival 🦚 Shri Krishna Janmashtami 2026 ke Photo Cards banayein!
+            </p>
+          </div>
+        </div>
+
+        <button 
+          onClick={() => onNavigate && onNavigate('/janmashtami')}
+          style={{
+            background: 'linear-gradient(135deg, #ffb936, #e78216)',
+            color: '#110d0a',
+            fontWeight: '800',
+            padding: '0.5rem 1.2rem',
+            borderRadius: '999px',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: '0.85rem',
+            boxShadow: '0 4px 15px rgba(255,185,54,0.3)',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          🦚 Live Janmashtami 2026
+        </button>
+      </div>
       {/* Header */}
       <div className="section-heading text-center">
         <h1>
