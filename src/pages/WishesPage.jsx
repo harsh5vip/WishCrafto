@@ -41,9 +41,16 @@ export default function WishesPage({ onOpenCardModal, onNavigate }) {
   };
 
   const handleWhatsAppShare = (text) => {
-    const siteUrl = 'https://wishcrafto.com';
-    const viralText = `🌸 *Happy Raksha Bandhan 2026!* 🪔\n\n"${text}"\n\n👉 *Apna personalized photo wish card yahan se banayein:*\n🔗 ${siteUrl}`;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(viralText)}`;
+    let sender = '';
+    try { sender = (localStorage.getItem('wishcrafto_user_name') || '').trim(); } catch {}
+    const introLine = sender
+      ? `✨ *${sender} ji* ne aapke liye khaas message bheja hai:`
+      : `✨ Aapke liye ek khaas message bheja gaya hai:`;
+    const titlePart = `🌸 *Happy Raksha Bandhan 2026!* 🪔`;
+    const quotePart = `\n\n"${text}"`;
+    const ctaPart = `\n\n👉 *Aap bhi apna personal message yahan banayein:*\n🔗 https://wishcrafto.com/raksha-bandhan-wishes`;
+    const viralText = `${introLine}\n\n${titlePart}${quotePart}${ctaPart}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(viralText)}`;
     window.open(whatsappUrl, '_blank');
   };
 

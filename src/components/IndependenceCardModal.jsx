@@ -13,7 +13,7 @@ export default function IndependenceCardModal({ isOpen, onClose, initialWish = '
   const [businessName, setBusinessName] = useState('');
   const [businessPhone, setBusinessPhone] = useState('');
   const [selectedWish, setSelectedWish] = useState(initialWish || INDEPENDENCE_HINDI_WISHES[0].text);
-  const [selectedImage, setSelectedImage] = useState('/HomepageImages/independence_template.jpg');
+  const [selectedImage, setSelectedImage] = useState('/Common/independence_template.jpg');
   const [customPhoto, setCustomPhoto] = useState(null);
   const [photoZoom, setPhotoZoom] = useState(1.0);
   const [photoOffsetX, setPhotoOffsetX] = useState(0);
@@ -94,7 +94,7 @@ export default function IndependenceCardModal({ isOpen, onClose, initialWish = '
   useEffect(() => {
     if (isOpen) {
       if (initialWish) setSelectedWish(initialWish);
-      setSelectedImage('/HomepageImages/independence_template.jpg');
+      setSelectedImage('/Common/independence_template.jpg');
     }
   }, [isOpen, initialWish]);
 

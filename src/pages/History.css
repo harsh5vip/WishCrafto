@@ -389,7 +389,7 @@
 .celebration-today {
   background:
     linear-gradient(135deg, rgba(125, 31, 23, 0.18), rgba(9, 7, 6, 0.88)),
-    url('/HomepageImages/rakhi_hero.png') right bottom / 44% auto no-repeat;
+    url('/Common/rakhi_hero.png') right bottom / 44% auto no-repeat;
 }
 
 .faq-list {
@@ -440,7 +440,7 @@
   text-decoration: none;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.82)),
-    url('/HomepageImages/rakhi_hero.png') center / cover no-repeat;
+    url('/Common/rakhi_hero.png') center / cover no-repeat;
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
@@ -639,7 +639,7 @@
   .celebration-today {
     background:
       linear-gradient(135deg, rgba(125, 31, 23, 0.18), rgba(9, 7, 6, 0.92)),
-      url('/HomepageImages/rakhi_hero.png') right bottom / 92% auto no-repeat;
+      url('/Common/rakhi_hero.png') right bottom / 92% auto no-repeat;
   }
 
   .newsletter-control {

@@ -1,31 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Music, ChevronUp } from 'lucide-react';
+import { Volume2, VolumeX, Music } from 'lucide-react';
 
 const TRACKS = [
   {
     id: 'flute-1',
     name: 'Krishna Flute Raga',
+    shortName: '1',
     src: '/audio/krasnoshchok-krishna-flute-hindu-music-450217.mp3',
   },
   {
     id: 'flute-2',
     name: 'Kanha Ki Bansuri',
+    shortName: '2',
     src: '/audio/poorartistt-kanha-ki-bansuri-braj-krishna-bhajan-in-hindi-585862.mp3',
-  },
-  {
-    id: 'default',
-    name: 'Festive Flute',
-    src: '/audio/festive_flute.mp3',
   }
 ];
 
 export default function FestiveAudioToggle() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-  const [showPlaylist, setShowPlaylist] = useState(false);
   const audioElemRef = useRef(null);
 
-  const currentTrack = TRACKS[currentTrackIndex];
+  const currentTrack = TRACKS[currentTrackIndex] || TRACKS[0];
 
   const stopAudio = () => {
     if (audioElemRef.current) {
@@ -61,15 +57,18 @@ export default function FestiveAudioToggle() {
   };
 
   const handleSelectTrack = (index) => {
+    if (currentTrackIndex === index && isPlaying) {
+      stopAudio();
+      return;
+    }
     setCurrentTrackIndex(index);
-    setShowPlaylist(false);
     setTimeout(() => {
       if (audioElemRef.current) {
         audioElemRef.current.src = TRACKS[index].src;
         audioElemRef.current.load();
         startAudio();
       }
-    }, 50);
+    }, 40);
   };
 
   useEffect(() => {
@@ -79,8 +78,7 @@ export default function FestiveAudioToggle() {
   }, []);
 
   return (
-    <div className="festive-audio-widget" aria-label="Festive Ambient Music Controller">
-      {/* HTML5 Audio with zero preload so it causes ZERO website lag */}
+    <div className="festive-audio-widget purple-audio-theme" aria-label="Krishna Bansuri Flute Music">
       <audio
         ref={audioElemRef}
         src={currentTrack.src}
@@ -88,72 +86,57 @@ export default function FestiveAudioToggle() {
         preload="none"
         onEnded={() => setIsPlaying(false)}
         onError={() => {
-          // If first file fails, fallback to second file
           if (currentTrackIndex === 0) {
             setCurrentTrackIndex(1);
           }
         }}
       />
 
-      {/* Playlist Popover (If user wants to switch between the 2 tracks) */}
-      {showPlaylist && (
-        <div className="audio-playlist-menu">
-          <div className="playlist-title">Select Divine Track</div>
-          {TRACKS.slice(0, 2).map((t, idx) => (
-            <button
-              key={t.id}
-              className={`playlist-item-btn ${currentTrackIndex === idx ? 'active' : ''}`}
-              onClick={() => handleSelectTrack(idx)}
-            >
-              <Music size={13} />
-              <span>{t.name}</span>
-            </button>
-          ))}
-        </div>
-      )}
-
-      <div className="audio-pill-group">
+      <div className="audio-purple-cluster">
+        {/* Main Speaker / Play-Pause Icon Button */}
         <button
           type="button"
-          className={`audio-toggle-pill ${isPlaying ? 'playing' : ''}`}
+          className={`audio-speaker-btn ${isPlaying ? 'is-playing' : ''}`}
           onClick={toggleAudio}
-          title={isPlaying ? 'Pause Divine Flute Music' : 'Play Krishna Bansuri Flute'}
+          title={isPlaying ? `Pause Divine Flute (${currentTrack.name})` : `Play Divine Flute (${currentTrack.name})`}
+          aria-label={isPlaying ? 'Pause Divine Flute' : 'Play Divine Flute'}
         >
-          <span className="audio-icon-wrap">
-            {isPlaying ? (
-              <Volume2 size={16} className="speaker-icon sound-active" />
-            ) : (
-              <VolumeX size={16} className="speaker-icon" />
-            )}
-          </span>
+          {isPlaying ? (
+            <Volume2 size={16} className="speaker-icon sound-active" />
+          ) : (
+            <VolumeX size={16} className="speaker-icon" />
+          )}
 
-          <span className="audio-label">
-            {isPlaying ? (
-              <>
-                <span className="equalizer-bars" aria-hidden="true">
-                  <span className="bar b1"></span>
-                  <span className="bar b2"></span>
-                  <span className="bar b3"></span>
-                </span>
-                <span>{currentTrack.name}</span>
-              </>
-            ) : (
-              <>
-                <Music size={13} className="mini-note" />
-                <span>Bansuri Music</span>
-              </>
-            )}
-          </span>
+          {/* Mini Equalizer Bars when playing */}
+          {isPlaying && (
+            <span className="equalizer-bars mini-eq" aria-hidden="true">
+              <span className="bar b1"></span>
+              <span className="bar b2"></span>
+              <span className="bar b3"></span>
+            </span>
+          )}
         </button>
 
-        {/* Mini Track Switcher Button */}
+        {/* Track 1 Button */}
         <button
           type="button"
-          className="audio-track-switch-btn"
-          onClick={() => setShowPlaylist(!showPlaylist)}
-          title="Switch Flute Track"
+          className={`audio-num-btn ${currentTrackIndex === 0 && isPlaying ? 'active-playing' : (currentTrackIndex === 0 ? 'selected-paused' : '')}`}
+          onClick={() => handleSelectTrack(0)}
+          title="Track 1: Krishna Flute Raga"
+          aria-label="Track 1"
         >
-          <ChevronUp size={14} className={showPlaylist ? 'rotate-down' : ''} />
+          1
+        </button>
+
+        {/* Track 2 Button */}
+        <button
+          type="button"
+          className={`audio-num-btn ${currentTrackIndex === 1 && isPlaying ? 'active-playing' : (currentTrackIndex === 1 ? 'selected-paused' : '')}`}
+          onClick={() => handleSelectTrack(1)}
+          title="Track 2: Kanha Ki Bansuri"
+          aria-label="Track 2"
+        >
+          2
         </button>
       </div>
     </div>

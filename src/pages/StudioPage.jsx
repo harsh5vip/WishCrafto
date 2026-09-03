@@ -1,27 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Sparkles, Wand2, ArrowRight, Image as ImageIcon, Heart } from 'lucide-react';
-import { RAKHI_WISH_CARDS, RAKHI_WALLPAPERS } from '../data/rakhiData';
+import React, { useState } from 'react';
+import { Sparkles, Wand2, ArrowRight, Heart } from 'lucide-react';
+import { RAKHI_WISH_CARDS } from '../data/rakhiData';
 import WishCardsGrid from '../components/Studio/WishCardsGrid';
-import WallpaperGrid from '../components/Studio/WallpaperGrid';
 
 export default function StudioPage({
   onOpenCardModal,
   onNavigate,
-  initialTab = 'cards',
   festivalName = 'Raksha Bandhan'
 }) {
-  const [activeTab, setActiveTab] = useState(initialTab);
   const [lang, setLang] = useState('hi');
-
-  useEffect(() => {
-    if (initialTab) {
-      setActiveTab(initialTab);
-    }
-  }, [initialTab]);
-
-  const handleTabChange = (tabKey) => {
-    setActiveTab(tabKey);
-  };
 
   const renderLanguageToggle = () => (
     <div className="language-toggle-pill" style={{
@@ -38,16 +25,16 @@ export default function StudioPage({
         style={{
           padding: '6px 18px',
           borderRadius: '50px',
-          fontSize: '0.85rem',
-          fontWeight: '700',
           border: 'none',
-          cursor: 'pointer',
-          transition: 'all 0.2s ease',
           background: lang === 'hi' ? 'linear-gradient(135deg, #ffb936, #e78216)' : 'transparent',
-          color: lang === 'hi' ? '#0d0907' : '#ded4c5'
+          color: lang === 'hi' ? '#110d0a' : '#ded4c5',
+          fontWeight: lang === 'hi' ? '800' : '600',
+          cursor: 'pointer',
+          fontSize: '0.85rem',
+          transition: 'all 0.2s ease'
         }}
       >
-        🇮🇳 हिंदी
+        हिंदी (Hindi)
       </button>
       <button
         className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
@@ -55,32 +42,32 @@ export default function StudioPage({
         style={{
           padding: '6px 18px',
           borderRadius: '50px',
-          fontSize: '0.85rem',
-          fontWeight: '700',
           border: 'none',
-          cursor: 'pointer',
-          transition: 'all 0.2s ease',
           background: lang === 'en' ? 'linear-gradient(135deg, #ffb936, #e78216)' : 'transparent',
-          color: lang === 'en' ? '#0d0907' : '#ded4c5'
+          color: lang === 'en' ? '#110d0a' : '#ded4c5',
+          fontWeight: lang === 'en' ? '800' : '600',
+          cursor: 'pointer',
+          fontSize: '0.85rem',
+          transition: 'all 0.2s ease'
         }}
       >
-        🇬🇧 English
+        English
       </button>
     </div>
   );
 
   return (
-    <div className="studio-page-container section">
-      {/* Past Festival Concluded Banner (Unlocking 2027) */}
+    <div className="studio-page section">
+      {/* 1. Live Janmashtami Navigation Notice */}
       <div 
         style={{
-          margin: '0 auto 1.5rem auto',
+          margin: '0 auto 2rem auto',
           maxWidth: '1240px',
-          padding: '0.9rem 1.2rem',
-          borderRadius: '16px',
-          background: 'linear-gradient(135deg, rgba(109, 40, 217, 0.95), rgba(76, 29, 149, 0.95))',
-          border: '1px solid rgba(196, 181, 253, 0.5)',
-          boxShadow: '0 8px 25px rgba(109, 40, 217, 0.35)',
+          padding: '0.9rem 1.4rem',
+          borderRadius: '18px',
+          background: 'linear-gradient(135deg, rgba(76, 29, 149, 0.95), rgba(109, 40, 217, 0.95))',
+          border: '1.5px solid rgba(192, 132, 252, 0.4)',
+          boxShadow: '0 8px 25px rgba(109, 40, 217, 0.25)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -90,13 +77,13 @@ export default function StudioPage({
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ fontSize: '1.4rem' }}>🪔</span>
+          <span style={{ fontSize: '1.4rem' }}>🦚</span>
           <div>
             <p style={{ margin: 0, fontWeight: '700', color: '#f3d187', fontSize: '0.95rem' }}>
-              ✨ Raksha Bandhan 2026 Concluded! Next 2027 Festivities Unlocking Soon
+              Shri Krishna Janmashtami 2026 Live Now!
             </p>
             <p style={{ margin: 0, color: 'rgba(255,255,255,0.9)', fontSize: '0.82rem' }}>
-              Abhi LIVE Festival 🦚 Shri Krishna Janmashtami 2026 ke Photo Cards banayein!
+              Create instant Bal Gopal greeting photo cards with your photo & name!
             </p>
           </div>
         </div>
@@ -107,8 +94,8 @@ export default function StudioPage({
             background: 'linear-gradient(135deg, #ffb936, #e78216)',
             color: '#110d0a',
             fontWeight: '800',
-            padding: '0.5rem 1.2rem',
-            borderRadius: '999px',
+            padding: '0.55rem 1.2rem',
+            borderRadius: '50px',
             border: 'none',
             cursor: 'pointer',
             fontSize: '0.85rem',
@@ -116,100 +103,44 @@ export default function StudioPage({
             whiteSpace: 'nowrap'
           }}
         >
-          🦚 Live Janmashtami 2026
+          🦚 Explore Janmashtami
         </button>
       </div>
+
       {/* Page Header */}
-      <div className="section-heading text-center">
+      <div className="section-heading text-center" style={{ marginBottom: '2.5rem' }}>
         <h2>
-          {festivalName} <span>Wishes, Cards &amp; Wallpapers</span>
+          {festivalName} <span>Wish Cards &amp; Greetings Studio</span>
         </h2>
         <p>
-          Download ready-made wishes images, create personalized greeting cards, or explore ultra HD festive wallpapers.
+          Download ready-made festive wish cards or personalize greetings with your name and photo in seconds.
         </p>
       </div>
 
-      {/* 2. Premium Segmented Tabs Section */}
-      <section className="segmented-hub-section" aria-label="Content Selection">
-        <div className="hub-header text-center">
-          <h3 className="hub-subtitle">
-            Create, download, and personalize everything for {festivalName}
-          </h3>
-        </div>
-
-        <div className="segmented-cards-container">
-          {/* Tab 1: Wish Cards (Default Primary Focus) */}
-          <button
-            className={`segmented-tab-card ${activeTab === 'cards' ? 'active' : ''}`}
-            onClick={() => handleTabChange('cards')}
-            role="tab"
-            aria-selected={activeTab === 'cards'}
-          >
-            <div className="tab-card-indicator" />
-            <div className="tab-card-header">
-              <span className="tab-icon-emoji">💌</span>
-              <div className="tab-title-wrap">
-                <h4>Wish Cards &amp; Greetings</h4>
-                <span className="tab-count-badge">{RAKHI_WISH_CARDS.length} Ready Designs</span>
+      {/* Content Panel */}
+      <div className="studio-content-panel active-cards">
+        <div className="tab-pane-view tab-pane-active">
+          <div className="gallery-section-title">
+            <div className="title-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <span style={{ fontSize: '1.4rem' }}>💌</span>
+                <h3 style={{ margin: 0, fontSize: '1.35rem', fontWeight: '800', color: 'var(--festival-gold)' }}>
+                  Ready-to-Share Wish Cards ({RAKHI_WISH_CARDS.length} Designs)
+                </h3>
               </div>
+              {renderLanguageToggle()}
             </div>
-          </button>
-
-          {/* Tab 2: HD Wallpapers */}
-          <button
-            className={`segmented-tab-card ${activeTab === 'wallpapers' ? 'active' : ''}`}
-            onClick={() => handleTabChange('wallpapers')}
-            role="tab"
-            aria-selected={activeTab === 'wallpapers'}
-          >
-            <div className="tab-card-indicator" />
-            <div className="tab-card-header">
-              <span className="tab-icon-emoji">🖼️</span>
-              <div className="tab-title-wrap">
-                <h4>HD Wallpapers</h4>
-                <span className="tab-count-badge">{RAKHI_WALLPAPERS.length} Ultra HD</span>
-              </div>
-            </div>
-          </button>
-        </div>
-      </section>
-
-      {/* 3 & 4. Enclosed Content Panel Connected to Active Tab */}
-      <div className={`studio-content-panel active-${activeTab}`}>
-        {activeTab === 'cards' ? (
-          <div className="tab-pane-view tab-pane-active">
-            <div className="gallery-section-title">
-              <div className="title-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
-                <h3>Ready-to-Share Wish Cards</h3>
-                {renderLanguageToggle()}
-              </div>
-            </div>
-            <WishCardsGrid
-              cards={RAKHI_WISH_CARDS}
-              onOpenCardModal={onOpenCardModal}
-              festivalName={festivalName}
-              lang={lang}
-            />
           </div>
-        ) : (
-          <div className="tab-pane-view tab-pane-active">
-            <div className="gallery-section-title">
-              <div className="title-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
-                <h3>HD Wallpaper &amp; Sacred Art Collection</h3>
-                {renderLanguageToggle()}
-              </div>
-            </div>
-            <WallpaperGrid
-              wallpapers={RAKHI_WALLPAPERS}
-              onOpenCardModal={onOpenCardModal}
-              festivalName={festivalName}
-              lang={lang}
-            />
-          </div>
-        )}
+          <WishCardsGrid
+            cards={RAKHI_WISH_CARDS}
+            onOpenCardModal={(wish, img, photo, name) => onOpenCardModal(wish, img, photo, name, 'rakhi')}
+            festivalName={festivalName}
+            lang={lang}
+          />
+        </div>
       </div>
 
-      {/* 5. SEO Popular Search Keywords */}
+      {/* SEO Popular Search Keywords */}
       <section className="seo-popular-searches" style={{ marginTop: '3rem', marginBottom: '2rem', padding: '1.5rem', background: 'rgba(20, 15, 10, 0.6)', borderRadius: '16px', border: '1px solid rgba(255, 185, 54, 0.15)' }}>
         <h4 style={{ color: '#ffb936', fontSize: '1rem', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Sparkles size={14} /> Popular Raksha Bandhan Searches 2026
@@ -218,39 +149,30 @@ export default function StudioPage({
           {[
             'Raksha Bandhan Wishes with Images',
             'Rakhi WhatsApp Status 2026',
-            'Raksha Bandhan Hindi Shayari Photo',
-            'HD 4K Rakhi Wallpapers Download',
-            'Lord Krishna Rakhi Greeting Cards',
-            'Custom Rakhi Card Maker with Name & Photo',
-            'Bhaiya Bhabhi Rakhi Wishes',
-            'Sister Protection Vow Cards',
-            'Free Raksha Bandhan Wallpapers HD',
-            'Vedic Rakhi Shlokas Images'
-          ].map((tag, idx) => (
-            <span key={idx} style={{
-              fontSize: '0.78rem',
-              color: '#d4c7b5',
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 185, 54, 0.2)',
-              borderRadius: '20px',
-              padding: '4px 12px'
-            }}>
-              #{tag}
+            'Free Rakhi Greeting Cards',
+            'Brother Sister Rakhi Photo Card',
+            'Lord Krishna Raksha Bandhan Blessings',
+            'Shri Ram & Avatars Rakhi Greetings',
+            'Lord Shiva Mahadev Rakhi Cards',
+            'Vedic Raksha Sutra Wishes'
+          ].map((tag) => (
+            <span 
+              key={tag} 
+              className="seo-tag-pill"
+              style={{
+                fontSize: '0.8rem',
+                padding: '0.35rem 0.75rem',
+                borderRadius: '50px',
+                background: 'rgba(255, 185, 54, 0.08)',
+                color: 'var(--festival-gold-soft)',
+                border: '1px solid rgba(255, 185, 54, 0.2)'
+              }}
+            >
+              {tag}
             </span>
           ))}
         </div>
       </section>
-
-      {/* 6. Cross-Engagement Loop to History */}
-      <div className="cross-loop-banner secondary">
-        <div>
-          <h3>Curious about the ancient origins of {festivalName}?</h3>
-          <p>Discover the sacred stories of Krishna &amp; Draupadi, Rani Karnavati, and Lakshmi &amp; Bali.</p>
-        </div>
-        <button className="ghost-button" onClick={() => onNavigate('/raksha-bandhan-stories')}>
-          Read Sacred History <ArrowRight size={16} />
-        </button>
-      </div>
     </div>
   );
 }

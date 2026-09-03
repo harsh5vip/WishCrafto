@@ -219,7 +219,7 @@ button {
   height: 110vh;
   pointer-events: none;
   z-index: 0;
-  background: url("/HomepageImages/waving_flag_bg.svg") center/cover no-repeat;
+  background: url("/Common/waving_flag_bg.svg") center/cover no-repeat;
   opacity: 0.35;
   transform: translateZ(0);
 }

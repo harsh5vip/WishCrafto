@@ -1,0 +1,50 @@
+[
+  {
+    "id": "gn-1",
+    "category": "Good Night",
+    "title": "शुभ रात्रि",
+    "quote": "",
+    "hasEmbeddedText": true,
+    "image": "/GoodNight/good_night_1.png"
+  },
+  {
+    "id": "gn-2",
+    "category": "Good Night",
+    "title": "शुभ रात्रि",
+    "quote": "",
+    "hasEmbeddedText": true,
+    "image": "/GoodNight/good_night_2.png"
+  },
+  {
+    "id": "gn-3",
+    "category": "Good Night",
+    "title": "शुभ रात्रि",
+    "quote": "",
+    "hasEmbeddedText": true,
+    "image": "/GoodNight/good_night_3.png"
+  },
+  {
+    "id": "gn-4",
+    "category": "Good Night",
+    "title": "शुभ रात्रि",
+    "quote": "",
+    "hasEmbeddedText": true,
+    "image": "/GoodNight/good_night_4.png"
+  },
+  {
+    "id": "gn-5",
+    "category": "Good Night",
+    "title": "शुभ रात्रि",
+    "quote": "",
+    "hasEmbeddedText": true,
+    "image": "/GoodNight/good_night_5.png"
+  },
+  {
+    "id": "gn-6",
+    "category": "Good Night",
+    "title": "शुभ रात्रि",
+    "quote": "",
+    "hasEmbeddedText": true,
+    "image": "/GoodNight/good_night_6.png"
+  }
+]

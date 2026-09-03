@@ -3,41 +3,49 @@
   <!-- 1. Master Root Domain Hub -->
   <url>
     <loc>https://wishcrafto.com/</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- 2. Raksha Bandhan Keyword Pages -->
+  <!-- 2. Live Active Festival Hub (Janmashtami 2026) -->
+  <url>
+    <loc>https://wishcrafto.com/janmashtami</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 3. Raksha Bandhan Keyword Pages -->
   <url>
     <loc>https://wishcrafto.com/raksha-bandhan-wishes</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://wishcrafto.com/raksha-bandhan-cards</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://wishcrafto.com/raksha-bandhan-stories</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://wishcrafto.com/studio</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
 
-  <!-- 3. Independence Day Page -->
+  <!-- 4. Independence Day Page -->
   <url>
     <loc>https://wishcrafto.com/15-august</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>

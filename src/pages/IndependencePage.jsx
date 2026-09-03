@@ -11,7 +11,7 @@ import {
 
 const WISHES_PER_PAGE = 6;
 
-export default function IndependencePage({ onOpenCardModal, onOpenRakhiModal }) {
+export default function IndependencePage({ onOpenCardModal, onOpenRakhiModal, onNavigate }) {
   const [langTab, setLangTab] = useState('hi'); // 'hi' | 'en'
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,16 +56,16 @@ export default function IndependencePage({ onOpenCardModal, onOpenRakhiModal }) 
   return (
     <div className="independence-page" style={{ position: 'relative', padding: '2rem 1.5rem 5rem', maxWidth: '1240px', margin: '0 auto' }}>
       
-      {/* Top Pre-Festival Raksha Bandhan Promo Banner */}
+      {/* Top Live Festival Janmashtami Promo Banner */}
       <div style={{
         position: 'relative',
         zIndex: 2,
         marginBottom: '1.5rem',
         padding: '0.9rem 1.2rem',
         borderRadius: '16px',
-        background: 'linear-gradient(135deg, rgba(160, 26, 42, 0.95), rgba(70, 10, 20, 0.95))',
-        border: '1px solid rgba(255, 215, 0, 0.5)',
-        boxShadow: '0 8px 25px rgba(160, 26, 42, 0.4)',
+        background: 'linear-gradient(135deg, rgba(46, 16, 101, 0.95), rgba(76, 29, 149, 0.95))',
+        border: '1.5px solid rgba(192, 132, 252, 0.5)',
+        boxShadow: '0 8px 25px rgba(76, 29, 149, 0.4)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -73,18 +73,18 @@ export default function IndependencePage({ onOpenCardModal, onOpenRakhiModal }) 
         gap: '12px'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ fontSize: '1.4rem' }}>🪔</span>
+          <span style={{ fontSize: '1.5rem' }}>🦚</span>
           <div>
             <p style={{ margin: 0, fontWeight: '700', color: '#FFD700', fontSize: '0.95rem' }}>
-              ✨ 15 August ke baad aa raha hai Raksha Bandhan 2026!
+              ✨ Live Festival: Shri Krishna Janmashtami 2026 is LIVE!
             </p>
             <p style={{ margin: 0, color: 'rgba(255,255,255,0.85)', fontSize: '0.82rem' }}>
-              Apne Bhai / Behan ke liye abhi se custom photo card banayein aur save karein
+              Apne aur Parivar ke liye custom Krishna Photo Cards &amp; 52+ Wishes abhi banayein
             </p>
           </div>
         </div>
         <button 
-          onClick={onOpenRakhiModal}
+          onClick={() => onNavigate && onNavigate('/janmashtami')}
           style={{
             background: 'linear-gradient(135deg, #FFD700, #FFA500)',
             color: '#000',
@@ -101,7 +101,7 @@ export default function IndependencePage({ onOpenCardModal, onOpenRakhiModal }) 
           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
         >
-          🎁 Create Rakhi Card Now 👉
+          🦚 Create Janmashtami Card Now 👉
         </button>
       </div>
 
@@ -498,12 +498,21 @@ export default function IndependencePage({ onOpenCardModal, onOpenRakhiModal }) 
               <button
                 onClick={() => {
                   setShowEventNotice(false);
-                  if (onOpenRakhiModal) onOpenRakhiModal();
+                  if (onNavigate) onNavigate('/janmashtami');
                 }}
                 className="gold-button"
-                style={{ width: '100%', padding: '0.8rem', fontWeight: '800', fontSize: '0.92rem' }}
+                style={{
+                  width: '100%',
+                  padding: '0.8rem',
+                  fontWeight: '800',
+                  fontSize: '0.92rem',
+                  background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
+                  color: '#ffffff',
+                  border: 'none',
+                  boxShadow: '0 4px 15px rgba(124, 58, 237, 0.4)'
+                }}
               >
-                🪔 Create Live Rakhi Card Now (FREE) ✨
+                🦚 Explore Live Janmashtami 2026 Cards &amp; Wishes 👉
               </button>
               <button
                 onClick={() => setShowEventNotice(false)}

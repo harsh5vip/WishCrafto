@@ -2,17 +2,39 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Download, Sparkles, X, Check, Share2, Heart, RefreshCw } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import { RAKHI_WALLPAPERS, RAKHI_WISHES } from '../data/rakhiData';
+import { JANMASTHAMI_WALLPAPERS, JANMASTHAMI_CARD_WISHES, JANMASTHAMI_HISTORY_WALLPAPERS } from '../data/janmashtamiStoryData';
 
-export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', initialImage = null }) {
+export default function CardGeneratorModal({ 
+  isOpen, 
+  onClose, 
+  initialWish = '', 
+  initialImage = null,
+  initialPhoto = null,
+  initialName = '',
+  festival = null
+}) {
   const canvasRef = useRef(null);
   const selectorStripRef = useRef(null);
-  const [senderName, setSenderName] = useState('');
+  const [senderName, setSenderName] = useState(initialName || '');
+  
+  useEffect(() => {
+    if (initialPhoto) setCustomPhoto(initialPhoto);
+    if (initialName) setSenderName(initialName);
+    if (initialWish) setSelectedWish(initialWish);
+    if (initialImage) {
+      if (initialImage.includes('/Janmashtami/') && !initialImage.includes('HistoryImagesJanmashtami')) {
+        setSelectedImage('/HistoryImagesJanmashtami/Krishna_Birth1.png');
+      } else {
+        setSelectedImage(initialImage);
+      }
+    }
+  }, [initialPhoto, initialName, initialWish, initialImage, isOpen]);
   const [recipientName, setRecipientName] = useState('');
   const [mode, setMode] = useState('personal'); // 'personal' | 'business'
   const [businessName, setBusinessName] = useState('');
   const [businessPhone, setBusinessPhone] = useState('');
-  const [selectedWish, setSelectedWish] = useState(initialWish || RAKHI_WISHES[0].text);
-  const [selectedImage, setSelectedImage] = useState(initialImage || RAKHI_WALLPAPERS[0].url);
+  const [selectedWish, setSelectedWish] = useState(initialWish || 'नन्द के घर आनन्द भयो, जय कन्हैया लाल की! श्रीकृष्ण जन्माष्टमी 2026 की हार्दिक शुभकामनाएं! 🦚✨');
+  const [selectedImage, setSelectedImage] = useState(initialImage || '/HistoryImagesJanmashtami/Krishna_Birth1.png');
   const [copiedToast, setCopiedToast] = useState(false);
   const [customPhoto, setCustomPhoto] = useState(null);
   const [photoZoom, setPhotoZoom] = useState(1.0);
@@ -91,12 +113,57 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
     }
   };
 
-  // Available Wallpapers: ensure selectedImage is present in options list
+    // Strict festival detection: Janmashtami vs Raksha Bandhan
+  const isJanmashtami = React.useMemo(() => {
+    if (festival === 'janmashtami') return true;
+    if (festival === 'rakhi') return false;
+    if (selectedImage && (
+      selectedImage.includes('/Janmashtami/') || 
+      selectedImage.includes('HistoryImagesJanmashtami') ||
+      selectedImage.toLowerCase().includes('krishna')
+    )) return true;
+    if (initialImage && (
+      initialImage.includes('/Janmashtami/') || 
+      initialImage.includes('HistoryImagesJanmashtami') ||
+      initialImage.toLowerCase().includes('krishna')
+    )) return true;
+    if (selectedWish && (
+      selectedWish.includes('कृष्ण') || 
+      selectedWish.includes('कन्हैया') || 
+      selectedWish.includes('गोपाल') || 
+      selectedWish.includes('जन्माष्टमी')
+    )) return true;
+    return false;
+  }, [festival, selectedImage, initialImage, selectedWish]);
+
+    // Available Wallpapers: Strictly isolated by festival
   const availableWallpapers = React.useMemo(() => {
+    if (isJanmashtami) {
+      // ONLY the 9 authentic images used in the Janmashtami history stories!
+      const list = [...JANMASTHAMI_HISTORY_WALLPAPERS];
+      const unique = [];
+      const seen = new Set();
+      if (selectedImage && selectedImage.includes('HistoryImagesJanmashtami')) {
+        const found = list.find(item => item.url === selectedImage);
+        if (found) {
+          unique.push(found);
+          seen.add(found.url);
+        }
+      }
+      for (const bg of list) {
+        if (!seen.has(bg.url)) {
+          seen.add(bg.url);
+          unique.push(bg);
+        }
+      }
+      return unique;
+    }
+
+    // Default: Strictly Raksha Bandhan wallpapers
     const featuredItem = {
       id: 'featured-krishna-sacred',
       title: '⭐ Featured: Shri Krishna & Draupadi Sacred Rakhi',
-      url: '/HD Wallpapers/krishna_draupadi_sacred_thread.jpg'
+      url: '/HDWallpapersRakhi/krishna_draupadi_sacred_thread.jpg'
     };
     const list = [featuredItem, ...RAKHI_WALLPAPERS];
     const unique = [];
@@ -107,22 +174,31 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
         unique.push(bg);
       }
     }
-    if (selectedImage && !seen.has(selectedImage)) {
+    if (selectedImage && !seen.has(selectedImage) && selectedImage.includes('HDWallpapersRakhi')) {
       unique.unshift({ id: 'selected-story-img', title: 'Story Scene', url: selectedImage });
     }
     return unique;
-  }, [selectedImage]);
+  }, [selectedImage, isJanmashtami]);
 
-  useEffect(() => {
+    useEffect(() => {
     if (isOpen) {
-      if (initialWish) setSelectedWish(initialWish);
+      if (initialWish) {
+        setSelectedWish(initialWish);
+      } else if (isJanmashtami) {
+        setSelectedWish('नन्द के घर आनन्द भयो, जय कन्हैया लाल की! श्रीकृष्ण जन्माष्टमी 2026 की हार्दिक शुभकामनाएं! 🦚✨');
+      } else {
+        setSelectedWish(RAKHI_WISHES[0].text);
+      }
+
       if (initialImage) {
         setSelectedImage(initialImage);
-      } else if (!selectedImage) {
+      } else if (isJanmashtami) {
+        setSelectedImage(JANMASTHAMI_HISTORY_WALLPAPERS[0].url);
+      } else {
         setSelectedImage(RAKHI_WALLPAPERS[0].url);
       }
     }
-  }, [isOpen, initialWish, initialImage]);
+  }, [isOpen, initialWish, initialImage, isJanmashtami]);
 
   useEffect(() => {
     if (isOpen && selectorStripRef.current) {
@@ -198,7 +274,7 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
 
         // 2. Stylish Top Header: Happy Raksha Bandhan 2026
         ctx.save();
-        const badgeText = '✨ Happy Raksha Bandhan 2026 ✨';
+        const badgeText = isJanmashtami ? '✨ Happy Krishna Janmashtami 2026 ✨' : '✨ WishCrafto Daily Status & Wishes ✨';
         ctx.font = '800 24px "Cinzel", "Outfit", "Playfair Display", Georgia, sans-serif';
         const bMetrics = ctx.measureText(badgeText);
         const bWidth = bMetrics.width + 44;
@@ -352,7 +428,7 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
         ctx.font = '600 22px Inter, sans-serif';
         ctx.fillStyle = '#ffb936';
         ctx.textAlign = 'center';
-        ctx.fillText('✨ RAKSHA BANDHAN BLESSINGS ✨', canvas.width / 2, 130);
+        ctx.fillText(isJanmashtami ? '✨ SHRI KRISHNA JANMASTHAMI BLESSINGS ✨' : '✨ WISHCRAFTO GREETINGS & BLESSINGS ✨', canvas.width / 2, 130);
 
         // Recipient Header (Dearest)
         if (mode === 'personal') {
@@ -489,7 +565,7 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
   const downloadImageFile = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const namePrefix = senderName.trim() ? senderName.trim().replace(/\s+/g, '-') : 'Rakhi';
+    const namePrefix = senderName.trim() ? senderName.trim().replace(/\s+/g, '-') : (isJanmashtami ? 'Janmashtami' : 'WishCrafto');
     const timestamp = Date.now();
     const dataUrl = canvas.toDataURL('image/png');
     const link = document.createElement('a');
@@ -510,17 +586,18 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
     const siteUrl = 'https://wishcrafto.com';
     const toLine = recipientName.trim() ? `✨ Dearest ${recipientName.trim()},\n\n` : '';
     const fromLine = senderName.trim() ? `\n\n— From: ${senderName.trim()}` : '';
-    const viralText = `🌸 *Happy Raksha Bandhan 2026!* 🪔\n\n${toLine}"${selectedWish}"${fromLine}\n\n👉 *Apna personalized photo wish card yahan se banayein:*\n🔗 ${siteUrl}`;
+    const festivalGreeting = isJanmashtami ? 'Happy Shri Krishna Janmashtami 2026!' : 'Best Wishes & Greetings!';
+    const viralText = `🦚 *${festivalGreeting}* ✨\n\n${toLine}"${selectedWish}"${fromLine}\n\n👉 *Apna personalized photo wish card yahan se banayein:*\n🔗 ${siteUrl}`;
     
     try {
       canvas.toBlob(async (blob) => {
         if (!blob) return;
-        const file = new File([blob], 'WishCrafto.com-Rakhi-Card.png', { type: 'image/png' });
+        const file = new File([blob], isJanmashtami ? 'WishCrafto.com-Janmashtami-Card.png' : 'WishCrafto.com-Wish-Card.png', { type: 'image/png' });
         
         // Native Mobile Share with Image Attachment + Text
         if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
-            title: 'Raksha Bandhan Card - WishCrafto.com',
+            title: isJanmashtami ? 'Shri Krishna Janmashtami Card - WishCrafto.com' : 'Personalized Wish Card - WishCrafto.com',
             text: viralText,
             files: [file],
           });
@@ -594,7 +671,7 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
         <div className="modal-header">
           <div className="modal-title">
             <Sparkles size={20} className="gold-text" />
-            <h3>Create Personalized Rakhi Card</h3>
+            <h3>{isJanmashtami ? 'Create Personalized Janmashtami Card' : 'Create Personalized Wish Card'}</h3>
           </div>
           <button className="icon-close-btn" onClick={onClose} aria-label="Close modal">
             <X size={20} />
@@ -691,7 +768,7 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
               </button>
             )}
             <p style={{ marginTop: '1.2rem', color: '#9e9ea7', fontSize: '0.85rem' }}>
-              Supporting free HD Rakhi Card downloads for everyone!
+              Supporting free HD Card downloads for everyone!
             </p>
           </div>
         ) : (
@@ -930,7 +1007,47 @@ export default function CardGeneratorModal({ isOpen, onClose, initialWish = '', 
             <div className="preset-wishes-pills">
               <small>Preset Suggestions:</small>
               <div className="pills-scroll">
-                {[
+                {isJanmashtami ? [
+                  {
+                    id: 'jp-1',
+                    label: '🦚 जय कन्हैया लाल की',
+                    text: 'नन्द के घर आनन्द भयो, जय कन्हैया लाल की! हाथी घोड़ा पालकी, जय कन्हैया लाल की! श्रीकृष्ण जन्माष्टमी की हार्दिक शुभकामनाएं! 🦚✨'
+                  },
+                  {
+                    id: 'jp-2',
+                    label: '🍯 माखन चोर लीला',
+                    text: 'माखन का कटोरा, मिश्री की मिठास, कान्हा की कृपा से पूरी हो हर आस! जन्माष्टमी पर्व की सपरिवार मंगलकामनाएं! 🍯🦚'
+                  },
+                  {
+                    id: 'jp-3',
+                    label: '✨ गीता उपदेश',
+                    text: 'कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥ भगवान श्री कृष्ण का आशीर्वाद आप पर सदा बना रहे!'
+                  },
+                  {
+                    id: 'jp-4',
+                    label: '🌸 मुरली मनोहर',
+                    text: 'मुरली मनोहर कृष्ण कन्हैया, पार करो मेरी जीवन नैया! जन्माष्टमी 2026 की सपरिवार कोटिशः बधाई! ✨🦚'
+                  },
+                  {
+                    id: 'jp-5',
+                    label: '🏔️ गोवर्धन लीला',
+                    text: 'गोवर्धन धारी श्री कृष्ण आपके जीवन में सुख, शांति और समृद्धि की वर्षा करें! जय श्री कृष्णा! 🏔️🌸'
+                  },
+                  {
+                    id: 'jp-6',
+                    label: '💼 Shubh / Corporate',
+                    text: 'Wishing all our valued clients, partners and families a very Happy, Auspicious and Blessed Shri Krishna Janmashtami 2026!'
+                  }
+                ].map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    className={`preset-pill ${selectedWish === preset.text ? 'active' : ''}`}
+                    onClick={() => setSelectedWish(preset.text)}
+                  >
+                    {preset.label}
+                  </button>
+                )) : [
                   {
                     id: 'p-bro',
                     label: '👦 For Brother',

@@ -4,33 +4,34 @@ import {
   ChevronDown, ChevronLeft, ChevronRight, Check
 } from 'lucide-react';
 import { RAKHI_LEGENDS } from '../data/rakhiData';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 import './History.css';
 
 const STORY_SLIDES = {
   'krishna-draupadi': [
-    { step: 1, image: '/HistoryImages/krishna_draupadi_1.png', fallbackImage: '/HomepageImages/rakhi_hero.png' },
-    { step: 2, image: '/HistoryImages/krishna_draupadi_2.png', fallbackImage: '/HomepageImages/rakhi_siblings.jpg' },
-    { step: 3, image: '/HistoryImages/krishna_draupadi_3.png', fallbackImage: '/HomepageImages/rakhi_hero.png' },
+    { step: 1, image: '/HistoryImagesRakhi/krishna_draupadi_1.png', fallbackImage: '/Common/rakhi_hero.png' },
+    { step: 2, image: '/HistoryImagesRakhi/krishna_draupadi_2.png', fallbackImage: '/Common/rakhi_siblings.jpg' },
+    { step: 3, image: '/HistoryImagesRakhi/krishna_draupadi_3.png', fallbackImage: '/Common/rakhi_hero.png' },
   ],
   'rani-karnavati-humayun': [
-    { step: 1, image: '/HistoryImages/rani_humayun_1.png', fallbackImage: '/HomepageImages/rakhi_hero.png' },
-    { step: 2, image: '/HistoryImages/rani_humayun_2.png', fallbackImage: '/HomepageImages/rakhi_siblings.jpg' },
-    { step: 3, image: '/HistoryImages/rani_humayun_3.png', fallbackImage: '/HomepageImages/rakhi_hero.png' },
+    { step: 1, image: '/HistoryImagesRakhi/rani_humayun_1.png', fallbackImage: '/Common/rakhi_hero.png' },
+    { step: 2, image: '/HistoryImagesRakhi/rani_humayun_2.png', fallbackImage: '/Common/rakhi_siblings.jpg' },
+    { step: 3, image: '/HistoryImagesRakhi/rani_humayun_3.png', fallbackImage: '/Common/rakhi_hero.png' },
   ],
   'goddess-lakshmi-king-bali': [
-    { step: 1, image: '/HistoryImages/lakshmi_bali_1.png', fallbackImage: '/HomepageImages/rakhi_hero.png' },
-    { step: 2, image: '/HistoryImages/lakshmi_bali_2.png', fallbackImage: '/HomepageImages/rakhi_siblings.jpg' },
-    { step: 3, image: '/HistoryImages/lakshmi_bali_3.png', fallbackImage: '/HomepageImages/rakhi_hero.png' },
+    { step: 1, image: '/HistoryImagesRakhi/lakshmi_bali_1.png', fallbackImage: '/Common/rakhi_hero.png' },
+    { step: 2, image: '/HistoryImagesRakhi/lakshmi_bali_2.png', fallbackImage: '/Common/rakhi_siblings.jpg' },
+    { step: 3, image: '/HistoryImagesRakhi/lakshmi_bali_3.png', fallbackImage: '/Common/rakhi_hero.png' },
   ],
   'yamraj-yamuna': [
-    { step: 1, image: '/HD Wallpapers/yamraj_yamuna_rakhi_1.jpg', fallbackImage: '/HomepageImages/rakhi_hero.png' },
-    { step: 2, image: '/HD Wallpapers/yama_yamuna_rakhi.jpg', fallbackImage: '/HomepageImages/rakhi_siblings.jpg' },
-    { step: 3, image: '/HD Wallpapers/divine_blessings_raksha_bandhan.jpg', fallbackImage: '/HomepageImages/rakhi_hero.png' },
+    { step: 1, image: '/HistoryImagesRakhi/yamraj_yamuna_rakhi_1.jpg', fallbackImage: '/Common/rakhi_hero.png' },
+    { step: 2, image: '/HistoryImagesRakhi/yama_yamuna_rakhi.jpg', fallbackImage: '/Common/rakhi_siblings.jpg' },
+    { step: 3, image: '/HistoryImagesRakhi/divine_blessings_raksha_bandhan.jpg', fallbackImage: '/Common/rakhi_hero.png' },
   ],
   'indra-sachi': [
-    { step: 1, image: '/HD Wallpapers/all_gods_blessing_rakhi_1.jpg', fallbackImage: '/HomepageImages/rakhi_hero.png' },
-    { step: 2, image: '/HD Wallpapers/heavenly_gods_rakhi_2.jpg', fallbackImage: '/HomepageImages/rakhi_siblings.jpg' },
-    { step: 3, image: '/HD Wallpapers/garuda_celestial_raksha_bandhan.jpg', fallbackImage: '/HomepageImages/rakhi_hero.png' },
+    { step: 1, image: '/HistoryImagesRakhi/all_gods_blessing_rakhi_1.jpg', fallbackImage: '/Common/rakhi_hero.png' },
+    { step: 2, image: '/HistoryImagesRakhi/heavenly_gods_rakhi_2.jpg', fallbackImage: '/Common/rakhi_siblings.jpg' },
+    { step: 3, image: '/HistoryImagesRakhi/garuda_celestial_raksha_bandhan.jpg', fallbackImage: '/Common/rakhi_hero.png' },
   ]
 };
 
@@ -100,6 +101,19 @@ function LegendAutoSlideshow({
     return () => clearInterval(interval);
   }, [slides.length]);
 
+  const handleShare = () => {
+    let sender = '';
+    try { sender = (localStorage.getItem('wishcrafto_user_name') || '').trim(); } catch {}
+    const introLine = sender
+      ? `✨ *${sender} ji* ne aapke liye Raksha Bandhan ki pavitra katha bheji hai:`
+      : `✨ Raksha Bandhan ki pavitra katha:`;
+    const titlePart = `*${legend.title}.....*`;
+    const readPart = `\n📖 पूरी कथा यहाँ पढ़ें 👇\n🔗 https://wishcrafto.com/raksha-bandhan-stories#${legend.id}`;
+    const ctaPart = `\n\n👉 *Aap bhi apna personal message yahan banayein:*\n🔗 https://wishcrafto.com/`;
+    const text = `${introLine}\n\n${titlePart}${readPart}${ctaPart}`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
   return (
     <article className="legend-card" id={legend.id}>
       <div className="legend-content split-layout">
@@ -138,7 +152,7 @@ function LegendAutoSlideshow({
             <button
               className="gold-button-sm"
               onClick={() => {
-                const currentImg = (slides && slides[activeSceneIndex]?.image) || (slides && slides[0]?.image) || '/HistoryImages/krishna_draupadi_1.png';
+                const currentImg = (slides && slides[activeSceneIndex]?.image) || (slides && slides[0]?.image) || '/HistoryImagesRakhi/krishna_draupadi_1.png';
                 onOpenCardModal(legend.cardWish || legend.quote, currentImg);
               }}
             >
@@ -149,6 +163,13 @@ function LegendAutoSlideshow({
               onClick={() => onNavigate('/raksha-bandhan-wishes')}
             >
               <Heart size={14} /> Send Wish <ArrowRight size={14} />
+            </button>
+            <button
+              className="whatsapp-btn-sm"
+              onClick={handleShare}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+            >
+              <WhatsAppIcon size={14} /> Share
             </button>
           </div>
         </div>
@@ -191,8 +212,14 @@ export default function HistoryPage({ onNavigate, onOpenCardModal }) {
   const isProgrammaticScroll = useRef(false);
   const tabsNavRef = useRef(null);
 
-  const currentIndex = RAKHI_LEGENDS.findIndex((l) => l.id === activeStoryId);
-  const currentLegend = RAKHI_LEGENDS[currentIndex >= 0 ? currentIndex : 0] || RAKHI_LEGENDS[0];
+  const ALL_CHAPTER_IDS = [
+    ...RAKHI_LEGENDS.map((l) => l.id),
+    'full-history-article'
+  ];
+
+  const currentChapterIndex = ALL_CHAPTER_IDS.indexOf(activeStoryId);
+  const activeIndex = currentChapterIndex >= 0 ? currentChapterIndex : 0;
+  const currentLegend = RAKHI_LEGENDS.find((l) => l.id === activeStoryId) || RAKHI_LEGENDS[0];
 
   // High-Performance IntersectionObserver for 60 FPS viewport tracking
   useEffect(() => {
@@ -244,15 +271,15 @@ export default function HistoryPage({ onNavigate, onOpenCardModal }) {
   const handlePrevStory = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const prevIdx = (currentIndex - 1 + RAKHI_LEGENDS.length) % RAKHI_LEGENDS.length;
-    scrollToStory(RAKHI_LEGENDS[prevIdx].id);
+    const prevIdx = (activeIndex - 1 + ALL_CHAPTER_IDS.length) % ALL_CHAPTER_IDS.length;
+    scrollToStory(ALL_CHAPTER_IDS[prevIdx]);
   };
 
   const handleNextStory = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const nextIdx = (currentIndex + 1) % RAKHI_LEGENDS.length;
-    scrollToStory(RAKHI_LEGENDS[nextIdx].id);
+    const nextIdx = (activeIndex + 1) % ALL_CHAPTER_IDS.length;
+    scrollToStory(ALL_CHAPTER_IDS[nextIdx]);
   };
 
   const activeFaqs = articleLang === 'hi' ? HISTORY_FAQS_HI : HISTORY_FAQS_EN;
@@ -334,47 +361,13 @@ export default function HistoryPage({ onNavigate, onOpenCardModal }) {
                 <ChevronLeft size={20} />
               </button>
 
-              <div className="story-dropdown-wrapper">
-                <button 
-                  type="button" 
-                  className="story-dropdown-toggle"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                >
-                  <span className="story-num-pill">
-                    {activeStoryId === 'full-history-article' ? '6/6' : `${currentIndex + 1}/6`}
-                  </span>
-                  <span className="story-current-label">
-                    {activeStoryId === 'full-history-article' ? 'Rakhi History' : (SHORT_TITLES[currentLegend.id] || currentLegend.title)}
-                  </span>
-                  <ChevronDown size={15} className={`chevron-icon ${isDropdownOpen ? 'open' : ''}`} />
-                </button>
-
-                {isDropdownOpen && (
-                  <div className="story-dropdown-menu">
-                    {RAKHI_LEGENDS.map((legend, idx) => (
-                      <button
-                        key={`drop-${legend.id}`}
-                        type="button"
-                        className={`story-dropdown-item ${activeStoryId === legend.id ? 'active' : ''}`}
-                        onClick={() => scrollToStory(legend.id)}
-                      >
-                        <span className="drop-index">{idx + 1}.</span>
-                        <span className="drop-title">{legend.title}</span>
-                        {activeStoryId === legend.id && <Check size={14} className="gold-check" />}
-                      </button>
-                    ))}
-                    <button
-                      key="drop-full-history-article"
-                      type="button"
-                      className={`story-dropdown-item ${activeStoryId === 'full-history-article' ? 'active' : ''}`}
-                      onClick={() => scrollToStory('full-history-article')}
-                    >
-                      <span className="drop-index">6.</span>
-                      <span className="drop-title">Rakhi History</span>
-                      {activeStoryId === 'full-history-article' && <Check size={14} className="gold-check" />}
-                    </button>
-                  </div>
-                )}
+              <div className="story-title-display">
+                <span className="story-num-pill">
+                  {`${activeIndex + 1}/${ALL_CHAPTER_IDS.length}`}
+                </span>
+                <span className="story-current-label">
+                  {activeStoryId === 'full-history-article' ? 'Rakhi History' : (SHORT_TITLES[currentLegend?.id] || currentLegend?.title)}
+                </span>
               </div>
 
               <button 
@@ -703,7 +696,7 @@ export default function HistoryPage({ onNavigate, onOpenCardModal }) {
         </div>
         <div className="banner-buttons">
           <button className="gold-button" onClick={() => {
-            const currentImg = (STORY_SLIDES[currentLegend.id] && STORY_SLIDES[currentLegend.id][0]?.image) || '/HistoryImages/krishna_draupadi_1.png';
+            const currentImg = (STORY_SLIDES[currentLegend.id] && STORY_SLIDES[currentLegend.id][0]?.image) || '/HistoryImagesRakhi/krishna_draupadi_1.png';
             onOpenCardModal(currentLegend.cardWish || currentLegend.quote, currentImg);
           }}>
             <Wand2 size={16} /> Create Card

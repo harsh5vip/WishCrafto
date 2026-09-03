@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Menu, X, Sparkles, ChevronDown, Check, Heart, Image as ImageIcon, BookOpen, ChevronRight, Home } from 'lucide-react';
 import IndianFlagIcon from './IndianFlagIcon';
+import FestiveAudioToggle from './FestiveAudioToggle';
 import './Navbar.css';
 
 export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
@@ -33,7 +34,13 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
   // Compute dynamic toggle label based on current route
   const getToggleLabel = () => {
     if (currentPath === '/janmashtami') return '🦚 Janmashtami 2026';
-    if (currentPath === '/15-august') return '🇮🇳 Independence Day';
+    if (currentPath === '/15-august') {
+      return (
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+          <IndianFlagIcon size={16} /> Independence Day
+        </span>
+      );
+    }
     if (currentPath.startsWith('/raksha-bandhan')) return '🪔 Raksha Bandhan 2026';
     return 'Festivals';
   };
@@ -50,7 +57,12 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
         <span>WishCrafto</span>
       </button>
 
-      {/* Desktop Navigation */}
+      {/* Center (Desktop / PC): Divine Flute Audio Controller */}
+      <div className="nav-center-audio">
+        <FestiveAudioToggle />
+      </div>
+
+      {/* Desktop Navigation (Right Side in Original Spot) */}
       <nav className="desktop-nav" aria-label="Primary navigation">
         {/* Dynamic Festivals Dropdown */}
         <div
@@ -165,14 +177,19 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
         </div>
       </nav>
 
-      {/* Mobile Toggle */}
-      <button
-        className="mobile-toggle-btn"
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        aria-label="Toggle mobile menu"
-      >
-        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      {/* Right Controls: Mobile Audio + Mobile Menu Toggle */}
+      <div className="nav-right-controls">
+        <div className="nav-mobile-audio">
+          <FestiveAudioToggle />
+        </div>
+        <button
+          className="mobile-toggle-btn"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle mobile menu"
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
@@ -196,7 +213,9 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
             📜 Rakhi History & Stories
           </button>
           <button className="mobile-nav-link" onClick={() => handleNav('/15-august')}>
-            🇮🇳 Independence Day
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <IndianFlagIcon size={16} /> Independence Day
+            </span>
           </button>
 
           <div className="mobile-drawer-header">Create Status Card</div>

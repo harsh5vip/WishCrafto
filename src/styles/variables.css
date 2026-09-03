@@ -1,0 +1,63 @@
+/* Premium Design Tokens & Color System */
+:root {
+  /* Color Palette - HSL Tailored Colors */
+  --bg-cosmic: hsl(240, 10%, 4%);
+  --bg-cosmic-deep: hsl(240, 15%, 2%);
+  --bg-card: hsl(240, 8%, 8%);
+  
+  --accent-saffron: hsl(28, 92%, 54%);
+  --accent-saffron-light: hsl(28, 95%, 65%);
+  --accent-saffron-glow: hsla(28, 92%, 54%, 0.4);
+  
+  --accent-gold: hsl(43, 85%, 60%);
+  --accent-gold-light: hsl(43, 90%, 70%);
+  --accent-gold-glow: hsla(43, 85%, 60%, 0.4);
+  
+  --accent-vermillion: hsl(3, 82%, 53%);
+  --accent-vermillion-light: hsl(3, 90%, 63%);
+  --accent-vermillion-glow: hsla(3, 82%, 53%, 0.3);
+  
+  --accent-indigo: hsl(255, 65%, 60%);
+  --accent-indigo-glow: hsla(255, 65%, 60%, 0.35);
+
+  /* Typography */
+  --font-display: 'Cinzel', serif;
+  --font-editorial: 'Playfair Display', serif;
+  --font-body: 'Outfit', sans-serif;
+
+  /* UI Styling Variables */
+  --border-subtle: hsla(0, 0%, 100%, 0.06);
+  --border-active: hsla(43, 85%, 60%, 0.3);
+  --bg-glass: hsla(240, 10%, 8%, 0.65);
+  --bg-glass-heavy: hsla(240, 10%, 5%, 0.85);
+  --bg-glass-light: hsla(0, 0%, 100%, 0.03);
+  --shadow-premium: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  --shadow-saffron: 0 10px 30px -5px hsla(28, 92%, 54%, 0.25);
+  --shadow-gold: 0 15px 35px -5px hsla(43, 85%, 60%, 0.2);
+  
+  --blur-standard: blur(20px);
+  --blur-heavy: blur(40px);
+
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-elastic: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-cosmic);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
