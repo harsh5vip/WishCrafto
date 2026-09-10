@@ -5611,3 +5611,77 @@ body {
     height: 12px !important;
   }
 }
+
+/* Card Live Preview Watermark */
+.crafto-card-live-watermark {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  z-index: 5;
+  letter-spacing: 0.4px;
+  background: rgba(0, 0, 0, 0.38);
+  padding: 3px 8px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Crafto Dynamic Category SEO Context Box (Directly below status frame) */
+.crafto-seo-context-box {
+  margin-top: 1.25rem;
+  padding: 1.15rem 1.2rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 20px;
+  border: 1.5px solid rgba(221, 214, 254, 0.85);
+  box-shadow: 0 8px 24px rgba(109, 40, 217, 0.07);
+  text-align: center;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.crafto-seo-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.crafto-seo-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1e1b4b;
+  margin: 0 0 0.45rem 0;
+  line-height: 1.35;
+}
+
+.crafto-seo-desc {
+  font-size: 0.84rem;
+  color: #4b5563;
+  line-height: 1.58;
+  margin: 0 0 0.5rem 0;
+}
+
+.crafto-seo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+}
+
+.crafto-seo-tag-pill {
+  padding: 2.5px 10px;
+  border-radius: 99px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  border: 1px solid;
+}

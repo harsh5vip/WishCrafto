@@ -6,6 +6,7 @@ import StudioPage from './pages/StudioPage';
 import HistoryPage from './pages/HistoryPage';
 import IndependencePage from './pages/IndependencePage';
 import JanmashtamiPage from './pages/JanmashtamiPage';
+import GaneshChaturthiPage from './pages/GaneshChaturthiPage';
 import IndianFlagIcon from './components/IndianFlagIcon';
 import CardGeneratorModal from './components/CardGeneratorModal';
 import PastFestivalNoticeModal from './components/PastFestivalNoticeModal';
@@ -40,7 +41,11 @@ export default function App() {
     let desc = 'We take 0 space on your phone so you can download new Good Morning images, quotes, wishes, Good Night images, Daily suvichar, Birthday wishes and festival wishes with your photo & name.';
     let ogImg = 'https://wishcrafto.com/Common/rakhi_hero.png';
 
-    if (currentPath === '/janmashtami') {
+    if (currentPath === '/ganesh-chaturthi') {
+      title = 'Ganesh Chaturthi Wishes 2026: Status, Full Sacred Stories, Katha & Custom Photo Cards | WishCrafto';
+      desc = 'Celebrate Ganesh Chaturthi 2026 with custom wish messages, authentic sacred stories (Parvati Creation, Kartikeya Wisdom Race, Mahabharata Ekadanta), Shubh Puja Muhurat and download free photo cards on WishCrafto.';
+      ogImg = 'https://wishcrafto.com/HistoryImagesGanesh/Ganesh_Birth1.png';
+    } else if (currentPath === '/janmashtami') {
       title = 'Shri Krishna Janmashtami Wishes 2026: Status, Full janmashtami Stories & Custom wish messages | WishCrafto';
       desc = 'Celebrate Shri Krishna Janmashtami 2026 with custom wish messages, full authentic Janmashtami stories (Divine Birth, Makhan Chor, Govardhan Leela), and download new janmashtami messages your photo & name free on WishCrafto.';
       ogImg = 'https://wishcrafto.com/Krishna_Birth1.png';
@@ -114,6 +119,7 @@ export default function App() {
   const isHistoryRoute = currentPath === '/raksha-bandhan-stories';
   const isIndepRoute = currentPath === '/15-august';
   const isJanmashtamiRoute = currentPath === '/janmashtami';
+  const isGaneshRoute = currentPath === '/ganesh-chaturthi';
   const isHomeRoute = currentPath === '/';
 
   return (
@@ -122,6 +128,12 @@ export default function App() {
 
       {/* Main View Router */}
       <main>
+        {isGaneshRoute && (
+          <GaneshChaturthiPage
+            onNavigate={navigateTo}
+            onOpenCardModal={handleOpenCardModal}
+          />
+        )}
         {isJanmashtamiRoute && (
           <JanmashtamiPage
             onNavigate={navigateTo}
@@ -190,8 +202,11 @@ export default function App() {
 
         <div className="footer-col">
           <h3>Festivals</h3>
-          <button className="active-live-festival" onClick={() => navigateTo('/janmashtami')}>
-            🦚 Janmashtami 2026 <span className="live-pill">LIVE</span>
+          <button className="active-live-festival" onClick={() => navigateTo('/ganesh-chaturthi')}>
+            🐘 Ganesh Chaturthi 2026 <span className="live-pill">LIVE</span>
+          </button>
+          <button onClick={() => navigateTo('/janmashtami')}>
+            🦚 Janmashtami 2026
           </button>
           <button onClick={() => navigateTo('/raksha-bandhan-wishes')}>
             🪔 Raksha Bandhan 2026

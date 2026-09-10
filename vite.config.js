@@ -17,6 +17,9 @@ function autoDailyFeedsPlugin() {
   const jmDir = path.resolve(__dirname, 'public/Janmashtami')
   const jmJsonPath = path.resolve(__dirname, 'src/data/janmashtamiAutoList.json')
 
+  const gcDir = path.resolve(__dirname, 'public/Ganeshchaturthi')
+  const gcJsonPath = path.resolve(__dirname, 'src/data/ganeshChaturthiAutoList.json')
+
   const validExts = new Set(['.jpg', '.jpeg', '.png', '.webp', '.jfif', '.gif', '.svg'])
 
   function syncFeed(folderDir, outputJsonPath, prefix, title, category) {
@@ -49,6 +52,7 @@ function autoDailyFeedsPlugin() {
   function syncAll() {
     syncFeed(gmDir, gmJsonPath, 'gm', 'शुभ प्रभात', 'Good Morning')
     syncFeed(gnDir, gnJsonPath, 'gn', 'शुभ रात्रि', 'Good Night')
+    syncFeed(gcDir, gcJsonPath, 'gc', 'श्री गणेश चतुर्थी', 'Ganesh Chaturthi Special')
     syncFeed(jmDir, jmJsonPath, 'jk', 'श्री कृष्ण जन्माष्टमी', 'Janmashtami Special')
   }
 
@@ -61,14 +65,17 @@ function autoDailyFeedsPlugin() {
       syncAll()
       server.watcher.add(gmDir)
       server.watcher.add(gnDir)
+      server.watcher.add(gcDir)
       server.watcher.add(jmDir)
       server.watcher.on('all', (event, filePath) => {
-        if (filePath && (filePath.startsWith(gmDir) || filePath.startsWith(gnDir) || filePath.startsWith(jmDir))) {
+        if (filePath && (filePath.startsWith(gmDir) || filePath.startsWith(gnDir) || filePath.startsWith(gcDir) || filePath.startsWith(jmDir))) {
           syncAll()
           const gmMod = server.moduleGraph.getModuleById(gmJsonPath)
           if (gmMod) server.moduleGraph.invalidateModule(gmMod)
           const gnMod = server.moduleGraph.getModuleById(gnJsonPath)
           if (gnMod) server.moduleGraph.invalidateModule(gnMod)
+          const gcMod = server.moduleGraph.getModuleById(gcJsonPath)
+          if (gcMod) server.moduleGraph.invalidateModule(gcMod)
           const jmMod = server.moduleGraph.getModuleById(jmJsonPath)
           if (jmMod) server.moduleGraph.invalidateModule(jmMod)
           server.ws.send({ type: 'full-reload' })

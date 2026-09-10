@@ -3,6 +3,7 @@ import { Download, Sparkles, X, Check, Share2, Heart, RefreshCw } from 'lucide-r
 import WhatsAppIcon from './WhatsAppIcon';
 import { RAKHI_WALLPAPERS, RAKHI_WISHES } from '../data/rakhiData';
 import { JANMASTHAMI_WALLPAPERS, JANMASTHAMI_CARD_WISHES, JANMASTHAMI_HISTORY_WALLPAPERS } from '../data/janmashtamiStoryData';
+import { GANESH_HISTORY_WALLPAPERS, GANESH_CARD_WISHES } from '../data/ganeshChaturthiStoryData';
 
 export default function CardGeneratorModal({ 
   isOpen, 
@@ -27,14 +28,25 @@ export default function CardGeneratorModal({
       } else {
         setSelectedImage(initialImage);
       }
+    } else if (festival === 'ganesh') {
+      setSelectedImage('/HistoryImagesGanesh/Ganesh_Birth1.png');
+      if (!initialWish) {
+        setSelectedWish('वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥ गणेश चतुर्थी 2026 की हार्दिक शुभकामनाएं! 🐘✨');
+      }
     }
-  }, [initialPhoto, initialName, initialWish, initialImage, isOpen]);
+  }, [initialPhoto, initialName, initialWish, initialImage, festival, isOpen]);
   const [recipientName, setRecipientName] = useState('');
   const [mode, setMode] = useState('personal'); // 'personal' | 'business'
   const [businessName, setBusinessName] = useState('');
   const [businessPhone, setBusinessPhone] = useState('');
-  const [selectedWish, setSelectedWish] = useState(initialWish || 'नन्द के घर आनन्द भयो, जय कन्हैया लाल की! श्रीकृष्ण जन्माष्टमी 2026 की हार्दिक शुभकामनाएं! 🦚✨');
-  const [selectedImage, setSelectedImage] = useState(initialImage || '/HistoryImagesJanmashtami/Krishna_Birth1.png');
+  const [selectedWish, setSelectedWish] = useState(
+    initialWish || (festival === 'ganesh' 
+      ? 'वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥ गणेश चतुर्थी 2026 की हार्दिक शुभकामनाएं! 🐘✨'
+      : 'नन्द के घर आनन्द भयो, जय कन्हैया लाल की! श्रीकृष्ण जन्माष्टमी 2026 की हार्दिक शुभकामनाएं! 🦚✨')
+  );
+  const [selectedImage, setSelectedImage] = useState(
+    initialImage || (festival === 'ganesh' ? '/HistoryImagesGanesh/Ganesh_Birth1.png' : '/HistoryImagesJanmashtami/Krishna_Birth1.png')
+  );
   const [copiedToast, setCopiedToast] = useState(false);
   const [customPhoto, setCustomPhoto] = useState(null);
   const [photoZoom, setPhotoZoom] = useState(1.0);
@@ -113,10 +125,32 @@ export default function CardGeneratorModal({
     }
   };
 
-    // Strict festival detection: Janmashtami vs Raksha Bandhan
+    // Strict festival detection: Ganesh Chaturthi vs Janmashtami vs Raksha Bandhan
+  const isGanesh = React.useMemo(() => {
+    if (festival === 'ganesh') return true;
+    if (festival === 'janmashtami' || festival === 'rakhi') return false;
+    if (selectedImage && (
+      selectedImage.includes('HistoryImagesGanesh') ||
+      selectedImage.toLowerCase().includes('ganesh')
+    )) return true;
+    if (initialImage && (
+      initialImage.includes('HistoryImagesGanesh') ||
+      initialImage.toLowerCase().includes('ganesh')
+    )) return true;
+    if (selectedWish && (
+      selectedWish.includes('गणेश') ||
+      selectedWish.includes('गणपति') ||
+      selectedWish.includes('विनायक') ||
+      selectedWish.includes('एकदन्त') ||
+      selectedWish.includes('वक्रतुण्ड') ||
+      selectedWish.includes('मोदक')
+    )) return true;
+    return false;
+  }, [festival, selectedImage, initialImage, selectedWish]);
+
   const isJanmashtami = React.useMemo(() => {
     if (festival === 'janmashtami') return true;
-    if (festival === 'rakhi') return false;
+    if (festival === 'ganesh' || festival === 'rakhi') return false;
     if (selectedImage && (
       selectedImage.includes('/Janmashtami/') || 
       selectedImage.includes('HistoryImagesJanmashtami') ||
@@ -138,6 +172,27 @@ export default function CardGeneratorModal({
 
     // Available Wallpapers: Strictly isolated by festival
   const availableWallpapers = React.useMemo(() => {
+    if (isGanesh) {
+      // ONLY the 9 authentic images used in the Ganesh history stories!
+      const list = [...GANESH_HISTORY_WALLPAPERS];
+      const unique = [];
+      const seen = new Set();
+      if (selectedImage && selectedImage.includes('HistoryImagesGanesh')) {
+        const found = list.find(item => item.url === selectedImage);
+        if (found) {
+          unique.push(found);
+          seen.add(found.url);
+        }
+      }
+      for (const bg of list) {
+        if (!seen.has(bg.url)) {
+          seen.add(bg.url);
+          unique.push(bg);
+        }
+      }
+      return unique;
+    }
+
     if (isJanmashtami) {
       // ONLY the 9 authentic images used in the Janmashtami history stories!
       const list = [...JANMASTHAMI_HISTORY_WALLPAPERS];
@@ -1007,7 +1062,47 @@ export default function CardGeneratorModal({
             <div className="preset-wishes-pills">
               <small>Preset Suggestions:</small>
               <div className="pills-scroll">
-                {isJanmashtami ? [
+                {isGanesh ? [
+                  {
+                    id: 'gp-1',
+                    label: '🐘 वक्रतुण्ड महाकाय',
+                    text: 'वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥ गणेश चतुर्थी 2026 की हार्दिक शुभकामनाएं! 🐘✨'
+                  },
+                  {
+                    id: 'gp-2',
+                    label: '🌸 गणपति बप्पा मोरया',
+                    text: 'गणपति बप्पा मोरया! रिद्धि-सिद्धि के दाता भगवान श्री गणेश आपके घर में सुख, शांति और समृद्धि की वर्षा करें! 🌸🙏'
+                  },
+                  {
+                    id: 'gp-3',
+                    label: '🍯 एकदन्ताय विद्महे',
+                    text: 'एकदन्ताय विद्महे वक्रतुण्डाय धीमहि। तन्नो दन्तिः प्रचोदयात्॥ शुभ विनायक चतुर्थी 2026! 🍯🪔'
+                  },
+                  {
+                    id: 'gp-4',
+                    label: '💛 माता-पिता ही संसार',
+                    text: 'माता-पिता के चरणों में ही समस्त संसार है! भगवान गणेश जी का आशीर्वाद आप और आपके परिवार पर सदा बना रहे! जय गणेश देवा! 💛'
+                  },
+                  {
+                    id: 'gp-5',
+                    label: '✨ मोदक की मिठास',
+                    text: 'मोदक की मिठास, बप्पा का दुलार, खुशियों से भर जाए आपका संसार! गणेश उत्सव की कोटिशः बधाई! ✨🐘'
+                  },
+                  {
+                    id: 'gp-6',
+                    label: '💼 Shubh / Corporate',
+                    text: 'Wishing all our esteemed clients, partners and well-wishers a joyful, blessed and prosperous Ganesh Chaturthi 2026!'
+                  }
+                ].map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    className={`preset-pill ${selectedWish === preset.text ? 'active' : ''}`}
+                    onClick={() => setSelectedWish(preset.text)}
+                  >
+                    {preset.label}
+                  </button>
+                )) : isJanmashtami ? [
                   {
                     id: 'jp-1',
                     label: '🦚 जय कन्हैया लाल की',

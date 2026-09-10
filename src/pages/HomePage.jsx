@@ -15,9 +15,9 @@ const faqs = [
       'Personalizing and downloading Good Morning images on WishCrafto takes under 5 seconds: (1) Scroll through our daily feed of fresh Good Morning images and quotes, (2) Click "Your Photo" directly on the card to upload your picture from your phone or PC, (3) Type your name or family name, and (4) Click "Download" for HD saving or "Share" directly to WhatsApp. You can even drag your photo anywhere on the card.'
   },
   {
-    question: 'How do I make custom Shri Krishna Janmashtami 2026 status with my photo?',
+    question: 'How do I make custom Ganesh Chaturthi 2026 status with my photo?',
     answer:
-      'Select the 🦚 Janmashtami tab on the home feed or visit the Janmashtami Studio to choose from 16+ divine Bal Gopal and sacred story scenes. Add your photo and family name to create high-resolution Janmashtami wishes and WhatsApp status cards in 1 tap for free.'
+      'Select the 🐘 Ganesh Chaturthi tab on the home feed to choose from authentic Lord Ganesha festive status cards. Add your photo and family name to create high-resolution Ganesh Chaturthi wishes and WhatsApp status cards in 1 tap for free.'
   },
   {
     question: 'Where can I find fresh daily Hindi Suvichar, motivational quotes, and Good Night status?',
@@ -32,7 +32,7 @@ const faqs = [
   {
     question: 'Can I create personalized Happy Birthday wishes and festival greeting cards for free?',
     answer:
-      'Yes! WishCrafto offers customizable Happy Birthday photo status cards, anniversary greetings, and major Indian festival wishes (Janmashtami, Raksha Bandhan, 15 August, Diwali, Navratri). You can customize them with personal photos, names, and warm blessings.'
+      'Yes! WishCrafto offers customizable Happy Birthday photo status cards, anniversary greetings, and major Indian festival wishes (Ganesh Chaturthi, Janmashtami, Raksha Bandhan, 15 August, Diwali, Navratri). You can customize them with personal photos, names, and warm blessings.'
   },
   {
     question: 'Can local business owners and shopkeepers add their brand name and phone number?',
@@ -41,13 +41,46 @@ const faqs = [
   }
 ];
 
+const CATEGORY_SEO_CONTENT = {
+  'good-morning': {
+    badge: '🌅 सुप्रभात विचार व फोटो स्टेटस हब',
+    title: 'Good Morning Images, Wishes in Hindi with Photo & Name | सुप्रभात सुविचार',
+    para1: "WishCrafto पर पाएँ 1.2M+ मासिक सर्च वाले ताज़ा Good Morning images, 500K+ सर्च वाले प्रेरक Good Morning wishes in Hindi, और सकारात्मक सुप्रभात सुविचार। यहाँ आप केवल 1-क्लिक में अपनी फ़ोटो व नाम जोड़कर व्यक्तिगत Good morning status with photo और HD कार्ड फ्री डाउनलोड कर सकते हैं।",
+    para2: "दैनिक सुविचार, ईश्वर वंदना, और परिवार-मित्रों के लिए दिल को छू लेने वाले Good Morning quotes in hindi के साथ अपनी सुबह को मंगलमय बनाएँ। शून्य ऐप डाउनलोड के साथ सबसे तेज़ अनुभव।",
+    tags: ['Good Morning Images', 'Good Morning Wishes in Hindi', 'सुप्रभात सुविचार', 'Status with Photo & Name', 'Morning Quotes in Hindi'],
+    color: '#7c3aed',
+    bg: '#f3e8ff',
+    border: '#d8b4fe'
+  },
+  'good-night': {
+    badge: '🌙 शुभ रात्रि संदेश व शांतिपूर्ण कोट्स',
+    title: 'Good Night Images, Wishes in Hindi & Shubh Ratri Status with Photo',
+    para1: "WishCrafto पर पाएँ 670K+ मासिक सर्च वाले मनमोहक Good Night images, दिल को छू लेने वाले Good Night wishes in Hindi, और सुकून भरी शुभ रात्रि शायरी। यहाँ आप अपनी फ़ोटो और नाम लगाकर कस्टमाइज़्ड Good night status with photo व HD इमेज 1-टैप में फ्री डाउनलोड कर सकते हैं।",
+    para2: "दिनभर की थकान के बाद शांतिपूर्ण Good Night quotes in hindi और आध्यात्मिक प्रार्थना संदेश अपनों को भेजकर रिश्ते मजबूत करें। बिना किसी भारी ऐप के सीधे WhatsApp पर 1-टैप में शेयर करें।",
+    tags: ['Good Night Images', 'Good Night Wishes in Hindi', 'शुभ रात्रि संदेश', 'Shubh Ratri Status', 'Heart Touching Quotes'],
+    color: '#2563eb',
+    bg: '#eff6ff',
+    border: '#bfdbfe'
+  },
+  'ganesh-chaturthi': {
+    badge: '🐘 श्री गणेश चतुर्थी 2026 पावन स्टेटस हब',
+    title: 'Ganesh Chaturthi 2026 Images, Wishes with Photo & Name | गणपति बप्पा स्टेटस',
+    para1: "विघ्नहर्ता भगवान श्री गणेश के जन्मोत्सव (14 सितंबर 2026) पर पाएँ HD Ganpati Bappa Images और तैयार करें अपना निजी Ganesh Chaturthi WhatsApp Status। बप्पा के पावन स्वरूप व श्लोकों के साथ अपनी फ़ोटो व नाम जोड़कर Ganesh chaturthi wishes with photo 1-टैप में फ्री डाउनलोड करें।",
+    para2: "शुभ पूजा मुहूर्त, मोदक प्रसाद और 'गणेश चतुर्थी की हार्दिक शुभकामनाएं 2026' संदेश अपनों को भेजकर उत्सव का उल्लास दोगुना करें। गणपति बप्पा मोरया!",
+    tags: ['Ganesh Chaturthi Images', 'Ganesh Chaturthi Wishes in Hindi', 'गणेश चतुर्थी 2026', 'Ganpati Bappa Status', 'Ganesh Photo with Name'],
+    color: '#d97706',
+    bg: '#fffbeb',
+    border: '#fde68a'
+  }
+};
+
 export default function HomePage({ onNavigate, onOpenCardModal }) {
   const [activeTab, setActiveTab] = useState(() => {
     try {
       const params = new URLSearchParams(window.location.search);
       const tabParam = params.get('tab');
-      if (tabParam && ['good-morning', 'good-night', 'janmashtami'].includes(tabParam)) {
-        return tabParam;
+      if (tabParam && ['good-morning', 'good-night', 'ganesh-chaturthi', 'ganesh', 'janmashtami'].includes(tabParam)) {
+        return tabParam === 'ganesh' ? 'ganesh-chaturthi' : tabParam;
       }
     } catch (e) {}
     return 'good-morning';
@@ -61,8 +94,8 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
       try {
         const params = new URLSearchParams(window.location.search);
         const tabParam = params.get('tab');
-        if (tabParam && ['good-morning', 'good-night', 'janmashtami'].includes(tabParam)) {
-          setActiveTab(tabParam);
+        if (tabParam && ['good-morning', 'good-night', 'ganesh-chaturthi', 'ganesh', 'janmashtami'].includes(tabParam)) {
+          setActiveTab(tabParam === 'ganesh' ? 'ganesh-chaturthi' : tabParam);
           setCardIndex(0);
         }
       } catch (e) {}
@@ -74,6 +107,7 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
 
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isSharing, setIsSharing] = useState(false);
   const [downloadType, setDownloadType] = useState(null); // 'free' | 'pro'
   const [isProModalOpen, setIsProModalOpen] = useState(false);
 
@@ -101,6 +135,12 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
   const stageRef = useRef(null);
   const canvasCardRef = useRef(null);
   const isDraggingRef = useRef(false);
+
+  // Allow moving badge across Good Morning, Good Night, Ganesh Chaturthi, and Janmashtami feeds
+  const isDraggableTab = ['good-morning', 'good-night', 'ganesh-chaturthi', 'ganesh', 'janmashtami'].includes(activeTab);
+
+  // Dynamic High-Volume SEO Content based on Active Category Tab
+  const seoInfo = CATEGORY_SEO_CONTENT[activeTab] || CATEGORY_SEO_CONTENT['good-morning'];
 
   // Active status list & card item
   const currentFeedList = DAILY_STATUS_FEED[activeTab] || DAILY_STATUS_FEED['good-morning'];
@@ -337,6 +377,13 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
   };
 
   const FESTIVAL_QUOTES = {
+    'ganesh-chaturthi': [
+      "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥ गणेश चतुर्थी 2026 की हार्दिक शुभकामनाएं! 🐘✨",
+      "भगवान श्री गणेश आपके जीवन से सभी विघ्न-बाधाओं को दूर कर सुख, शांति और समृद्धि प्रदान करें। गणपति बप्पा मोरया!",
+      "रिद्धि-सिद्धि के दाता, ज्ञान-बुद्धि के विधाता, विघ्नहर्ता भगवान श्री गणेश का आशीर्वाद सदा आप पर बना रहे। शुभ गणेशोत्सव!",
+      "मोदक की मिठास, बप्पा का आशीर्वाद, सदा बना रहे आपका विश्वास। गणेश चतुर्थी की मंगलमय शुभकामनाएं!",
+      "एकदंताय विद्महे वक्रतुण्डाय धीमहि तन्नो दन्तिः प्रचोदयात्॥ श्री गणेश चतुर्थी की हार्दिक बधाई!"
+    ],
     janmashtami: [
       "नंद के घर आनंद भयो, जय कन्हैया लाल की! हाथी घोड़ा पालकी, जय कन्हैया लाल की! श्री कृष्ण जन्माष्टमी की हार्दिक शुभकामनाएं!",
       "माखन चुराकर जिसने खाया, बंसी बजाकर जिसने नचाया, खुशी मनाओ उनके जन्मदिन की जिसने दुनिया को प्रेम का पाठ पढ़ाया। शुभ जन्माष्टमी!",
@@ -355,15 +402,328 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
     ]
   };
 
+  // Unified Canvas Renderer for both HD Download and WhatsApp Native Share
+  const generateCardCanvas = async (withPhoto = false) => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1080;
+    canvas.height = 1080;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('Could not get canvas context');
+
+    // 1. Draw Background Image
+    const bgImg = new Image();
+    bgImg.crossOrigin = 'anonymous';
+    bgImg.src = currentCard.image;
+    await new Promise((resolve) => {
+      bgImg.onload = resolve;
+      bgImg.onerror = resolve;
+    });
+
+    if (bgImg.width) {
+      const scale = Math.max(canvas.width / bgImg.width, canvas.height / bgImg.height);
+      const x = (canvas.width - bgImg.width * scale) / 2;
+      const y = (canvas.height - bgImg.height * scale) / 2;
+      ctx.drawImage(bgImg, x, y, bgImg.width * scale, bgImg.height * scale);
+    } else {
+      ctx.fillStyle = '#1e1035';
+      ctx.fillRect(0, 0, 1080, 1080);
+    }
+
+    // 2. Gradient Overlay (minimal vignette for cards with embedded text/no quote)
+    if (currentCard.hasEmbeddedText || !currentCard.quote) {
+      const gradient = ctx.createLinearGradient(0, 0, 0, 1080);
+      gradient.addColorStop(0, 'rgba(0, 0, 0, 0.12)');
+      gradient.addColorStop(0.2, 'rgba(0, 0, 0, 0)');
+      gradient.addColorStop(0.72, 'rgba(0, 0, 0, 0)');
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0.65)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 1080, 1080);
+    } else {
+      const gradient = ctx.createLinearGradient(0, 0, 0, 1080);
+      gradient.addColorStop(0, 'rgba(0, 0, 0, 0.45)');
+      gradient.addColorStop(0.22, 'rgba(0, 0, 0, 0.05)');
+      gradient.addColorStop(0.48, 'rgba(0, 0, 0, 0.12)');
+      gradient.addColorStop(0.65, 'rgba(0, 0, 0, 0.65)');
+      gradient.addColorStop(0.85, 'rgba(0, 0, 0, 0.92)');
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0.98)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 1080, 1080);
+    }
+
+    // 3. Top Category Badge Pill (Only if quote exists or not embedded art)
+    if (currentCard.quote) {
+      const badgeText = `${currentCard.category} • ${currentCard.title}`;
+      ctx.font = 'bold 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      const textMetrics = ctx.measureText(badgeText);
+      const pillW = Math.min(textMetrics.width + 48, 900);
+      const pillH = 46;
+      const pillX = (1080 - pillW) / 2;
+      const pillY = 48;
+
+      ctx.save();
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.65)';
+      ctx.strokeStyle = 'rgba(255, 185, 54, 0.6)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(pillX, pillY, pillW, pillH, 23);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffb936';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(badgeText, 1080 / 2, pillY + pillH / 2);
+      ctx.restore();
+    }
+
+    // 4. Frosted Quote Glass Box in Lower Area (Only if quote exists)
+    if (currentCard.quote) {
+      const boxX = 60;
+      const boxY = 620;
+      const boxW = 960;
+      const boxH = 250;
+
+      ctx.save();
+      ctx.fillStyle = 'rgba(15, 10, 25, 0.72)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.roundRect(boxX, boxY, boxW, boxH, 22);
+      ctx.fill();
+      ctx.stroke();
+
+      // Golden accent border on left
+      ctx.fillStyle = '#ffb936';
+      ctx.beginPath();
+      ctx.roundRect(boxX, boxY + 16, 6, boxH - 32, 3);
+      ctx.fill();
+
+      // Quote text wrapping
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '500 34px Georgia, "Playfair Display", "Hind", serif';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+
+      const quoteStr = `"${currentCard.quote}"`;
+      const words = quoteStr.split(' ');
+      let currentLine = '';
+      let lineY = boxY + 32;
+      const maxLineWidth = boxW - 64;
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = currentLine + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxLineWidth && n > 0) {
+          ctx.fillText(currentLine, boxX + 32, lineY);
+          currentLine = words[n] + ' ';
+          lineY += 46;
+          if (lineY > boxY + boxH - 46) break;
+        } else {
+          currentLine = testLine;
+        }
+      }
+      ctx.fillText(currentLine, boxX + 32, lineY);
+      ctx.restore();
+    }
+
+    // 5. Signature & Name Badge (PRO with Photo vs FREE with Name only)
+    const isGm = isDraggableTab;
+    const displayName = userName.trim() || 'wishcrafto.com';
+    const tagText = 'Wish By :';
+    const tagFont = '800 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    const nameFont = 'bold 44px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+
+    const avatarR = 80;
+    let avatarCenterX, avatarCenterY;
+    if (isGm) {
+      avatarCenterX = Math.round((badgePos.x / 100) * 1080);
+      avatarCenterY = Math.round((badgePos.y / 100) * 1080);
+      avatarCenterX = Math.max(avatarR + 15, Math.min(1080 - avatarR - 15, avatarCenterX));
+      avatarCenterY = Math.max(avatarR + 15, Math.min(1080 - avatarR - 12, avatarCenterY));
+    } else {
+      avatarCenterX = 130;
+      avatarCenterY = 920;
+    }
+
+    if (withPhoto && userPhoto) {
+      // PRO WITH PHOTO: Draw Circular Avatar Ring + User Photo
+      ctx.save();
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
+      ctx.shadowBlur = 24;
+      ctx.shadowOffsetY = 6;
+      ctx.beginPath();
+      ctx.arc(avatarCenterX, avatarCenterY, avatarR, 0, Math.PI * 2);
+      ctx.fillStyle = '#1e1035';
+      ctx.fill();
+      ctx.restore();
+
+      const uImg = new Image();
+      uImg.src = userPhoto;
+      await new Promise((res) => {
+        uImg.onload = res;
+        uImg.onerror = res;
+      });
+
+      // Calculate true aspect-ratio centered crop (object-fit: cover) so non-square photos never stretch or tilt
+      const imgW = uImg.naturalWidth || uImg.width || 1;
+      const imgH = uImg.naturalHeight || uImg.height || 1;
+      const minDim = Math.min(imgW, imgH);
+      const sx = (imgW - minDim) / 2;
+      const sy = (imgH - minDim) / 2;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(avatarCenterX, avatarCenterY, avatarR, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+      ctx.drawImage(
+        uImg,
+        sx, sy, minDim, minDim,
+        avatarCenterX - avatarR, avatarCenterY - avatarR, avatarR * 2, avatarR * 2
+      );
+      ctx.restore();
+
+      // Elegant Double Border Ring (White + Gold)
+      ctx.save();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(avatarCenterX, avatarCenterY, avatarR, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.strokeStyle = '#ffb936';
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.arc(avatarCenterX, avatarCenterY, avatarR + 3, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+
+      // Draw Name badge next to Photo
+      let textX = avatarCenterX + avatarR + 24;
+      ctx.save();
+      ctx.font = tagFont;
+      const tagW = ctx.measureText(tagText).width;
+      ctx.font = nameFont;
+      const nameW = ctx.measureText(displayName).width;
+      const maxTextW = Math.max(tagW, nameW);
+
+      const pillPadX = 18;
+      let pillX = textX - 8;
+      const pillY = Math.max(20, Math.min(1080 - 96 - 20, avatarCenterY - 48));
+      const pillW = maxTextW + pillPadX * 2 + 6;
+      const pillH = 96;
+
+      // Ensure badge pill does not get clipped off canvas edges if dragged to the extreme right
+      if (pillX + pillW > 1080 - 20) {
+        if (avatarCenterX - avatarR - 24 - pillW >= 20) {
+          pillX = avatarCenterX - avatarR - 24 - pillW + 8;
+          textX = pillX + 8;
+        } else {
+          pillX = 1080 - pillW - 20;
+          textX = pillX + 8;
+        }
+      }
+
+      ctx.fillStyle = 'rgba(10, 6, 18, 0.85)';
+      ctx.strokeStyle = 'rgba(255, 185, 54, 0.45)';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
+      ctx.shadowBlur = 18;
+      ctx.beginPath();
+      ctx.roundRect(pillX, pillY, pillW, pillH, 16);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.shadowColor = 'transparent';
+      ctx.fillStyle = '#ffb936';
+      ctx.beginPath();
+      ctx.roundRect(pillX, pillY + 12, 5, pillH - 24, 2.5);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffd06a';
+      ctx.font = tagFont;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(tagText, textX + 10, avatarCenterY - 20);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = nameFont;
+      ctx.fillText(displayName, textX + 10, avatarCenterY + 20);
+      ctx.restore();
+
+    } else {
+      // FREE WITHOUT PHOTO: Left-align or position according to moved badge position cleanly
+      ctx.save();
+      ctx.font = tagFont;
+      const tagW = ctx.measureText(tagText).width;
+      ctx.font = nameFont;
+      const nameW = ctx.measureText(displayName).width;
+      const maxTextW = Math.max(tagW, nameW);
+
+      const pillPadX = 22;
+      const pillW = maxTextW + pillPadX * 2 + 10;
+      const pillH = 96;
+      const pillX = isGm 
+        ? Math.max(30, Math.min(1080 - pillW - 30, avatarCenterX - 40))
+        : 55;
+      const pillY = Math.min(1080 - 96 - 40, Math.max(40, avatarCenterY - 48));
+
+      ctx.fillStyle = 'rgba(10, 6, 18, 0.88)';
+      ctx.strokeStyle = 'rgba(255, 185, 54, 0.45)';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
+      ctx.shadowBlur = 18;
+      ctx.beginPath();
+      ctx.roundRect(pillX, pillY, pillW, pillH, 16);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.shadowColor = 'transparent';
+      ctx.fillStyle = '#ffb936';
+      ctx.beginPath();
+      ctx.roundRect(pillX, pillY + 12, 5, pillH - 24, 2.5);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffd06a';
+      ctx.font = tagFont;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(tagText, pillX + 22, pillY + 28);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = nameFont;
+      ctx.fillText(displayName, pillX + 22, pillY + 68);
+      ctx.restore();
+    }
+
+    // 6. Branding Watermark (Always cleanly anchored at Bottom Right - Even if no photo is added!)
+    ctx.save();
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+    ctx.font = '600 22px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'bottom';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+    ctx.shadowBlur = 8;
+    ctx.fillText('✨ WishCrafto.com', 1080 - 45, 1080 - 35);
+    ctx.restore();
+
+    return canvas;
+  };
+
   const handleWhatsAppShare = async () => {
+    if (isSharing) return;
+    setIsSharing(true);
     const sender = userName.trim();
     const introLine = sender 
       ? `✨ *${sender} ji* ne aapke liye khaas message bheja hai:` 
       : `✨ Aapke liye ek khaas message bheja gaya hai:`;
-    const titlePart = currentCard.title ? `*${currentCard.title}*` : '*श्री कृष्ण जन्माष्टमी*';
+    const defaultTitle = activeTab === 'ganesh-chaturthi'
+      ? '*श्री गणेश चतुर्थी 2026*'
+      : (activeTab === 'janmashtami' ? '*श्री कृष्ण जन्माष्टमी*' : (activeTab === 'good-night' ? '*शुभ रात्रि*' : '*शुभ प्रभात*'));
+    const titlePart = currentCard.title ? `*${currentCard.title}*` : defaultTitle;
     
     // Ensure quote is NEVER empty: if currentCard.quote is empty, pick an authentic festival quote
-    const activeQuotesList = FESTIVAL_QUOTES[activeTab] || FESTIVAL_QUOTES.janmashtami;
+    const activeQuotesList = FESTIVAL_QUOTES[activeTab] || FESTIVAL_QUOTES['ganesh-chaturthi'] || FESTIVAL_QUOTES.janmashtami;
     const fallbackQuote = activeQuotesList[cardIndex % activeQuotesList.length];
     const finalQuote = (currentCard.quote && currentCard.quote.trim()) ? currentCard.quote.trim() : fallbackQuote;
 
@@ -371,13 +731,13 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
     const ctaPart = `\n\n👉 *Aap bhi apna personal message yahan banayein:*\n🔗 https://wishcrafto.com/`;
     const shareText = `${introLine}\n\n${titlePart}${quotePart}${ctaPart}`;
 
-    // Try Native Web Share with the actual Image File attached (Android/Mobile)
+    // Render the personalized card canvas (with user's photo if added, or with their name + watermark)
     try {
-      if (navigator.share && navigator.canShare && currentCard?.image) {
-        const response = await fetch(currentCard.image);
-        const blob = await response.blob();
-        const extension = blob.type.includes('jpeg') || blob.type.includes('jpg') ? 'jpg' : (blob.type.includes('webp') ? 'webp' : 'png');
-        const file = new File([blob], `WishCrafto-${Date.now()}.${extension}`, { type: blob.type || 'image/png' });
+      const canvas = await generateCardCanvas(Boolean(userPhoto));
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png', 0.95));
+
+      if (blob && navigator.share && navigator.canShare) {
+        const file = new File([blob], `WishCrafto-${Date.now()}.png`, { type: 'image/png' });
 
         if (navigator.canShare({ files: [file] })) {
           await navigator.share({
@@ -385,6 +745,7 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
             title: currentCard.title || 'WishCrafto Status Card',
             text: shareText
           });
+          triggerPersonalizedNotification(sender);
           return;
         }
       }
@@ -394,6 +755,8 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
       } else {
         return; // User cancelled share sheet
       }
+    } finally {
+      setIsSharing(false);
     }
 
     // Fallback for Desktop or browsers where file sharing is unsupported
@@ -423,314 +786,9 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
     setDownloadType(withPhoto ? 'pro' : 'free');
 
     try {
-      const canvas = document.createElement('canvas');
-      canvas.width = 1080;
-      canvas.height = 1080;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) throw new Error('Could not get canvas context');
+      const canvas = await generateCardCanvas(withPhoto);
 
-      // 1. Draw Background Image
-      const bgImg = new Image();
-      bgImg.crossOrigin = 'anonymous';
-      bgImg.src = currentCard.image;
-      await new Promise((resolve) => {
-        bgImg.onload = resolve;
-        bgImg.onerror = resolve;
-      });
-
-      if (bgImg.width) {
-        const scale = Math.max(canvas.width / bgImg.width, canvas.height / bgImg.height);
-        const x = (canvas.width - bgImg.width * scale) / 2;
-        const y = (canvas.height - bgImg.height * scale) / 2;
-        ctx.drawImage(bgImg, x, y, bgImg.width * scale, bgImg.height * scale);
-      } else {
-        ctx.fillStyle = '#1e1035';
-        ctx.fillRect(0, 0, 1080, 1080);
-      }
-
-      // 2. Gradient Overlay (minimal vignette for cards with embedded text/no quote)
-      if (currentCard.hasEmbeddedText || !currentCard.quote) {
-        const gradient = ctx.createLinearGradient(0, 0, 0, 1080);
-        gradient.addColorStop(0, 'rgba(0, 0, 0, 0.12)');
-        gradient.addColorStop(0.2, 'rgba(0, 0, 0, 0)');
-        gradient.addColorStop(0.72, 'rgba(0, 0, 0, 0)');
-        gradient.addColorStop(1, 'rgba(0, 0, 0, 0.65)');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 1080, 1080);
-      } else {
-        const gradient = ctx.createLinearGradient(0, 0, 0, 1080);
-        gradient.addColorStop(0, 'rgba(0, 0, 0, 0.45)');
-        gradient.addColorStop(0.22, 'rgba(0, 0, 0, 0.05)');
-        gradient.addColorStop(0.48, 'rgba(0, 0, 0, 0.12)');
-        gradient.addColorStop(0.65, 'rgba(0, 0, 0, 0.65)');
-        gradient.addColorStop(0.85, 'rgba(0, 0, 0, 0.92)');
-        gradient.addColorStop(1, 'rgba(0, 0, 0, 0.98)');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 1080, 1080);
-      }
-
-      // 3. Top Category Badge Pill (Only if quote exists or not embedded art)
-      if (currentCard.quote) {
-        const badgeText = `${currentCard.category} • ${currentCard.title}`;
-        ctx.font = 'bold 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        const textMetrics = ctx.measureText(badgeText);
-        const pillW = Math.min(textMetrics.width + 48, 900);
-        const pillH = 46;
-        const pillX = (1080 - pillW) / 2;
-        const pillY = 48;
-
-        ctx.save();
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.65)';
-        ctx.strokeStyle = 'rgba(255, 185, 54, 0.6)';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.roundRect(pillX, pillY, pillW, pillH, 23);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = '#ffb936';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(badgeText, 1080 / 2, pillY + pillH / 2);
-        ctx.restore();
-      }
-
-      // 4. Frosted Quote Glass Box in Lower Area (Only if quote exists)
-      if (currentCard.quote) {
-        const boxX = 60;
-        const boxY = 620;
-        const boxW = 960;
-        const boxH = 250;
-
-        ctx.save();
-        ctx.fillStyle = 'rgba(15, 10, 25, 0.72)';
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.roundRect(boxX, boxY, boxW, boxH, 22);
-        ctx.fill();
-        ctx.stroke();
-
-        // Golden accent border on left
-        ctx.fillStyle = '#ffb936';
-        ctx.beginPath();
-        ctx.roundRect(boxX, boxY + 16, 6, boxH - 32, 3);
-        ctx.fill();
-
-        // Quote text wrapping
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '500 34px Georgia, "Playfair Display", "Hind", serif';
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'top';
-
-        const quoteStr = `"${currentCard.quote}"`;
-        const words = quoteStr.split(' ');
-        let currentLine = '';
-        let lineY = boxY + 32;
-        const maxLineWidth = boxW - 64;
-
-        for (let n = 0; n < words.length; n++) {
-          const testLine = currentLine + words[n] + ' ';
-          const metrics = ctx.measureText(testLine);
-          if (metrics.width > maxLineWidth && n > 0) {
-            ctx.fillText(currentLine, boxX + 32, lineY);
-            currentLine = words[n] + ' ';
-            lineY += 46;
-            if (lineY > boxY + boxH - 46) break;
-          } else {
-            currentLine = testLine;
-          }
-        }
-        ctx.fillText(currentLine, boxX + 32, lineY);
-        ctx.restore();
-      }
-
-      // 5. Signature & Name Badge (PRO with Photo vs FREE with Name only)
-      const isGm = activeTab === 'good-morning' || activeTab === 'good-night' || activeTab === 'janmashtami';
-      const displayName = userName.trim() || 'wishcrafto.com';
-      const tagText = 'Wish By :';
-      const tagFont = '800 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      const nameFont = 'bold 44px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-
-      const avatarR = 80;
-      let avatarCenterX, avatarCenterY;
-      if (isGm) {
-        avatarCenterX = Math.round((badgePos.x / 100) * 1080);
-        avatarCenterY = Math.round((badgePos.y / 100) * 1080);
-        avatarCenterX = Math.max(avatarR + 15, Math.min(1080 - avatarR - 15, avatarCenterX));
-        avatarCenterY = Math.max(avatarR + 15, Math.min(1080 - avatarR - 12, avatarCenterY));
-      } else {
-        avatarCenterX = 130;
-        avatarCenterY = 920;
-      }
-
-      if (withPhoto) {
-        // PRO WITH PHOTO: Draw Circular Avatar Ring + Image
-        ctx.save();
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
-        ctx.shadowBlur = 24;
-        ctx.shadowOffsetY = 6;
-        ctx.beginPath();
-        ctx.arc(avatarCenterX, avatarCenterY, avatarR, 0, Math.PI * 2);
-        ctx.fillStyle = '#1e1035';
-        ctx.fill();
-        ctx.restore();
-
-        if (userPhoto) {
-          const uImg = new Image();
-          uImg.src = userPhoto;
-          await new Promise((res) => {
-            uImg.onload = res;
-            uImg.onerror = res;
-          });
-
-          // Calculate true aspect-ratio centered crop (object-fit: cover) so non-square photos never stretch or tilt
-          const imgW = uImg.naturalWidth || uImg.width || 1;
-          const imgH = uImg.naturalHeight || uImg.height || 1;
-          const minDim = Math.min(imgW, imgH);
-          const sx = (imgW - minDim) / 2;
-          const sy = (imgH - minDim) / 2;
-
-          ctx.save();
-          ctx.beginPath();
-          ctx.arc(avatarCenterX, avatarCenterY, avatarR, 0, Math.PI * 2);
-          ctx.closePath();
-          ctx.clip();
-          ctx.drawImage(
-            uImg,
-            sx, sy, minDim, minDim,
-            avatarCenterX - avatarR, avatarCenterY - avatarR, avatarR * 2, avatarR * 2
-          );
-          ctx.restore();
-
-          // Elegant Double Border Ring (White + Gold)
-          ctx.save();
-          ctx.strokeStyle = '#ffffff';
-          ctx.lineWidth = 3;
-          ctx.beginPath();
-          ctx.arc(avatarCenterX, avatarCenterY, avatarR, 0, Math.PI * 2);
-          ctx.stroke();
-
-          ctx.strokeStyle = '#ffb936';
-          ctx.lineWidth = 6;
-          ctx.beginPath();
-          ctx.arc(avatarCenterX, avatarCenterY, avatarR + 3, 0, Math.PI * 2);
-          ctx.stroke();
-          ctx.restore();
-        } else {
-          ctx.save();
-          ctx.fillStyle = '#1e1035';
-          ctx.strokeStyle = '#ffb936';
-          ctx.lineWidth = 5;
-          ctx.beginPath();
-          ctx.arc(avatarCenterX, avatarCenterY, avatarR, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.stroke();
-          ctx.fillStyle = '#ffb936';
-          ctx.font = 'bold 54px sans-serif';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText('✨', avatarCenterX, avatarCenterY);
-          ctx.restore();
-        }
-
-        // Draw Name badge next to Photo
-        const textX = avatarCenterX + avatarR + 24;
-        ctx.save();
-        ctx.font = tagFont;
-        const tagW = ctx.measureText(tagText).width;
-        ctx.font = nameFont;
-        const nameW = ctx.measureText(displayName).width;
-        const maxTextW = Math.max(tagW, nameW);
-
-        const pillPadX = 18;
-        const pillX = textX - 8;
-        const pillY = avatarCenterY - 48;
-        const pillW = maxTextW + pillPadX * 2 + 6;
-        const pillH = 96;
-
-        ctx.fillStyle = 'rgba(10, 6, 18, 0.85)';
-        ctx.strokeStyle = 'rgba(255, 185, 54, 0.45)';
-        ctx.lineWidth = 2;
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
-        ctx.shadowBlur = 18;
-        ctx.beginPath();
-        ctx.roundRect(pillX, pillY, pillW, pillH, 16);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.shadowColor = 'transparent';
-        ctx.fillStyle = '#ffb936';
-        ctx.beginPath();
-        ctx.roundRect(pillX, pillY + 12, 5, pillH - 24, 2.5);
-        ctx.fill();
-
-        ctx.fillStyle = '#ffd06a';
-        ctx.font = tagFont;
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(tagText, textX + 10, avatarCenterY - 20);
-
-        ctx.fillStyle = '#ffffff';
-        ctx.font = nameFont;
-        ctx.fillText(displayName, textX + 10, avatarCenterY + 20);
-        ctx.restore();
-
-      } else {
-        // FREE WITHOUT PHOTO: Left-align the name badge cleanly so NO awkward empty photo gap is left!
-        ctx.save();
-        ctx.font = tagFont;
-        const tagW = ctx.measureText(tagText).width;
-        ctx.font = nameFont;
-        const nameW = ctx.measureText(displayName).width;
-        const maxTextW = Math.max(tagW, nameW);
-
-        const pillPadX = 22;
-        const pillX = 55; // Clean left margin instead of offsetting for missing photo
-        const pillY = Math.min(1080 - 96 - 40, Math.max(40, avatarCenterY - 48));
-        const pillW = maxTextW + pillPadX * 2 + 10;
-        const pillH = 96;
-
-        ctx.fillStyle = 'rgba(10, 6, 18, 0.88)';
-        ctx.strokeStyle = 'rgba(255, 185, 54, 0.45)';
-        ctx.lineWidth = 2;
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
-        ctx.shadowBlur = 18;
-        ctx.beginPath();
-        ctx.roundRect(pillX, pillY, pillW, pillH, 16);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.shadowColor = 'transparent';
-        ctx.fillStyle = '#ffb936';
-        ctx.beginPath();
-        ctx.roundRect(pillX, pillY + 12, 5, pillH - 24, 2.5);
-        ctx.fill();
-
-        ctx.fillStyle = '#ffd06a';
-        ctx.font = tagFont;
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(tagText, pillX + 22, pillY + 28);
-
-        ctx.fillStyle = '#ffffff';
-        ctx.font = nameFont;
-        ctx.fillText(displayName, pillX + 22, pillY + 68);
-        ctx.restore();
-      }
-
-      // 6. Branding Watermark (Always cleanly anchored at Bottom Right)
-      ctx.save();
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
-      ctx.font = '600 20px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      ctx.textAlign = 'right';
-      ctx.textBaseline = 'bottom';
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-      ctx.shadowBlur = 6;
-      ctx.fillText('✨ WishCrafto.com', 1080 - 45, 1080 - 35);
-      ctx.restore();
-
-      // 7. Instant File Download
+      // Instant File Download
       canvas.toBlob((blob) => {
         if (!blob) throw new Error('Canvas to Blob failed');
         const url = URL.createObjectURL(blob);
@@ -828,8 +886,8 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
 
               {/* Interactive In-Place User Photo & Name Badge (Directly Draggable on Card) */}
               <div 
-                className={`crafto-user-overlay ${(activeTab === 'good-morning' || activeTab === 'good-night' || activeTab === 'janmashtami') ? 'draggable-overlay' : ''}`}
-                style={(activeTab === 'good-morning' || activeTab === 'good-night' || activeTab === 'janmashtami') ? {
+                className={`crafto-user-overlay ${isDraggableTab ? 'draggable-overlay' : ''}`}
+                style={isDraggableTab ? {
                   position: 'absolute',
                   left: `${badgePos.x}%`,
                   top: `${badgePos.y}%`,
@@ -837,8 +895,8 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
                   cursor: isDraggingBadge ? 'grabbing' : 'grab',
                   touchAction: 'none'
                 } : {}}
-                onMouseDown={(activeTab === 'good-morning' || activeTab === 'good-night' || activeTab === 'janmashtami') ? handleBadgeDragStart : undefined}
-                onTouchStart={(activeTab === 'good-morning' || activeTab === 'good-night' || activeTab === 'janmashtami') ? handleBadgeTouchStart : undefined}
+                onMouseDown={isDraggableTab ? handleBadgeDragStart : undefined}
+                onTouchStart={isDraggableTab ? handleBadgeTouchStart : undefined}
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
@@ -877,6 +935,11 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
                   </div>
                 </div>
               </div>
+
+              {/* Branding Watermark Badge */}
+              <div className="crafto-card-live-watermark">
+                ✨ WishCrafto.com
+              </div>
             </div>
 
             {/* Compact Floating Swipe Controls (Top-Right of Card) */}
@@ -910,10 +973,11 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
                 <button 
                   className="crafto-btn-whatsapp" 
                   onClick={handleWhatsAppShare}
+                  disabled={isSharing}
                   title="WhatsApp status par share karein"
                 >
-                  <WhatsAppIcon size={18} />
-                  <span>Share</span>
+                  {isSharing ? <Loader2 size={18} className="animate-spin" /> : <WhatsAppIcon size={18} />}
+                  <span>{isSharing ? 'Sharing...' : 'Share'}</span>
                 </button>
 
                 <button 
@@ -944,10 +1008,48 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
               </div>
             </div>
           </div>
+
+          {/* ── Dynamic Category SEO Box (Directly Below Status Frame) ── */}
+          <div className="crafto-seo-context-box" key={activeTab}>
+            <span 
+              className="crafto-seo-badge" 
+              style={{ 
+                background: seoInfo.bg, 
+                color: seoInfo.color, 
+                border: `1.5px solid ${seoInfo.border}` 
+              }}
+            >
+              {seoInfo.badge}
+            </span>
+            <h3 className="crafto-seo-title">
+              {seoInfo.title}
+            </h3>
+            <p className="crafto-seo-desc">
+              {seoInfo.para1}
+            </p>
+            <p className="crafto-seo-desc">
+              {seoInfo.para2}
+            </p>
+            <div className="crafto-seo-tags">
+              {seoInfo.tags.map((tag, idx) => (
+                <span 
+                  key={idx} 
+                  className="crafto-seo-tag-pill" 
+                  style={{ 
+                    borderColor: `${seoInfo.color}35`, 
+                    color: seoInfo.color, 
+                    background: seoInfo.bg 
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ── 2. About WishCrafto & Daily Status Hub (High-Rank SEO & Clean Keywords) ── */}
+      {/* ── 2. About WishCrafto & Daily Status Hub (High-Rank Overview) ── */}
       <section style={{ maxWidth: '960px', margin: '0 auto 2.5rem auto', padding: '1.5rem 1rem 0' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <span style={{ 
@@ -963,14 +1065,14 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
           }}>
             ✨ Daily Good Morning Images, Quotes &amp; Festival Status Maker
           </span>
-          <h2 style={{ fontSize: '2.2rem', color: '#1e1b4b', fontWeight: '800', margin: '0.2rem 0 0.8rem 0' }}>
+          <h2 style={{ fontSize: '2.1rem', color: '#1e1b4b', fontWeight: '800', margin: '0.2rem 0 0.8rem 0' }}>
             WishCrafto: Daily Suvichar, Greetings &amp; Festival Photo Card Hub
           </h2>
           <p style={{ color: '#4b5563', fontSize: '1.02rem', maxWidth: '820px', margin: '0 auto 0.8rem auto', lineHeight: '1.7' }}>
             Welcome to WishCrafto, your free one-stop destination for personalized greeting cards and daily WhatsApp status. Download new Good Morning images, quotes, wishes, Good Night wishes, daily Suvichar, and festival wishes with your photo &amp; name in 1 tap without downloading heavy apps.
           </p>
           <p style={{ color: '#4b5563', fontSize: '0.98rem', maxWidth: '820px', margin: '0 auto 0.8rem auto', lineHeight: '1.65' }}>
-            Whether you want to celebrate someone's special day with custom Happy Birthday wishes with photo and name, start the day with inspiring Good Morning suvichar, express your feelings with heartfelt Hindi shayari, or share blessings on sacred Indian festivals like Shri Krishna Janmashtami and Raksha Bandhan—WishCrafto is made for you.
+            Whether you want to celebrate someone's special day with custom Happy Birthday wishes with photo and name, start the day with inspiring Good Morning suvichar, express your feelings with heartfelt Hindi shayari, or share blessings on sacred Indian festivals like Shri Ganesh Chaturthi 2026, Janmashtami, and Raksha Bandhan—WishCrafto is made for you.
           </p>
           <p style={{ color: '#6d28d9', fontSize: '0.98rem', fontWeight: '700', maxWidth: '820px', margin: '0 auto', lineHeight: '1.6' }}>
             Every quote and status image is instantly downloadable with your custom photo and name in seconds, helping you express and connect more personally with zero app download.
@@ -1012,7 +1114,7 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
                 <span style={{ fontSize: '1.8rem', fontWeight: '800', color: '#7c3aed' }}>01</span>
                 <h4 style={{ color: '#1e1b4b', margin: '0.4rem 0 0.2rem', fontSize: '1.1rem' }}>Choose Status</h4>
                 <p style={{ margin: 0, color: '#6b7280', fontSize: '0.88rem' }}>
-                  Scroll up/down or pick Janmashtami, Good Morning, or Good Night tabs.
+                  Scroll up/down or pick Ganesh Chaturthi, Good Morning, or Good Night tabs.
                 </p>
               </div>
 

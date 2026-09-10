@@ -33,6 +33,7 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
 
   // Compute dynamic toggle label based on current route
   const getToggleLabel = () => {
+    if (currentPath === '/ganesh-chaturthi') return '🐘 Ganesh Chaturthi 2026';
     if (currentPath === '/janmashtami') return '🦚 Janmashtami 2026';
     if (currentPath === '/15-august') {
       return (
@@ -93,14 +94,14 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
               </button>
             </li>
 
-            {/* 2. Live Active Festival (Janmashtami 2026) */}
+            {/* 2. Live Active Festival (Ganesh Chaturthi 2026) */}
             <li className="festival-item active">
               <button 
-                className={`festival-link ${currentPath === '/janmashtami' ? 'active-link' : ''}`} 
-                onClick={() => handleNav('/janmashtami')}
+                className={`festival-link ${currentPath === '/ganesh-chaturthi' ? 'active-link' : ''}`} 
+                onClick={() => handleNav('/ganesh-chaturthi')}
               >
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                  {currentPath === '/janmashtami' && <Check size={14} className="check-icon" />} 🦚 Janmashtami 2026
+                  {currentPath === '/ganesh-chaturthi' && <Check size={14} className="check-icon" />} 🐘 Ganesh Chaturthi 2026
                 </span>
                 <span className="live-pill-badge">LIVE</span>
               </button>
@@ -108,6 +109,18 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
 
             {/* Recent Festivals Section Header */}
             <li className="dropdown-section-header">Recent Festivals</li>
+
+            {/* Janmashtami 2026 */}
+            <li className="festival-item past">
+              <button 
+                className={`festival-link past-link ${currentPath === '/janmashtami' ? 'active-link' : ''}`} 
+                onClick={() => handleNav('/janmashtami')}
+              >
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  🦚 Janmashtami 2026
+                </span>
+              </button>
+            </li>
 
             {/* Raksha Bandhan Item with Inline Submenu Expansion */}
             <li 
@@ -157,12 +170,6 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
             <li className="dropdown-section-header">Upcoming</li>
             <li className="festival-item coming-soon">
               <span className="festival-link disabled" title="Coming Soon">
-                <span>Ganesh Chaturthi</span>
-                <span className="coming-soon-badge">Coming Soon</span>
-              </span>
-            </li>
-            <li className="festival-item coming-soon">
-              <span className="festival-link disabled" title="Coming Soon">
                 <span>Navratri & Dussehra</span>
                 <span className="coming-soon-badge">Coming Soon</span>
               </span>
@@ -198,11 +205,14 @@ export default function Navbar({ navigateTo, currentPath, onOpenCardModal }) {
             🏠 Home
           </button>
           
-          <button className="mobile-nav-link" onClick={() => handleNav('/janmashtami')}>
-            🦚 Janmashtami 2026 (Live)
+          <button className="mobile-nav-link" onClick={() => handleNav('/ganesh-chaturthi')}>
+            🐘 Ganesh Chaturthi 2026 (Live)
           </button>
           
           <div className="mobile-drawer-header">Recent Festivals</div>
+          <button className="mobile-nav-link" onClick={() => handleNav('/janmashtami')}>
+            🦚 Janmashtami 2026
+          </button>
           <button className="mobile-nav-link" onClick={() => handleNav('/raksha-bandhan-wishes')}>
             🌸 Rakhi Wishes
           </button>
