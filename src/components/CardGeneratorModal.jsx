@@ -82,31 +82,11 @@ export default function CardGeneratorModal({
     setIsAdVisible(true);
   };
 
-  const triggerPopunder = () => {
-    try {
-      window.open('https://www.effectivecpmnetwork.com/qc6vt9i70b?key=f18b5b3aaa94fab6bd5580a8dae66967', '_blank', 'noopener,noreferrer');
-    } catch (e) {
-      console.log('Popunder trigger', e);
-    }
-  };
-
   const triggerBusinessMode = () => {
     if (mode === 'business') return;
-    
-    // Check if Smartlink was already triggered in this session
-    const hasSeenOffer = sessionStorage.getItem('wc_biz_offer_seen');
-    
-    if (!hasSeenOffer) {
-      // 1st Time in Session: Trigger High-Paying Smartlink Offer + DIRECT Instant Mode Switch (NO 5-sec Timer!)
-      sessionStorage.setItem('wc_biz_offer_seen', 'true');
-      setMode('business');
-      triggerPopunder();
-    } else {
-      // 2nd Time / Repeat in Same Session: Show 5-second 300x250 Display Banner countdown
-      setAdPurpose('business');
-      setAdCountdown(5);
-      setIsAdVisible(true);
-    }
+    setAdPurpose('business');
+    setAdCountdown(5);
+    setIsAdVisible(true);
   };
 
   useEffect(() => {
@@ -607,16 +587,6 @@ export default function CardGeneratorModal({
     }
   };
 
-  const ADSTERRA_DIRECT_LINK = 'https://www.effectivecpmnetwork.com/qc6vt9i70b?key=f18b5b3aaa94fab6bd5580a8dae66967';
-
-  const triggerDirectLinkAd = () => {
-    try {
-      window.open(ADSTERRA_DIRECT_LINK, '_blank', 'noopener,noreferrer');
-    } catch (e) {
-      console.log('Ad trigger', e);
-    }
-  };
-
   const downloadImageFile = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -631,7 +601,6 @@ export default function CardGeneratorModal({
 
   const handleDownload = () => {
     downloadImageFile();
-    setTimeout(triggerDirectLinkAd, 400);
   };
 
   const handleShare = async () => {
@@ -749,81 +718,79 @@ export default function CardGeneratorModal({
               padding: '6px 14px', borderRadius: '4px', textTransform: 'uppercase',
               letterSpacing: '1px', marginBottom: '1.5rem', display: 'inline-block'
             }}>
-              {adPurpose === 'business' ? '💼 UNLOCKING BUSINESS PRO' : 'SPONSORED ADVERTISEMENT'}
+              {adPurpose === 'business' ? '💼 UNLOCKING BUSINESS PRO' : '✨ PREPARING HD PHOTO STUDIO'}
             </span>
 
             <div style={{
-              width: '100%', maxWidth: '340px', minHeight: '260px', background: '#050302',
-              borderRadius: '12px', border: '1px solid rgba(255, 185, 54, 0.3)',
+              width: '100%', maxWidth: '360px', minHeight: '220px', background: '#050302',
+              borderRadius: '16px', border: '1.5px solid rgba(255, 185, 54, 0.35)',
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-              marginBottom: '1.5rem', padding: '10px', overflow: 'hidden'
+              marginBottom: '1.5rem', padding: '1.8rem 1.4rem', boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
             }}>
-              {/* Adsterra 300x250 High-Paying Display Banner */}
-              <iframe
-                title="Sponsored 300x250 Display Ad"
-                scrolling="no"
-                srcDoc={`
-                  <!DOCTYPE html>
-                  <html>
-                    <head>
-                      <style>
-                        html, body { margin:0; padding:0; width:300px; height:250px; overflow:hidden; background:transparent; display:flex; justify-content:center; align-items:center; }
-                      </style>
-                    </head>
-                    <body>
-                      <script type="text/javascript">
-                        atOptions = {
-                          'key' : 'c668cca989403020a337b63a470001b8',
-                          'format' : 'iframe',
-                          'height' : 250,
-                          'width' : 300,
-                          'params' : {}
-                        };
-                      </script>
-                      <script type="text/javascript" src="https://www.highperformanceformat.com/c668cca989403020a337b63a470001b8/invoke.js"></script>
-                    </body>
-                  </html>
-                `}
-                style={{ width: '300px', height: '250px', border: 'none', overflow: 'hidden', background: 'transparent' }}
-              />
-
               {adCountdown > 0 ? (
                 <>
                   <div style={{
-                    width: '36px', height: '36px', border: '4px solid rgba(255, 185, 54, 0.2)',
+                    width: '46px', height: '46px', border: '4px solid rgba(255, 185, 54, 0.2)',
                     borderTopColor: '#ffb936', borderRadius: '50%', animation: 'spin 1s linear infinite',
-                    margin: '12px 0'
+                    margin: '8px 0 16px'
                   }} />
-                  <p style={{ color: '#aaa', margin: 0, fontSize: '0.9rem' }}>
-                    {adPurpose === 'business' ? 'Unlocking Business PRO Branding...' : 'Loading Photo Studio...'}
+                  <p style={{ color: '#ffffff', margin: '0 0 6px 0', fontSize: '1.1rem', fontWeight: '700' }}>
+                    {adPurpose === 'business' ? 'Enabling Business Branding...' : 'Configuring HD Canvas Studio...'}
                   </p>
+                  <p style={{ color: '#aaa', margin: 0, fontSize: '0.88rem' }}>
+                    Preparing your custom canvas in {adCountdown} seconds...
+                  </p>
+                  {/* Visual Progress Bar */}
+                  <div style={{
+                    width: '100%', height: '6px', background: 'rgba(255, 255, 255, 0.15)',
+                    borderRadius: '4px', marginTop: '16px', overflow: 'hidden'
+                  }}>
+                    <div style={{
+                      width: `${((5 - adCountdown) / 5) * 100}%`,
+                      height: '100%',
+                      background: 'linear-gradient(90deg, #ffb936, #22c55e)',
+                      transition: 'width 1s linear'
+                    }} />
+                  </div>
                 </>
               ) : (
-                <p style={{ color: '#ffb936', fontSize: '1.2rem', fontWeight: 'bold', margin: '10px 0 0 0' }}>
-                  {adPurpose === 'business' ? '🎉 Business PRO Unlocked!' : '🎉 Studio Ready!'}
-                </p>
+                <>
+                  <div style={{
+                    width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(34, 197, 94, 0.2)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#22c55e',
+                    fontSize: '1.6rem', marginBottom: '10px'
+                  }}>
+                    ✓
+                  </div>
+                  <p style={{ color: '#ffb936', fontSize: '1.25rem', fontWeight: '800', margin: '4px 0' }}>
+                    {adPurpose === 'business' ? '🎉 Business PRO Ready!' : '🎉 Studio Ready!'}
+                  </p>
+                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', margin: 0 }}>
+                    100% private in-browser rendering complete.
+                  </p>
+                </>
               )}
             </div>
 
             {adCountdown > 0 ? (
-              <h3 style={{ color: '#fff', fontSize: '1.2rem', marginBottom: '0.5rem' }}>
-                Please wait {adCountdown} seconds...
+              <h3 style={{ color: '#ffd06a', fontSize: '1.1rem', margin: '0 0 0.5rem', fontWeight: '700' }}>
+                ⏳ Please wait {adCountdown}s...
               </h3>
             ) : (
               <button
                 onClick={handleSkipAd}
                 style={{
                   background: 'linear-gradient(135deg, #ffb936, #e78216)', color: '#0d0907',
-                  width: '100%', maxWidth: '340px', padding: '14px', fontSize: '1.1rem',
-                  fontWeight: 'bold', cursor: 'pointer', borderRadius: '50px', border: 'none',
+                  width: '100%', maxWidth: '360px', padding: '14px', fontSize: '1.05rem',
+                  fontWeight: '800', cursor: 'pointer', borderRadius: '50px', border: 'none',
                   boxShadow: '0 4px 15px rgba(255, 185, 54, 0.4)'
                 }}
               >
                 {adPurpose === 'business' ? '💼 Continue to Business PRO' : '📸 Select Photo from Gallery'}
               </button>
             )}
-            <p style={{ marginTop: '1.2rem', color: '#9e9ea7', fontSize: '0.85rem' }}>
-              Supporting free HD Card downloads for everyone!
+            <p style={{ marginTop: '1.2rem', color: '#9e9ea7', fontSize: '0.82rem' }}>
+              Free HD Card Maker • 0 MB Phone Space
             </p>
           </div>
         ) : (

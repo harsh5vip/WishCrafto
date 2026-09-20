@@ -1754,11 +1754,6 @@ body {
   .wallpaper-grid-sm {
     grid-template-columns: 1fr;
   }
-
-  .site-footer {
-    padding: 2.5rem 1.5rem;
-    grid-template-columns: 1fr;
-  }
 }
 
 
@@ -1800,11 +1795,6 @@ body {
   }
 
   .wallpaper-grid-sm {
-    grid-template-columns: 1fr;
-  }
-
-  .site-footer {
-    padding: 2.5rem 1.5rem;
     grid-template-columns: 1fr;
   }
 }
@@ -2221,12 +2211,12 @@ body {
 /* ── Site Footer ── */
 .site-footer {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.8fr 1fr 1fr 1.15fr;
   grid-template-rows: auto auto;
-  gap: 1.8rem 3rem;
-  padding: 2.5rem 4.5rem 1.25rem;
+  gap: 2rem 2.5rem;
+  padding: 3rem 4.5rem 1.5rem;
   border-top: 1px solid rgba(255, 185, 54, 0.35);
-  background: linear-gradient(135deg, #2e1065 0%, #4c1d95 50%, #6d28d9 100%);
+  background: linear-gradient(135deg, #1e0b3d 0%, #2e1065 50%, #4c1d95 100%);
   color: #ffffff;
 }
 
@@ -2238,35 +2228,47 @@ body {
   margin: 0.5rem 0 0;
   color: var(--festival-muted);
   font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.footer-col {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.35rem;
+  width: 100%;
 }
 
 .footer-col h3 {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--festival-muted);
+  color: #d8b4fe;
   margin: 0 0 0.8rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .footer-col button {
-  display: inline-flex;
+  display: flex !important;
+  flex-direction: row;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: none;
   border: none;
-  padding: 0.3rem 0;
-  color: #ffffff;
-  font-size: 0.9rem;
+  padding: 0.35rem 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.92rem;
   cursor: pointer;
   text-align: left;
-  opacity: 0.85;
-  transition: opacity 0.2s ease, color 0.2s ease;
+  transition: opacity 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  width: auto;
+  white-space: nowrap;
 }
 
 .footer-col button:hover {
   opacity: 1;
-  color: var(--festival-gold);
+  color: #ffd06a;
+  transform: translateX(4px);
 }
 
 .footer-col button.active-live-festival {

@@ -23,12 +23,7 @@ export default function ProUnlockModal({
 
   if (!isOpen) return null;
 
-  const triggerSmartlinkAd = () => {
-    try {
-      window.open('https://www.effectivecpmnetwork.com/qc6vt9i70b?key=f18b5b3aaa94fab6bd5580a8dae66967', '_blank', 'noopener,noreferrer');
-    } catch (e) {
-      console.log('Ad popup error', e);
-    }
+  const handleStartUnlock = () => {
     setAdCountdown(5);
   };
 
@@ -117,7 +112,7 @@ export default function ProUnlockModal({
         </h3>
         
         <p style={{ color: '#e9d5ff', fontSize: '0.92rem', marginBottom: '1.4rem', lineHeight: '1.5' }}>
-          Apni Photo aur Name ke sath <strong>4K Ultra-HD Card</strong> download karne ke liye 1 short sponsor (5s) dekhein aur instant free access paayein!
+          Apni Photo aur Name ke sath <strong>4K Ultra-HD Card</strong> export karein — 100% Free &amp; Private in-browser processing!
         </p>
 
         {/* PRO Perks List */}
@@ -145,7 +140,7 @@ export default function ProUnlockModal({
           </div>
         </div>
 
-        {/* Sponsor Ad Unlock Box */}
+        {/* Unlock Box */}
         <div style={{
           background: 'rgba(255, 255, 255, 0.06)',
           border: '1.5px solid rgba(255, 185, 54, 0.45)',
@@ -157,10 +152,10 @@ export default function ProUnlockModal({
           {adCountdown !== null ? (
             <div style={{ padding: '1rem', background: 'rgba(255, 185, 54, 0.18)', borderRadius: '14px', border: '1.5px solid #ffb936' }}>
               <p style={{ margin: '0 0 6px 0', fontWeight: '800', color: '#ffd06a', fontSize: '1.15rem' }}>
-                ⏳ Unlocking in {adCountdown}s...
+                ⏳ Rendering HD Card in {adCountdown}s...
               </p>
               <p style={{ margin: 0, fontSize: '0.85rem', color: '#ffffff' }}>
-                Please wait, aapka photo card automatic download ho raha hai!
+                Please wait, aapka photo card automatic render ho raha hai!
               </p>
               {/* Progress Bar Animation */}
               <div style={{ width: '100%', height: '6px', background: 'rgba(255, 255, 255, 0.2)', borderRadius: '4px', marginTop: '12px', overflow: 'hidden' }}>
@@ -175,10 +170,10 @@ export default function ProUnlockModal({
           ) : (
             <div>
               <p style={{ fontSize: '0.92rem', fontWeight: '700', color: '#f3e8ff', marginBottom: '1rem' }}>
-                🎥 1 Tap karein sponsor dekhne ke liye aur apna HD Photo Card save karein:
+                ⚡ Instant 1-Tap karein aur apna high-resolution card download karein:
               </p>
               <button
-                onClick={triggerSmartlinkAd}
+                onClick={handleStartUnlock}
                 style={{
                   width: '100%',
                   background: 'linear-gradient(135deg, #ffd06a 0%, #f59e0b 50%, #d97706 100%)',
@@ -199,7 +194,7 @@ export default function ProUnlockModal({
                 onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
               >
-                <Download size={20} /> Watch 5s Sponsor &amp; Download Photo Card 👉
+                <Download size={20} /> Generate &amp; Download 4K Photo Card 👉
               </button>
             </div>
           )}

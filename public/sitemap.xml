@@ -42,11 +42,45 @@
     <priority>0.90</priority>
   </url>
 
-  <!-- 4. Independence Day Page -->
+  <!-- 4. Ganesh Chaturthi Hub -->
+  <url>
+    <loc>https://wishcrafto.com/ganesh-chaturthi</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 5. Independence Day Page -->
   <url>
     <loc>https://wishcrafto.com/15-august</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 6. Essential Company & Legal Compliance Pages (AdSense Standards) -->
+  <url>
+    <loc>https://wishcrafto.com/about-us</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://wishcrafto.com/contact-us</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://wishcrafto.com/privacy-policy</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://wishcrafto.com/terms-of-service</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 </urlset>

@@ -7,6 +7,10 @@ import HistoryPage from './pages/HistoryPage';
 import IndependencePage from './pages/IndependencePage';
 import JanmashtamiPage from './pages/JanmashtamiPage';
 import GaneshChaturthiPage from './pages/GaneshChaturthiPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import AboutUsPage from './pages/AboutUsPage';
+import ContactUsPage from './pages/ContactUsPage';
+import TermsPage from './pages/TermsPage';
 import IndianFlagIcon from './components/IndianFlagIcon';
 import CardGeneratorModal from './components/CardGeneratorModal';
 import PastFestivalNoticeModal from './components/PastFestivalNoticeModal';
@@ -62,6 +66,18 @@ export default function App() {
     } else if (currentPath === '/raksha-bandhan-stories') {
       title = 'History of Raksha Bandhan | Divine Stories & Sacred Legends | WishCrafto';
       desc = 'Discover the authentic sacred legends of Raksha Bandhan: Lord Krishna & Draupadi, Goddess Lakshmi & King Bali, Rani Karnavati & Humayun, Yamraj & Yamuna.';
+    } else if (currentPath === '/privacy-policy') {
+      title = 'Privacy Policy | WishCrafto - Zero Cloud Photo Processing & Transparency';
+      desc = 'Learn how WishCrafto handles user privacy, local client-side HTML5 canvas photo card processing, cookies, and Google AdSense compliance.';
+    } else if (currentPath === '/about-us') {
+      title = 'About WishCrafto | Our Story, Cultural Heritage & 0 MB App Mission';
+      desc = 'Discover the story behind WishCrafto: An Indian cultural platform helping families celebrate festivals & suvichar with in-browser privacy and 0 MB phone storage.';
+    } else if (currentPath === '/contact-us') {
+      title = 'Contact Us & Editorial Support | WishCrafto';
+      desc = 'Get in touch with the WishCrafto editorial team. Send general inquiries, festival content suggestions, bug reports, and copyright feedback.';
+    } else if (currentPath === '/terms-of-service' || currentPath === '/terms') {
+      title = 'Terms of Service & Disclaimer | WishCrafto';
+      desc = 'Read the terms of service, acceptable use guidelines, fair use policy, and Vedic panchang muhurat disclaimers for WishCrafto.';
     }
 
     document.title = title;
@@ -120,6 +136,10 @@ export default function App() {
   const isIndepRoute = currentPath === '/15-august';
   const isJanmashtamiRoute = currentPath === '/janmashtami';
   const isGaneshRoute = currentPath === '/ganesh-chaturthi';
+  const isPrivacyRoute = currentPath === '/privacy-policy';
+  const isAboutRoute = currentPath === '/about-us';
+  const isContactRoute = currentPath === '/contact-us';
+  const isTermsRoute = currentPath === '/terms-of-service' || currentPath === '/terms';
   const isHomeRoute = currentPath === '/';
 
   return (
@@ -168,6 +188,18 @@ export default function App() {
             onOpenRakhiModal={() => handleOpenCardModal('', null)}
             onNavigate={navigateTo}
           />
+        )}
+        {isPrivacyRoute && (
+          <PrivacyPolicyPage onNavigate={navigateTo} />
+        )}
+        {isAboutRoute && (
+          <AboutUsPage onNavigate={navigateTo} />
+        )}
+        {isContactRoute && (
+          <ContactUsPage onNavigate={navigateTo} />
+        )}
+        {isTermsRoute && (
+          <TermsPage onNavigate={navigateTo} />
         )}
       </main>
 
@@ -218,9 +250,17 @@ export default function App() {
 
         <div className="footer-col">
           <h3>Daily Status</h3>
-          <button onClick={() => navigateTo('/')}>🌅 Good Morning Wishes</button>
-          <button onClick={() => navigateTo('/')}>🌙 Good Night Status</button>
-          <button onClick={() => navigateTo('/')}>✨ Daily Hindi Suvichar</button>
+          <button onClick={() => navigateTo('/?tab=good-morning')}>🌅 Good Morning Wishes</button>
+          <button onClick={() => navigateTo('/?tab=good-night')}>🌙 Good Night Status</button>
+          <button onClick={() => navigateTo('/?tab=ganesh-chaturthi')}>🐘 Ganesh Chaturthi Status</button>
+        </div>
+
+        <div className="footer-col">
+          <h3>Company & Legal</h3>
+          <button onClick={() => navigateTo('/about-us')}>About WishCrafto</button>
+          <button onClick={() => navigateTo('/contact-us')}>Contact & Support</button>
+          <button onClick={() => navigateTo('/privacy-policy')}>Privacy Policy</button>
+          <button onClick={() => navigateTo('/terms-of-service')}>Terms & Disclaimer</button>
         </div>
 
         <div className="footer-bottom">

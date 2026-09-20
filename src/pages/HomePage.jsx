@@ -74,13 +74,23 @@ const CATEGORY_SEO_CONTENT = {
   }
 };
 
+function shuffleFeed(array) {
+  if (!array || !array.length) return [];
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export default function HomePage({ onNavigate, onOpenCardModal }) {
   const [activeTab, setActiveTab] = useState(() => {
     try {
       const params = new URLSearchParams(window.location.search);
       const tabParam = params.get('tab');
-      if (tabParam && ['good-morning', 'good-night', 'ganesh-chaturthi', 'ganesh', 'janmashtami'].includes(tabParam)) {
-        return tabParam === 'ganesh' ? 'ganesh-chaturthi' : tabParam;
+      if (tabParam && ['good-morning', 'good-night'].includes(tabParam)) {
+        return tabParam;
       }
     } catch (e) {}
     return 'good-morning';
@@ -88,14 +98,24 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
   const [cardIndex, setCardIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState('up');
   const [animationKey, setAnimationKey] = useState(0);
+
+  // Randomize feed order on initial load & tab switch so users get a fresh random 1st image
+  const [shuffledFeedMap, setShuffledFeedMap] = useState(() => {
+    const initialMap = {};
+    Object.keys(DAILY_STATUS_FEED).forEach((key) => {
+      initialMap[key] = shuffleFeed(DAILY_STATUS_FEED[key]);
+    });
+    return initialMap;
+  });
+
   // Sync activeTab with URL ?tab= parameter
   useEffect(() => {
     const handleUrlTab = () => {
       try {
         const params = new URLSearchParams(window.location.search);
         const tabParam = params.get('tab');
-        if (tabParam && ['good-morning', 'good-night', 'ganesh-chaturthi', 'ganesh', 'janmashtami'].includes(tabParam)) {
-          setActiveTab(tabParam === 'ganesh' ? 'ganesh-chaturthi' : tabParam);
+        if (tabParam && ['good-morning', 'good-night'].includes(tabParam)) {
+          setActiveTab(tabParam);
           setCardIndex(0);
         }
       } catch (e) {}
@@ -142,8 +162,10 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
   // Dynamic High-Volume SEO Content based on Active Category Tab
   const seoInfo = CATEGORY_SEO_CONTENT[activeTab] || CATEGORY_SEO_CONTENT['good-morning'];
 
-  // Active status list & card item
-  const currentFeedList = DAILY_STATUS_FEED[activeTab] || DAILY_STATUS_FEED['good-morning'];
+  // Active status list & card item (randomized on load & tab switch)
+  const currentFeedList = (shuffledFeedMap[activeTab] && shuffledFeedMap[activeTab].length > 0)
+    ? shuffledFeedMap[activeTab]
+    : (DAILY_STATUS_FEED[activeTab] || DAILY_STATUS_FEED['good-morning']);
   const totalCards = currentFeedList.length;
   const currentCard = currentFeedList[cardIndex % totalCards] || currentFeedList[0];
 
@@ -339,6 +361,10 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
     setActiveTab(tabId);
     setCardIndex(0);
     setAnimationKey((k) => k + 1);
+    setShuffledFeedMap((prev) => ({
+      ...prev,
+      [tabId]: shuffleFeed(DAILY_STATUS_FEED[tabId] || [])
+    }));
   };
 
   const toggleFaq = (index) => {
@@ -934,11 +960,6 @@ export default function HomePage({ onNavigate, onOpenCardModal }) {
                     />
                   </div>
                 </div>
-              </div>
-
-              {/* Branding Watermark Badge */}
-              <div className="crafto-card-live-watermark">
-                ✨ WishCrafto.com
               </div>
             </div>
 
